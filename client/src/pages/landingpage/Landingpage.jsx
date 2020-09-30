@@ -6,9 +6,8 @@ import {
   DropdownButton,
   Container,
 } from "react-bootstrap";
-import Sidebar from "../sidebar/Sidebar.jsx";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import SettingsPage from "../settingsPage/SettingsPage.jsx";
+import Setting from "../settings/Setting.jsx";
 
 export default class Landingpage extends Component {
   state = {
@@ -18,7 +17,7 @@ export default class Landingpage extends Component {
     return (
       <div>
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/dashboard/:id" style={{ "margin-left": "5rem" }}>
+          <Navbar.Brand href="/dashboard/:id" >
             NoiceJobs
           </Navbar.Brand>
           <Nav className="ml-auto">
@@ -42,12 +41,13 @@ export default class Landingpage extends Component {
             </DropdownButton>
           </Nav>
         </Navbar>
-        <Sidebar />
+
         <Switch>
-          <Route path="/settings/:id" component={SettingsPage} />
+          <Route path="/settings/:id" component={Setting} />
         </Switch>
-        ),
       </div>
+
+
     );
   }
 }

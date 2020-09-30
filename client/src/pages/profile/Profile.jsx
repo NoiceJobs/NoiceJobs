@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Dropdown, DropdownButton, Container } from "react-bootstrap";
-import Sidebar from "../sidebar/Sidebar.jsx";
 import { GrNotification, MdMessage, MdNotifications } from "react-icons/all";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import SettingsPage from "../settingsPage/SettingsPage.jsx";
-import DashboardContent from "../dashboardContent/DashboardContent.jsx";
+import Setting from "../settings/Setting.jsx";
+import DashboardContent from "../../components/dashboardContent/DashboardContent.jsx";
 import Blog from "../blog/Blog.jsx";
 
-export default class Dashboard extends Component {
+export default class Profile extends Component {
 	state = {
 		fullUserName: "" || "Profile",
 	};
@@ -15,7 +14,7 @@ export default class Dashboard extends Component {
 		return (
 			<div>
 				<Navbar bg='dark' variant='dark'>
-					<Navbar.Brand href='/dashboard/' style={{ "margin-left": "5rem" }}>
+					<Navbar.Brand href='/dashboard/' >
 						NoiceJobs
 					</Navbar.Brand>
 					<Nav className='ml-auto'>
@@ -39,14 +38,14 @@ export default class Dashboard extends Component {
 						</DropdownButton>
 					</Nav>
 				</Navbar>
-				<Sidebar />
+
 				<Switch>
 					<Route exact path='/dashboard' component={DashboardContent} />
 					<Route path='/blog/' component={Blog} />
 
-					<Route path='/settings/' component={SettingsPage} />
+					<Route path='/settings/' component={Setting} />
 				</Switch>
-				),
+
 			</div>
 		);
 	}
