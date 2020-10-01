@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 axios.get('/api/auth/loggedin')
   .then(response => {
