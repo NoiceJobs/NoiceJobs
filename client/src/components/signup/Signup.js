@@ -7,6 +7,7 @@ export default class Signup extends Component {
   state = {
     username: '',
     password: '',
+    isCompany: false,
     message: ''
   }
 
@@ -17,16 +18,24 @@ export default class Signup extends Component {
     })
   }
 
+  handleCheckboxChange = event => {
+    console.log('I am checked', event.target.checked)
+    this.setState({ isCompany: event.target.checked })
+  }
+    
+
+
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-    signup(username, password)
+    const { username, password, isCompany } = this.state;
+    signup(username, password, isCompany)
       .then(data => {
         if (data.message) {
           this.setState({
             message: data.message,
             username: '',
-            password: ''
+            password: '', 
+            isCompany: false
           })
         } else {
           // now we need to put the user in the user key of the state of App.js
@@ -63,6 +72,18 @@ export default class Signup extends Component {
               id='password'
             />
           </Form.Group>
+
+          <Form.Group controlId="formBasicCheckbox">
+              <Form.Check 
+              type="checkbox" 
+              name="isCompany"
+              label="I am a company" 
+              checked={this.state.isCompany}
+              onChange={this.handleCheckboxChange}
+              />
+          </Form.Group>
+
+
           {this.state.message && (
             <Alert variant='danger'>{this.state.message}</Alert>
           )}
