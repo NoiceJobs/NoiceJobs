@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import "./App.css";
 import Profile from "./pages/profile/Profile";
 import Landingpage from "./pages/landingpage/Landingpage.jsx";
@@ -9,68 +9,62 @@ import {} from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
 
-
 class App extends Component {
-
   state = {
-    user: this.props.user
-  }
+    user: this.props.user,
+  };
 
-  setUser = user => {
+  setUser = (user) => {
     this.setState({
-      user: user
+      user: user,
     });
-  }
-render() {
-	return (
-		<div className='App'>
-			{/* Check if user is logged in
+  };
+  render() {
+    return (
+      <div className="App">
+        {/* Check if user is logged in
       Not Logged in this Landingpage component should show */}
-			<Switch>
-				<Route 
-				exact path='/' 
-				render={props => <Landingpage user={this.state.user} {...props} />}
-				/>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <Landingpage user={this.state.user} {...props} />
+            )}
+          />
 
+          <Route
+            exact
+            path="/profile"
+            render={(props) => <Profile user={this.state.user} {...props} />}
+          />
 
-				<Route 
-				exact path='/profile' 
-				render={props => <Profile user={this.state.user} {...props} />}
+          <Route
+            exact
+            path="/signup"
+            render={(props) => <Signup setUser={this.setUser} {...props} />}
+          />
 
-				/>
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login setUser={this.setUser} {...props} />}
+          />
 
+          <Route
+            exact
+            path="/jobs"
+            render={(props) => <Jobs setUser={this.setUser} {...props} />}
+          />
+        </Switch>
 
-				<Route 
-        exact 
-        path="/signup" 
-        render={props => <Signup setUser={this.setUser} {...props}/>}
-        />
-        
-        <Route 
-        exact 
-        path="/login" 
-        render={props => <Login setUser={this.setUser} {...props}/>}
-        />
-	
-			</Switch>
-
-			{/* If signed in this profile should show */}
-		</div>
-	);
-
-
-}
-
+        {/* If signed in this profile should show */}
+      </div>
+    );
+  }
 }
 
 export default App;
-
-
-
-
-
-
-
 
 // state = {
 // 	user: this.props.user
@@ -90,18 +84,18 @@ export default App;
 // 			<Switch>
 // 				<Route exact path='/' component={Landingpage} />
 // 				<Route exact path='/profile' component={Profile} />
-// 				<Route 
-//         exact 
-//         path="/signup" 
+// 				<Route
+//         exact
+//         path="/signup"
 //         render={props => <Signup setUser={this.setUser} {...props}/>}
 //         />
-        
-//         <Route 
-//         exact 
-//         path="/login" 
+
+//         <Route
+//         exact
+//         path="/login"
 //         render={props => <Login setUser={this.setUser} {...props}/>}
 //         />
-	
+
 // 			</Switch>
 
 // 			{/* If signed in this profile should show */}
