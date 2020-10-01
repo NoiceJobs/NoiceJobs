@@ -14,6 +14,7 @@ import ProfileContent from "../../components/profileContent/ProfileContent.jsx";
 import Blog from "../blog/Blog.jsx";
 import JobsList from "../../components/jobsList/JobsList.jsx";
 import UserDetails from "../../components/userDetails/UserDetails.jsx";
+import CodeEditor from "../codeeditor/CodeEditor.jsx";
 
 export default class Profile extends Component {
 	state = {
@@ -26,7 +27,6 @@ export default class Profile extends Component {
 					<Navbar.Brand href='/profile/' className='border p-2'>
 						NoiceJobs
 					</Navbar.Brand>
-
 					<Nav className='ml-auto'>
 						<Nav.Link className='font-weight-bold h5'>
 							<CgProfile className='mr-1' />
@@ -44,7 +44,7 @@ export default class Profile extends Component {
 				<Switch>
 					<Route exact path='/profile' component={ProfileContent} />
 					<Route path='/jobs' component={JobsList} />
-					<Route path='/blog/' component={Blog} />
+					<Route path='/codeeditor/' component={CodeEditor} />
 					<Route path='/logout' component={Blog} />
 				</Switch>
 			</div>
