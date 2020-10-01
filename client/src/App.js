@@ -5,8 +5,13 @@ import Landingpage from "./pages/landingpage/Landingpage.jsx";
 import Login from "../src/components/login/Login";
 import Signup from "../src/components/signup/Signup.js";
 import Jobs from "../src/components/jobs/Jobs";
+
 import JobDetails from "./components/jobs/JobDetails";
-import {} from "react-bootstrap";
+
+
+
+// import {} from "react-bootstrap";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
 
