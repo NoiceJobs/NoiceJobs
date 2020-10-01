@@ -1,53 +1,62 @@
 import React, { Component } from "react";
-import {
-  Navbar,
-  Nav,
-  Dropdown,
-  DropdownButton,
-  Container,
-} from "react-bootstrap";
+import { Navbar, Nav, Dropdown, DropdownButton, Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Setting from "../settings/Setting.jsx";
 
 export default class Landingpage extends Component {
-  state = {
-    fullUserName: "" || "Profile",
-  };
-  render() {
-    return (
-      <div>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/dashboard/:id" >
-            NoiceJobs
-          </Navbar.Brand>
-          <Nav className="ml-auto">
-            <Nav.Link href="/blog">Blog</Nav.Link>
-            <DropdownButton
-              alignRight
-              id="dropdown-item-button"
-              title={this.state.fullUserName}
-              variant="dark"
-            >
-              <Dropdown.Item href="/profile/:id" as="button">
-                My Profile
-              </Dropdown.Item>
-              <Dropdown.Item href="/messages/:id" as="button">
-                Inbox
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item href="/logout" as="button">
-                <span className="text-danger font-weight-bold">Sign Out</span>
-              </Dropdown.Item>
-            </DropdownButton>
-          </Nav>
-        </Navbar>
+	state = {
+		fullUserName: "" || "Profile",
+	};
+	render() {
+		return (
+			<div>
+				<Navbar bg='success' variant='dark'>
+					<Navbar.Brand href='/'>NoiceJobs</Navbar.Brand>
+					<Nav className='ml-auto'>
+						<Nav.Link href='#vision' className='font-weight-bold'>
+							Vision
+						</Nav.Link>
+						<Nav.Link href='#features' className='font-weight-bold'>
+							Features
+						</Nav.Link>
+						<Nav.Link href='#team' className='font-weight-bold'>
+							Team
+						</Nav.Link>
+						<Nav.Link href='#faq' className='font-weight-bold'>
+							FAQ
+						</Nav.Link>
+						<Nav.Link href='#contactus' className='font-weight-bold'>
+							Contact Us
+						</Nav.Link>
+						<Nav.Link href='/login' className='font-weight-bold'>
+							Login
+						</Nav.Link>
+					</Nav>
+				</Navbar>
+				<div>
+					<h1 id='vision'>Vision</h1>
+				</div>
 
-        <Switch>
-          <Route path="/settings/:id" component={Setting} />
-        </Switch>
-      </div>
+				<div>
+					<h1 id='features'>Features</h1>
+				</div>
 
+				<div>
+					<h1 id='team'>Team</h1>
+				</div>
 
-    );
-  }
+				<div>
+					<h1 id='faq'>FAQ</h1>
+				</div>
+
+				<div>
+					<h1 id='contactus'>Contact Us</h1>
+				</div>
+
+				<Switch>
+					<Route exact path='/login' />
+				</Switch>
+			</div>
+		);
+	}
 }
