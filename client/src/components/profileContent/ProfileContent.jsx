@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { CgProfile } from "react-icons/cg";
 import UserDetails from "../userDetails/UserDetails";
+import JobsOverview from "../jobsOverview/JobsOverview";
 
 export default class ProfileContent extends Component {
 	render() {
@@ -18,6 +19,9 @@ export default class ProfileContent extends Component {
 						<Row>
 							<Col xs={3}>
 								<UserDetails />
+							</Col>
+							<Col xs={9}>
+								<JobsOverview />
 							</Col>
 						</Row>
 					</main>
