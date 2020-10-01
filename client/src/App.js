@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import React from "react";
 import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -7,7 +7,7 @@ import Landingpage from "./components/landingpage/Landingpage";
 import {} from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import DashboardContent from "./components/dashboardContent/DashboardContent";
-import Jobs from "./components/jobslist/JobsList";
+// import Jobs from "./components/jobslist/JobsList";
 
 function App() {
   return (
