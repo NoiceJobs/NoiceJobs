@@ -3,7 +3,7 @@ import { Navbar, Nav, Dropdown, DropdownButton, Container } from "react-bootstra
 import { GrNotification, MdMessage, MdNotifications } from "react-icons/all";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Setting from "../settings/Setting.jsx";
-import DashboardContent from "../../components/dashboardContent/DashboardContent.jsx";
+import ProfileContent from "../../components/profileContent/ProfileContent.jsx";
 import Blog from "../blog/Blog.jsx";
 
 export default class Profile extends Component {
@@ -14,9 +14,7 @@ export default class Profile extends Component {
 		return (
 			<div>
 				<Navbar bg='dark' variant='dark'>
-					<Navbar.Brand href='/dashboard/' >
-						NoiceJobs
-					</Navbar.Brand>
+					<Navbar.Brand href='/profile/'>NoiceJobs</Navbar.Brand>
 					<Nav className='ml-auto'>
 						<Nav.Link href='/blog'>Blog</Nav.Link>
 						<DropdownButton
@@ -40,12 +38,11 @@ export default class Profile extends Component {
 				</Navbar>
 
 				<Switch>
-					<Route exact path='/dashboard' component={DashboardContent} />
+					<Route exact path='/profile' component={ProfileContent} />
 					<Route path='/blog/' component={Blog} />
 
 					<Route path='/settings/' component={Setting} />
 				</Switch>
-
 			</div>
 		);
 	}
