@@ -18,7 +18,7 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(
-  new LocalStrategy((username, password, done) => {
+  new LocalStrategy(( username,  password, done) => {
     User.findOne({ username: username })
       .then(found => {
         if (found === null) {
@@ -34,3 +34,5 @@ passport.use(
       })
   })
 )
+
+//did I add username and email correctly??

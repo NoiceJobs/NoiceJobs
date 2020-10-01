@@ -1,28 +1,112 @@
-// import logo from "./logo.svg";
-import React from "react";
+import React, { Component } from 'react';
 import "./App.css";
-import Dashboard from "./components/dashboard/Dashboard";
-import Landingpage from "./components/landingpage/Landingpage";
+import Profile from "./pages/profile/Profile";
+import Landingpage from "./pages/landingpage/Landingpage.jsx";
+import Login from "../src/components/login/Login";
+import Signup from "../src/components/signup/Signup.js";
 
 import {} from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import DashboardContent from "./components/dashboardContent/DashboardContent";
-// import Jobs from "./components/jobslist/JobsList";
+import ProfileContent from "./components/profileContent/ProfileContent";
 
-function App() {
-  return (
-    <div className="App">
-      {/* Check if user is logged in
+
+class App extends Component {
+
+  state = {
+    user: this.props.user
+  }
+
+  setUser = user => {
+    this.setState({
+      user: user
+    });
+  }
+render() {
+	return (
+		<div className='App'>
+			{/* Check if user is logged in
       Not Logged in this Landingpage component should show */}
-      <Switch>
-        <Route exact path="/" component={Landingpage} />
-        <Route exact path="/dashboard" component={Dashboard} />
-      </Switch>
-      <Landingpage />
-      {/* If signed in this dashboard should show */}
-      <Dashboard />
-    </div>
-  );
+			<Switch>
+				<Route 
+				exact path='/' 
+				render={props => <Landingpage user={this.state.user} {...props} />}
+				/>
+
+
+				<Route 
+				exact path='/profile' 
+				render={props => <Profile user={this.state.user} {...props} />}
+
+				/>
+
+
+				<Route 
+        exact 
+        path="/signup" 
+        render={props => <Signup setUser={this.setUser} {...props}/>}
+        />
+        
+        <Route 
+        exact 
+        path="/login" 
+        render={props => <Login setUser={this.setUser} {...props}/>}
+        />
+	
+			</Switch>
+
+			{/* If signed in this profile should show */}
+		</div>
+	);
+
+
+}
+
 }
 
 export default App;
+
+
+
+
+
+
+
+
+// state = {
+// 	user: this.props.user
+// }
+
+// setUser = user => {
+// 	this.setState({
+// 		user: user
+// 	});
+// }
+
+// function App() {
+// 	return (
+// 		<div className='App'>
+// 			{/* Check if user is logged in
+//       Not Logged in this Landingpage component should show */}
+// 			<Switch>
+// 				<Route exact path='/' component={Landingpage} />
+// 				<Route exact path='/profile' component={Profile} />
+// 				<Route 
+//         exact 
+//         path="/signup" 
+//         render={props => <Signup setUser={this.setUser} {...props}/>}
+//         />
+        
+//         <Route 
+//         exact 
+//         path="/login" 
+//         render={props => <Login setUser={this.setUser} {...props}/>}
+//         />
+	
+// 			</Switch>
+
+// 			{/* If signed in this profile should show */}
+// 		</div>
+// 	);
+// }
+
+// export default App;
