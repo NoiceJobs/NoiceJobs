@@ -14,7 +14,9 @@ import {
 import { FaLinkedin } from "react-icons/fa";
 import { BsFillPeopleFill, BsChatDotsFill } from "react-icons/bs";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Setting from "../settings/Setting.jsx";
+// import Login from "../../components/login/Login.js";
+// import Signup from "../../components/signup/Signup.js";
+//import Setting from "../settings/Setting.jsx";
 
 export default class Landingpage extends Component {
   state = {
@@ -121,10 +123,12 @@ export default class Landingpage extends Component {
           </Card>
         </div>
 
-        <Switch>
-          <Route exact path="/login" />
-        </Switch>
-      </div>
-    );
-  }
+				{/* <Router>
+
+					<Route exact path='/login/' component={Login} />
+					<Route exact path='/signup/' component={Signup}  />
+				</Router> */}
+			</div>
+		);
+	}
 }
