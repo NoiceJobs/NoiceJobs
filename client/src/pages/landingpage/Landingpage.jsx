@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Dropdown, DropdownButton, Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Setting from "../settings/Setting.jsx";
+// import Login from "../../components/login/Login.js";
+// import Signup from "../../components/signup/Signup.js";
+//import Setting from "../settings/Setting.jsx";
 
 export default class Landingpage extends Component {
 	state = {
@@ -53,9 +55,11 @@ export default class Landingpage extends Component {
 					<h1 id='contactus'>Contact Us</h1>
 				</div>
 
-				<Switch>
-					<Route exact path='/login' />
-				</Switch>
+				{/* <Router>
+
+					<Route exact path='/login/' component={Login} />
+					<Route exact path='/signup/' component={Signup}  />
+				</Router> */}
 			</div>
 		);
 	}
