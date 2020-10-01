@@ -6,7 +6,12 @@ import Login from "../src/components/login/Login";
 import Signup from "../src/components/signup/Signup.js";
 import Jobs from "../src/components/jobs/Jobs";
 
+import JobDetails from "./components/jobs/JobDetails";
+
+
+
 // import {} from "react-bootstrap";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
 
@@ -55,7 +60,13 @@ class App extends Component {
           <Route
             exact
             path="/jobs"
-            render={(props) => <Jobs setUser={this.setUser} {...props} />}
+            render={(props) => <Jobs user={this.state.user} {...props} />}
+          />
+
+          <Route
+            exact
+            path="/jobs/:id"
+            render={(props) => <JobDetails user={this.state.user} {...props} />}
           />
         </Switch>
 
