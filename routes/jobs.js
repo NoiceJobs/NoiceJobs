@@ -40,10 +40,13 @@ router.delete("/:id", (req, res) => {
 });
 // create a new project
 router.post("/", (req, res) => {
-  const { owner, description } = req.body;
+  const { owner, description, role, position, location } = req.body;
   Job.create({
-    owner,
+    owner: req.user._id,
     description,
+    role,
+    position,
+    location,
   })
     .then((job) => {
       res.status(201).json(job);

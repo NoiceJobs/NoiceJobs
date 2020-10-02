@@ -1,0 +1,27 @@
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/material.css';
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	gap: 1px 1px;
+	grid-template-areas:
+		"task-description code-editor code-editor code-editor"
+		"task-description code-editor code-editor code-editor"
+		"task-description code-output code-output code-output";
+}
+.task-description {
+	grid-area: task-description;
+}
+.code-editor {
+	grid-area: code-editor;
+}
+.code-output {
+	grid-area: code-output;
+}
+
+.codemirror {
+	height: 100vh;
+	font-size: 20px;
+}
