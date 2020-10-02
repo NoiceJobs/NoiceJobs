@@ -5,6 +5,7 @@ import UserDetails from "../userDetails/UserDetails";
 import JobsOverview from "../jobsOverview/JobsOverview";
 import ApplicantJobsOverview from "../applicantJobsOverview/ApplicantJobsOverview";
 import { Link } from "react-router-dom";
+import AddJob from "../jobs/AddJob";
 
 export default class ProfileContent extends Component {
 	render() {
@@ -16,7 +17,7 @@ export default class ProfileContent extends Component {
 							<CgProfile className='mr-2' />
 							Profile
 						</h1>
-						<Link to='/jobs/add' className='btn btn-outline-success m-3'>
+						<Link to='/jobs/add/' className='btn btn-outline-success m-3'>
 							+ Add Job{" "}
 						</Link>
 						<Link to='/challenge/add' className='btn btn-outline-success m-3'>
@@ -27,7 +28,7 @@ export default class ProfileContent extends Component {
 								<UserDetails user={this.props.user} />
 							</Col>
 							<Col xs={9}>
-								{this.props.user ? (
+								{this.props.user.isCompany ? (
 									<JobsOverview user={this.props.user} />
 								) : (
 									<ApplicantJobsOverview user={this.props.user} />
