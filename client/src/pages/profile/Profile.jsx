@@ -16,11 +16,23 @@ import Blog from "../blog/Blog.jsx";
 import JobsList from "../../components/jobsList/JobsList.jsx";
 import UserDetails from "../../components/userDetails/UserDetails.jsx";
 import CodeEditor from "../codeeditor/CodeEditor.jsx";
+import {logout} from '../../services/auth.js'
+
+
+
+const handleLogout = props => {
+	logout().then(() => {
+		props.setUser(null);
+	});
+};
 
 export default class Profile extends Component {
 	state = {
 		fullUserName: "" || "Profile",
 	};
+
+
+
 	render() {
 		return (
 			<div>
@@ -41,7 +53,8 @@ export default class Profile extends Component {
 							<BsBriefcaseFill className='mr-1' /> Jobs{" "}
 						</Nav.Link>
 						<Nav.Link
-							href='/logout'
+							href='/'
+							onClick={() => handleLogout(this.props)}
 							className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'
 						>
 							<FiLogOut /> Logout

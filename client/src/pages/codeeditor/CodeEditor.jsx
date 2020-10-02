@@ -4,7 +4,17 @@ import { UnControlled as CodeMirror } from "react-codemirror2";
 import TaskBar from "../../components/taskBar/TaskBar";
 import TaskDescription from "../../components/taskDescription/TaskDescription";
 import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
+import {logout} from '../../services/auth.js';
 require("codemirror/mode/javascript/javascript");
+
+
+
+const handleLogout = props => {
+	logout().then(() => {
+		props.setUser(null);
+	});
+};
+
 
 class CodeEditor extends Component {
 	constructor(props) {
@@ -40,9 +50,15 @@ class CodeEditor extends Component {
 						<Nav.Link href='/jobs' className='font-weight-bold'>
 							Jobs
 						</Nav.Link>
-						<Nav.Link href='/logout' className='font-weight-bold'>
-							Logout
-						</Nav.Link>
+
+						<Nav.Link
+							href='/'
+							onClick={() => handleLogout(this.props)}
+							className='font-weight-bold'> Logout</Nav.Link>
+					
+					
+
+
 					</Nav>
 				</Navbar>
 

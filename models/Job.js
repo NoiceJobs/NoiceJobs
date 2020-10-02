@@ -18,7 +18,7 @@ const jobSchema = new Schema(
     role: {
       type: String,
       enum: ["Junior", "Senior"],
-      default: "Junior",
+      // default: "Junior",
     } /** Berufseinsteiger,Junior , Senior */,
     position: String,
     location: String,
@@ -28,5 +28,5 @@ const jobSchema = new Schema(
     timestamps: true,
   }
 );
-const job = mongoose.model("Job", jobSchema);
-module.exports = job;
+const Job = mongoose.model("Job", jobSchema);
+module.exports = Job;
