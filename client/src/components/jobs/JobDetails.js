@@ -110,6 +110,7 @@ export default class JobDetails extends Component {
     const owner = this.state.job.owner;
     if (user && user._id === owner) allowedToDelete = true;
 
+
     // just let owner edit job:
     let allowedToEdit = false;
     if (user && user._id === owner) allowedToEdit = true;

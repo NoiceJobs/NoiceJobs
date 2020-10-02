@@ -33,7 +33,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <Switch>
           <Route
             exact
@@ -75,18 +74,17 @@ class App extends Component {
             }}
           />
 
-            <Route
-              exact
-              path="/jobs/add"
-              render={(props) => {
-                if (this.state.user.isCompany === true)
-                  return <AddJob user={this.state.user} {...props} />;
-                else return <Redirect to="/jobs" />;
-              }}
-            />
+          <Route
+            exact
+            path="/jobs/add"
+            render={(props) => {
+              if (this.state.user.isCompany === true)
+                return <AddJob user={this.state.user} {...props} />;
+              else return <Redirect to="/jobs" />;
+            }}
+          />
 
-
-            <Route
+          <Route
             exact
             path="/jobs/:id"
             render={(props) => {
@@ -96,20 +94,16 @@ class App extends Component {
             }}
           />
 
-
-<Route
-              exact
-              path="/codeeditor"
-              render={(props) => {
-                if (this.state.user.isCompany === false)
-                  return <CodeEditor user={this.state.user} {...props} />;
-                else return <Redirect to="/profile" />;
-              }}
-            />
-
+          <Route
+            exact
+            path="/codeeditor"
+            render={(props) => {
+              if (this.state.user.isCompany === false)
+                return <CodeEditor user={this.state.user} {...props} />;
+              else return <Redirect to="/profile" />;
+            }}
+          />
         </Switch>
-
-      
       </div>
     );
   }
