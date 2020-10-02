@@ -1,22 +1,39 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AddJob from "../jobs/AddJob";
+import {logout} from '../../services/auth.js';
+
+
+
+const handleLogout = props => {
+	logout().then(() => {
+		props.setUser(null);
+	});
+};
 
 class JobsList extends Component {
-  state = {
-    owner: "Company Teen",
-    description:
-      "You work with a agile Team and will continously develop on the Webapplication!",
-    role: "Junior",
-    position: "Fullstack Webdeveloper",
-    location: "Germany, Berlin",
-    // jobDetails: {},
-    // jobsList=[]
-  };
+
   render() {
+  
     return (
-      <Container>
+      <>
+      <Navbar bg='dark' variant='dark'>
+					<Navbar.Brand href='/'>NoiceJobs</Navbar.Brand>
+					<Nav className='ml-auto'>
+						<Nav.Link href='#vision' className='font-weight-bold'>
+							Profile
+						</Nav.Link>
+						<Nav.Link href='/jobs' className='font-weight-bold'>
+							Jobs
+						</Nav.Link>
+						<Nav.Link
+							href='/'
+							onClick={() => handleLogout(this.props)}
+							className='font-weight-bold'> Logout</Nav.Link>
+					</Nav>
+				</Navbar>
+
+        <Container>
         <div>
           {this.props.jobs.length > 0 && <h2>Jobs:</h2>}
 
@@ -34,6 +51,7 @@ class JobsList extends Component {
         {/* <AddJob /> */}
         {/* <JobDetails/> */}
       </Container>
+      </>
     );
   }
 }
