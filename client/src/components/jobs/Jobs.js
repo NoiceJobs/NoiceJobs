@@ -32,9 +32,9 @@ export default class Jobs extends Component {
   render() {
     return (
       <div className="jobss-container">
-        <AddJob getData={this.getData} />
+        {/* <AddJob getData={this.getData} /> */}
         <JobsList jobs={this.state.jobs} />
-        <EditJob getData={this.getData} />
+        {/* <EditJob getData={this.getData} /> */}
       </div>
     );
   }

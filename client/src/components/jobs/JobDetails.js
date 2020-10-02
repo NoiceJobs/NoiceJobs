@@ -71,6 +71,7 @@ export default class JobDetails extends Component {
         location: this.state.location,
       })
       .then((response) => {
+        console.log(response.data);
         this.setState({
           job: response.data,
           description: response.data.description,
@@ -97,6 +98,10 @@ export default class JobDetails extends Component {
   }
 
   render() {
+    // {
+    //   console.log("state in Jobdetails", this.state);
+    // }
+
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.job) return <p>Loading ...</p>;
 
@@ -107,6 +112,7 @@ export default class JobDetails extends Component {
 
     return (
       <div>
+        {console.log("owner", this.state)}
         <h1>{this.state.job.owner}</h1>
         <h1>{this.state.job.position}</h1>
 
