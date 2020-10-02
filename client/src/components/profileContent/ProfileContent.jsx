@@ -4,6 +4,7 @@ import { CgProfile } from "react-icons/cg";
 import UserDetails from "../userDetails/UserDetails";
 import JobsOverview from "../jobsOverview/JobsOverview";
 import ApplicantJobsOverview from "../applicantJobsOverview/ApplicantJobsOverview";
+import { Link } from "react-router-dom";
 
 export default class ProfileContent extends Component {
 	render() {
@@ -15,8 +16,12 @@ export default class ProfileContent extends Component {
 							<CgProfile className='mr-2' />
 							Profile
 						</h1>
-						<Button variant='outline-success m-3'>+ Add Job {this.props.user.username}</Button>
-						<Button variant='outline-success m-3'>+ Add Challenge</Button>{" "}
+						<Link to='/jobs/add' className='btn btn-outline-success m-3'>
+							+ Add Job{" "}
+						</Link>
+						<Link to='/challenge/add' className='btn btn-outline-success m-3'>
+							+ Add Challenge
+						</Link>{" "}
 						<Row>
 							<Col xs={3}>
 								<UserDetails user={this.props.user} />

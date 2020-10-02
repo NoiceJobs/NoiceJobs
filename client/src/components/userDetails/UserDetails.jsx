@@ -6,12 +6,25 @@ import { Link } from "react-router-dom";
 
 export default class UserDetails extends Component {
 	state = {
-		/* isCompany: this.props.user.isCompany, */
-		name: "Sparkasse",
-		description: "Banking company",
-		location: "Germany, Berlin",
-		email: "support@sparkasse.de",
-		size: "100 Employer",
+		userDetails: {},
+	};
+
+	componentDidMount() {
+		this.getUserData();
+	}
+
+	getUserData = () => {
+		axios
+			.get(`/api/user/${this.props.user._id}`)
+			.then((response) => {
+				console.log(response);
+				this.setState({
+					userDetails: response.data,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
 	render() {
@@ -32,7 +45,7 @@ export default class UserDetails extends Component {
 								<Col xs={4}>
 									<span className='text-success font-weight-bold border-bottom-0'>Name: </span>
 								</Col>
-								<Col xs={6}>{this.state.name}</Col>
+								<Col xs={6}>{this.state.userDetails.name}</Col>
 							</Row>
 						) : (
 							<Row>
@@ -48,7 +61,7 @@ export default class UserDetails extends Component {
 								<Col xs={4}>
 									<span className='text-success font-weight-bold border-bottom-0'>E-Mail: </span>
 								</Col>
-								<Col xs={6}>{this.state.email}</Col>
+								<Col xs={6}>{this.state.userDetails.email}</Col>
 							</Row>
 						) : (
 							<Row>
@@ -66,7 +79,7 @@ export default class UserDetails extends Component {
 										Description:{" "}
 									</span>
 								</Col>
-								<Col xs={6}>{this.state.description}</Col>
+								<Col xs={6}>{this.state.userDetails.description}</Col>
 							</Row>
 						) : (
 							<Row>
@@ -84,7 +97,7 @@ export default class UserDetails extends Component {
 								<Col xs={4}>
 									<span className='text-success font-weight-bold border-bottom-0'>Location: </span>
 								</Col>
-								<Col xs={6}>{this.state.location}</Col>
+								<Col xs={6}>{this.state.userDetails.location}</Col>
 							</Row>
 						) : (
 							<Row>
@@ -102,7 +115,7 @@ export default class UserDetails extends Component {
 										Company Size:{" "}
 									</span>
 								</Col>
-								<Col xs={6}>{this.state.size}</Col>
+								<Col xs={6}>{this.state.userDetails.size}</Col>
 							</Row>
 						) : (
 							""
