@@ -9,6 +9,7 @@ import JobDetails from "./components/jobs/JobDetails";
 import {} from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
+import AddJob from "./components/jobs/AddJob";
 
 class App extends Component {
   state = {
@@ -56,6 +57,12 @@ class App extends Component {
             exact
             path="/jobs"
             render={(props) => <Jobs user={this.state.user} {...props} />}
+          />
+
+          <Route
+            exact
+            path="/jobs/add"
+            render={(props) => <AddJob user={this.state.user} {...props} />}
           />
 
           <Route
