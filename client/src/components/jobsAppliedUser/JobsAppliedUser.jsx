@@ -5,6 +5,10 @@ import { DiJavascript } from "react-icons/di";
 import { SiJavascript } from "react-icons/si";
 
 export default class JobsAppliedUser extends Component {
+	state = {
+		appliedJobs: [],
+	};
+
 	getData = () => {
 		axios
 			.get("/api/jobs")
