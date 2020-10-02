@@ -41,7 +41,7 @@ export default class Signup extends Component {
           // now we need to put the user in the user key of the state of App.js
           this.props.setUser(data);
           // redirect to /?
-          this.props.history.push('/');
+          this.props.history.push('/profile');
         }
 
       })
