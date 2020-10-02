@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AddJob from "../jobs/AddJob";
 
 class JobsList extends Component {
   state = {
@@ -10,11 +11,12 @@ class JobsList extends Component {
     role: "Junior",
     position: "Fullstack Webdeveloper",
     location: "Germany, Berlin",
+    // jobDetails: {},
+    // jobsList=[]
   };
   render() {
     return (
       <Container>
-        <div>Jobs</div>
         <div>
           {this.props.jobs.length > 0 && <h2>Jobs:</h2>}
 
@@ -28,6 +30,9 @@ class JobsList extends Component {
             );
           })}
         </div>
+        <Link to="/jobs/add">Add a Job</Link>
+        {/* <AddJob /> */}
+        {/* <JobDetails/> */}
       </Container>
     );
   }
