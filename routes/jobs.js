@@ -58,8 +58,12 @@ router.post("/add", (req, res) => {
 
 // update a project
 router.put("/:id", (req, res) => {
-  const { owner, description } = req.body;
-  Job.findByIdAndUpdate(req.params.id, { owner, description }, { new: true })
+  const { owner, description, location, position, role } = req.body;
+  Job.findByIdAndUpdate(
+    req.params.id,
+    { owner, description, location, position, role },
+    { new: true }
+  )
     .then((job) => {
       res.status(200).json(job);
     })

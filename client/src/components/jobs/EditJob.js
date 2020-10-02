@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 
 export default class EditJob extends Component {
   render() {
+    console.log("this.props in edit form", this.props);
     return (
       <div>
         <h2>Edit the Job</h2>
@@ -50,7 +51,6 @@ export default class EditJob extends Component {
               onChange={this.props.handleChange}
             />
           </Form.Group>
-
           <Button type="submit">Save</Button>
         </Form>
       </div>

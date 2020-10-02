@@ -18,6 +18,7 @@ import {
 import ProfileContent from "./components/profileContent/ProfileContent";
 import AddJob from "./components/jobs/AddJob";
 import CodeEditor from "./pages/codeeditor/CodeEditor";
+import Settings from "./pages/settings/Settings";
 
 class App extends Component {
   state = {
@@ -51,17 +52,17 @@ class App extends Component {
             }}
           />
 
-          <Route
-            exact
-            path="/signup"
-            render={(props) => <Signup setUser={this.setUser} {...props} />}
-          />
+					<Route
+						exact
+						path='/settings'
+						render={(props) => <Settings user={this.state.user} type='default' {...props} />}
+					/>
 
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Login setUser={this.setUser} {...props} />}
-          />
+					<Route
+						exact
+						path='/profile/settings/:id'
+						render={(props) => <Settings user={this.state.user} type='profile' {...props} />}
+					/>
 
           <Route
             exact

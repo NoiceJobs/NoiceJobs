@@ -18,7 +18,7 @@ const jobSchema = new Schema(
     role: {
       type: String,
       enum: ["Junior", "Senior"],
-      default: "Junior",
+      // default: "Junior",
     } /** Berufseinsteiger,Junior , Senior */,
     position: String,
     location: String,

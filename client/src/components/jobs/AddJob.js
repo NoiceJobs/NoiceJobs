@@ -10,6 +10,7 @@ export default class AddJob extends Component {
     position: "",
     location: "",
   };
+
   handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -20,7 +21,7 @@ export default class AddJob extends Component {
         position: this.state.position,
         location: this.state.location,
       })
-      .then(() => {
+      .then((data) => {
         this.setState({
           owner: "",
           description: "",
@@ -28,12 +29,14 @@ export default class AddJob extends Component {
           position: "",
           location: "",
         });
-        this.props.getData();
+        console.log(data);
+        this.props.history.push("/jobs");
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
