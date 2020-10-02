@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Col, Modal, Row } from "react-bootstrap";
 import axios from "axios";
 import { BiCog } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 export default class UserDetails extends Component {
 	state = {
@@ -17,10 +18,11 @@ export default class UserDetails extends Component {
 		return (
 			<div class='card shadow-sm border-0'>
 				<h5 class='card-header bg-success text-white font-weight-bolder'>
-					{this.props.user.isCompany ? "Company Details" : "User Details"}
+					{this.props.user.isCompany ? "Company Details" : "Applicant Details"}
 					<span className='float-right'>
-						<Modal></Modal>
-						<BiCog />
+						<Link className='text-white' to={`/profile/settings/${this.props.user._id}`}>
+							<BiCog />
+						</Link>
 					</span>
 				</h5>
 				<div class='card-body'>
