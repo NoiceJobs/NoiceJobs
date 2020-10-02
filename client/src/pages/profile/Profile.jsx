@@ -28,25 +28,32 @@ export default class Profile extends Component {
 						NoiceJobs
 					</Navbar.Brand>
 					<Nav className='ml-auto'>
-						<Nav.Link className='font-weight-bold h5'>
+						<Nav.Link href='/profile' className='active font-weight-bold h5'>
 							<CgProfile className='mr-1' />
 							Profile
 						</Nav.Link>
-						<Nav.Link className='font-weight-bold ml-4 h5'>
+						<Nav.Link href='/jobs' className='font-weight-bold ml-4 h5'>
 							<BsBriefcaseFill className='mr-1' /> Jobs{" "}
 						</Nav.Link>
-						<Nav.Link className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'>
+						<Nav.Link
+							href='/logout'
+							className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'
+						>
 							<FiLogOut /> Logout
 						</Nav.Link>
 					</Nav>
 				</Navbar>
-
-				<Switch>
-					<Route exact path='/profile' component={ProfileContent} />
+				<ProfileContent user={this.props.user} />
+				{/* <Switch>
+					<Route
+						exact
+						path='/profile'
+						render={(props) => <ProfileContent user={this.state.user} {...props} />}
+					/>
 					<Route path='/jobs' component={JobsList} />
 					<Route path='/codeeditor/' component={CodeEditor} />
 					<Route path='/logout' component={Blog} />
-				</Switch>
+				</Switch> */}
 			</div>
 		);
 	}
