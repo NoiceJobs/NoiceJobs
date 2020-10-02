@@ -3,6 +3,9 @@ import { Table } from "react-bootstrap";
 import { SiJavascript } from "react-icons/si";
 
 export default class BookmarkedJobs extends Component {
+	state = {
+		bookmarkedJobs: [],
+	};
 	render() {
 		return (
 			<div>
