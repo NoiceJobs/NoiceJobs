@@ -110,20 +110,24 @@ export default class JobDetails extends Component {
     const owner = this.state.job.owner;
     if (user && user._id === owner) allowedToDelete = true;
 
+    // just let owner edit job:
+    let allowedToEdit = false;
+    if (user && user._id === owner) allowedToEdit = true;
+
     return (
       <div>
         {console.log("owner", this.state)}
         <h1>{this.state.job.owner}</h1>
         <h1>{this.state.job.position}</h1>
-
         {allowedToDelete && (
           <Button variant="danger" onClick={this.deleteJob}>
             Delete Job
           </Button>
         )}
-
-        <Button onClick={this.toggleEditForm}>Edit Form</Button>
-        {this.state.editForm && (
+        {allowedToEdit && (
+          <Button onClick={this.toggleEditForm}>Edit Form</Button>
+        )}
+        {allowedToEdit && this.state.editForm && (
           <EditJob
             {...this.state}
             handleChange={this.handleChange}
