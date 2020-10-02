@@ -13,7 +13,7 @@ export default class AddJob extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("/api/jobs", {
+      .post("/api/jobs/add", {
         owner: this.state.owner,
         description: this.state.description,
         role: this.state.role,

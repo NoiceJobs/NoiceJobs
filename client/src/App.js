@@ -14,6 +14,7 @@ import JobDetails from "./components/jobs/JobDetails";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
+import AddJob from "./components/jobs/AddJob";
 import CodeEditor from "./pages/codeeditor/CodeEditor";
 
 class App extends Component {
@@ -62,6 +63,12 @@ class App extends Component {
             exact
             path="/jobs"
             render={(props) => <Jobs user={this.state.user} {...props} />}
+          />
+
+          <Route
+            exact
+            path="/jobs/add"
+            render={(props) => <AddJob user={this.state.user} {...props} />}
           />
 
           <Route

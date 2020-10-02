@@ -39,7 +39,7 @@ router.delete("/:id", (req, res) => {
     });
 });
 // create a new project
-router.post("/", (req, res) => {
+router.post("/add", (req, res) => {
   const { owner, description, role, position, location } = req.body;
   Job.create({
     owner: req.user._id,
