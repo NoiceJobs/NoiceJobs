@@ -103,6 +103,19 @@ class App extends Component {
               else return <Redirect to="/profile" />;
             }}
           />
+
+        <Route 
+        exact 
+        path="/signup" 
+        render={props => <Signup setUser={this.setUser} {...props}/>}
+        />
+
+        <Route 
+        exact 
+        path="/login" 
+        render={props => <Login setUser={this.setUser} {...props}/>}
+        />
+
         </Switch>
       </div>
     );

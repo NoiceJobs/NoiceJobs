@@ -119,8 +119,10 @@ export default class JobDetails extends Component {
     return (
       <div>
         {console.log("owner", this.state)}
+
         <h1>{this.state.job.owner.username}</h1>
         <h1>{this.state.job.position}</h1>
+
         {allowedToDelete && (
           <Button variant="danger" onClick={this.deleteJob}>
             Delete Job
