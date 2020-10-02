@@ -3,6 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { CgProfile } from "react-icons/cg";
 import UserDetails from "../userDetails/UserDetails";
 import JobsOverview from "../jobsOverview/JobsOverview";
+import ApplicantJobsOverview from "../applicantJobsOverview/ApplicantJobsOverview";
 
 export default class ProfileContent extends Component {
 	render() {
@@ -21,7 +22,11 @@ export default class ProfileContent extends Component {
 								<UserDetails user={this.props.user} />
 							</Col>
 							<Col xs={9}>
-								<JobsOverview user={this.props.user} />
+								{this.props.user ? (
+									<JobsOverview user={this.props.user} />
+								) : (
+									<ApplicantJobsOverview user={this.props.user} />
+								)}
 							</Col>
 						</Row>
 					</main>

@@ -7,9 +7,10 @@ import {
 	CgProfile,
 	BsBriefcaseFill,
 	FiLogOut,
+	BiCog,
 } from "react-icons/all";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Setting from "../settings/Setting.jsx";
+import Settings from "../settings/Settings.jsx";
 import ProfileContent from "../../components/profileContent/ProfileContent.jsx";
 import Blog from "../blog/Blog.jsx";
 import JobsList from "../../components/jobsList/JobsList.jsx";
@@ -31,6 +32,10 @@ export default class Profile extends Component {
 						<Nav.Link href='/profile' className='active font-weight-bold h5'>
 							<CgProfile className='mr-1' />
 							Profile
+						</Nav.Link>
+						<Nav.Link href='/settings' className='font-weight-bold h5'>
+							<BiCog className='mr-1' />
+							Settings
 						</Nav.Link>
 						<Nav.Link href='/jobs' className='font-weight-bold ml-4 h5'>
 							<BsBriefcaseFill className='mr-1' /> Jobs{" "}

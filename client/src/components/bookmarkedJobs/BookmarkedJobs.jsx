@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
-import { DiJavascript } from "react-icons/di";
 import { SiJavascript } from "react-icons/si";
 
-export default class JobsAppliedUser extends Component {
+export default class BookmarkedJobs extends Component {
 	render() {
 		return (
 			<div>
@@ -11,7 +10,7 @@ export default class JobsAppliedUser extends Component {
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Job Position</th>
+							<th>Job Role + Position</th>
 							<th>Location</th>
 							<th>Challenge</th>
 
