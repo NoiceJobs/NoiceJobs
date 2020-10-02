@@ -14,9 +14,11 @@ export default class JobDetails extends Component {
     position: "",
     location: "",
     editForm: false,
+    username: "",
+    name: "",
   };
 
-  getData = () => {
+  getJobData = () => {
     const id = this.props.match.params.id;
     axios
       .get(`/api/jobs/${id}`)
@@ -94,7 +96,7 @@ export default class JobDetails extends Component {
   };
 
   componentDidMount() {
-    this.getData();
+    this.getJobData();
   }
 
   render() {
@@ -110,7 +112,6 @@ export default class JobDetails extends Component {
     const owner = this.state.job.owner;
     if (user && user._id === owner) allowedToDelete = true;
 
-
     // just let owner edit job:
     let allowedToEdit = false;
     if (user && user._id === owner) allowedToEdit = true;
@@ -118,7 +119,7 @@ export default class JobDetails extends Component {
     return (
       <div>
         {console.log("owner", this.state)}
-        <h1>{this.state.job.owner}</h1>
+        <h1>{this.state.job.owner.username}</h1>
         <h1>{this.state.job.position}</h1>
         {allowedToDelete && (
           <Button variant="danger" onClick={this.deleteJob}>

@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
 // get a specific project
 router.get("/:id", (req, res) => {
   Job.findById(req.params.id)
+    .populate("owner")
     .then((job) => {
       if (!job) {
         res.status(404).json(job);
