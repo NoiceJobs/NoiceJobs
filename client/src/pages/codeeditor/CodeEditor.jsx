@@ -5,6 +5,7 @@ import TaskBar from "../../components/taskBar/TaskBar";
 import TaskDescription from "../../components/taskDescription/TaskDescription";
 import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import {logout} from '../../services/auth.js';
+import OurNavbar from "../../components/ourNavbar/OurNavbar";
 require("codemirror/mode/javascript/javascript");
 
 
@@ -41,26 +42,8 @@ class CodeEditor extends Component {
 		};
 		return (
 			<div>
-				<Navbar bg='dark' variant='dark'>
-					<Navbar.Brand href='/'>NoiceJobs</Navbar.Brand>
-					<Nav className='ml-auto'>
-						<Nav.Link href='#vision' className='font-weight-bold'>
-							Profile
-						</Nav.Link>
-						<Nav.Link href='/jobs' className='font-weight-bold'>
-							Jobs
-						</Nav.Link>
 
-						<Nav.Link
-							href='/'
-							onClick={() => handleLogout(this.props)}
-							className='font-weight-bold'> Logout</Nav.Link>
-					
-					
-
-
-					</Nav>
-				</Navbar>
+				<OurNavbar />
 
 				<Container fluid className='mt-5'>
 					<Row>
