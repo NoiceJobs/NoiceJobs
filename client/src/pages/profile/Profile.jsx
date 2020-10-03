@@ -17,6 +17,7 @@ import JobsList from "../../components/jobsList/JobsList.jsx";
 import UserDetails from "../../components/userDetails/UserDetails.jsx";
 import CodeEditor from "../codeeditor/CodeEditor.jsx";
 import {logout} from '../../services/auth.js'
+import OurNavbar from "../../components/ourNavbar/OurNavbar";
 
 
 
@@ -36,31 +37,7 @@ export default class Profile extends Component {
 	render() {
 		return (
 			<div>
-				<Navbar bg='success' variant='dark'>
-					<Navbar.Brand href='/profile/' className='border p-2'>
-						NoiceJobs
-					</Navbar.Brand>
-					<Nav className='ml-auto'>
-						<Nav.Link href='/profile' className='active font-weight-bold h5'>
-							<CgProfile className='mr-1' />
-							Profile
-						</Nav.Link>
-						<Nav.Link href='/settings' className='font-weight-bold h5'>
-							<BiCog className='mr-1' />
-							Settings
-						</Nav.Link>
-						<Nav.Link href='/jobs' className='font-weight-bold ml-4 h5'>
-							<BsBriefcaseFill className='mr-1' /> Jobs{" "}
-						</Nav.Link>
-						<Nav.Link
-							href='/'
-							onClick={() => handleLogout(this.props)}
-							className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'
-						>
-							<FiLogOut /> Logout
-						</Nav.Link>
-					</Nav>
-				</Navbar>
+				<OurNavbar isNavAuths={true} profile={true} setting={false} challenge={false} job={false}/>
 				<ProfileContent user={this.props.user} />
 				{/* <Switch>
 					<Route

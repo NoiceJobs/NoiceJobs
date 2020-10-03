@@ -20,7 +20,7 @@ export default class ProfileContent extends Component {
 						<Link to='/jobs/add/' className='btn btn-outline-success m-3'>
 							+ Add Job{" "}
 						</Link>
-						<Link to='/challenge/add' className='btn btn-outline-success m-3'>
+						<Link to='/challenges/add' className='btn btn-outline-success m-3'>
 							+ Add Challenge
 						</Link>{" "}
 						<Row>

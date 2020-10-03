@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./App.css";
 import Profile from "./pages/profile/Profile";
 import Landingpage from "./pages/landingpage/Landingpage.jsx";
@@ -10,116 +10,150 @@ import JobDetails from "./components/jobs/JobDetails";
 // import {} from "react-bootstrap";
 
 import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
 } from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
 import AddJob from "./components/jobs/AddJob";
 import CodeEditor from "./pages/codeeditor/CodeEditor";
 import Settings from "./pages/settings/Settings";
+import AddChallenges from "./components/challenges/AddChallenges";
+import Challenges from "./components/challenges/Challenges";
+import ChallengesDetails from "./components/challenges/ChallengesDetails";
 
 class App extends Component {
-  state = {
-    user: this.props.user,
-  };
+    state = {
+        user: this.props.user,
+    };
 
-  setUser = (user) => {
-    this.setState({
-      user: user,
-    });
-  };
-  render() {
-    return (
-      <div className="App">
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <Landingpage user={this.state.user} {...props} />
-            )}
-          />
+    setUser = (user) => {
+        this.setState({
+            user: user,
+        });
+    };
 
-          <Route
-            exact
-            path="/profile"
-            render={(props) => {
-              if (this.state.user)
-                return <Profile user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+    render() {
+        return (
+            <div className="App">
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        render={(props) => (
+                            <Landingpage user={this.state.user} {...props} />
+                        )}
+                    />
 
-					<Route
-						exact
-						path='/settings'
-						render={(props) => <Settings user={this.state.user} type='default' {...props} />}
-					/>
+                    <Route
+                        exact
+                        path="/profile"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <Profile user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
 
-					<Route
-						exact
-						path='/profile/settings/:id'
-						render={(props) => <Settings user={this.state.user} type='profile' {...props} />}
-					/>
+                    <Route
+                        exact
+                        path='/settings'
+                        render={(props) => <Settings user={this.state.user} type='default' {...props} />}
+                    />
 
-          <Route
-            exact
-            path="/jobs"
-            render={(props) => {
-              if (this.state.user)
-                return <Jobs user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path='/profile/settings/:id'
+                        render={(props) => <Settings user={this.state.user} type='profile' {...props} />}
+                    />
 
-          <Route
-            exact
-            path="/jobs/add"
-            render={(props) => {
-              if (this.state.user.isCompany === true)
-                return <AddJob user={this.state.user} {...props} />;
-              else return <Redirect to="/jobs" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/jobs"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <Jobs user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/jobs/:id"
-            render={(props) => {
-              if (this.state.user)
-                return <JobDetails user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/jobs/add"
+                        render={(props) => {
+                            if (this.state.user.isCompany === true)
+                                return <AddJob user={this.state.user} {...props} />;
+                            else return <Redirect to="/jobs"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/codeeditor"
-            render={(props) => {
-              if (this.state.user.isCompany === false)
-                return <CodeEditor user={this.state.user} {...props} />;
-              else return <Redirect to="/profile" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/challenges"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <Challenges user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
 
-        <Route 
-        exact 
-        path="/signup" 
-        render={props => <Signup setUser={this.setUser} {...props}/>}
-        />
+                    <Route
+                        exact
+                        path="/challenges/add"
+                        render={(props) => {
+                            if (this.state.user.isCompany === true)
+                                return <AddChallenges user={this.state.user} {...props} />;
+                            else return <Redirect to="/jobs"/>;
+                        }}
+                    />
 
-        <Route 
-        exact 
-        path="/login" 
-        render={props => <Login setUser={this.setUser} {...props}/>}
-        />
+                    <Route
+                        exact
+                        path="/challenge/:id"
+                        render={(props) => {
+                            if (this.state.user.isCompany === true)
+                                return <ChallengesDetails user={this.state.user} {...props} />;
+                            else return <Redirect to="/jobs"/>;
+                        }}
+                    />
 
-        </Switch>
-      </div>
-    );
-  }
+                    <Route
+                        exact
+                        path="/jobs/:id"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <JobDetails user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
+
+                    <Route
+                        exact
+                        path="/codeeditor"
+                        render={(props) => {
+                            if (this.state.user.isCompany === false)
+                                return <CodeEditor user={this.state.user} {...props} />;
+                            else return <Redirect to="/profile"/>;
+                        }}
+                    />
+
+                    <Route
+                        exact
+                        path="/signup"
+                        render={props => <Signup setUser={this.setUser} {...props}/>}
+                    />
+
+                    <Route
+                        exact
+                        path="/login"
+                        render={props => <Login setUser={this.setUser} {...props}/>}
+                    />
+
+                </Switch>
+            </div>
+        );
+    }
 }
 
 export default App;
