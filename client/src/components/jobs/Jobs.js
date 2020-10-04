@@ -5,6 +5,7 @@ import axios from "axios";
 import JobsList from "../jobsList/JobsList";
 import AddJob from "./AddJob";
 import EditJob from "./EditJob";
+import {Container} from "react-bootstrap";
 
 export default class Jobs extends Component {
   state = {
@@ -31,9 +32,11 @@ export default class Jobs extends Component {
 
   render() {
     return (
-      <div className="jobss-container">
+      <div className="jobs-container">
         {/* <AddJob getData={this.getData} /> */}
-        <JobsList jobs={this.state.jobs} />
+
+        <JobsList user={this.props.user} jobs={this.state.jobs} />
+
         {/* <EditJob getData={this.getData} /> */}
       </div>
     );
