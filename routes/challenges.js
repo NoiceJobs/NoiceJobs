@@ -15,8 +15,8 @@ router.get("/", (req, res) => {
 
 // get a specific challenge
 router.get("/:id", (req, res) => {
+    console.log(req.params.id)
     Challenge.findById(req.params.id)
-        .populate("owner")
         .then((challenge) => {
             if (!challenge) {
                 res.status(404).json(challenge);
