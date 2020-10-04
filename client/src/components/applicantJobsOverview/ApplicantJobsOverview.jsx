@@ -13,15 +13,15 @@ export default class ApplicantJobsOverview extends Component {
 						title='Applied Jobs'
 						tabClassName='font-weight-bold text-success active'
 					>
-						<JobsAppliedUser />
+						<JobsAppliedUser user={this.props.user}/>
 					</Tab>
-					<Tab
+					{/*<Tab
 						eventKey='profile'
 						title='Applied Applicant'
 						tabClassName='font-weight-bold text-success text-white'
 					>
 						<BookmarkedJobs />
-					</Tab>
+					</Tab>*/}
 				</Tabs>
 			</div>
 		);

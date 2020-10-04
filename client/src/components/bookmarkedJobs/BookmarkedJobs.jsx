@@ -17,7 +17,7 @@ export default class BookmarkedJobs extends Component {
 							<th>Location</th>
 							<th>Challenge</th>
 
-							<th>Applied Applicant</th>
+							<th>Bookmarked Jobs</th>
 						</tr>
 					</thead>
 					<tbody className='bg-white shadow-sm'>
