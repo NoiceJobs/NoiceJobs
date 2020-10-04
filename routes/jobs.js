@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// get a specific project
+// get a specific company
 router.get("/:id", (req, res) => {
   Job.findById(req.params.id)
     .populate("owner")
@@ -29,6 +29,21 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// get a specific project
+router.get("/created/:id", (req, res) => {
+  Job.find({owner: req.user._id})
+      .then((job) => {
+        if (!job) {
+          res.status(404).json(job);
+        } else {
+          res.status(200).json(job);
+        }
+      })
+      .catch((error) => {
+        res.json(error);
+      });
+});
+
 // delete a project
 router.delete("/:id", (req, res) => {
   Job.findByIdAndDelete(req.params.id)
@@ -41,18 +56,26 @@ router.delete("/:id", (req, res) => {
 });
 // create a new project
 router.post("/add", (req, res) => {
-  const { owner, description, role, position, location } = req.body;
+  console.log('I am inside of the create')
+  const { owner, description, role, position, location, challengeId } = req.body;
+  console.log({challengeId})
+  console.log('req.body', req.body)
   Job.create({
     owner: req.user._id,
     description,
     role,
     position,
     location,
+    challengeId
   })
     .then((job) => {
+      console.log('Job created ', job)
       res.status(201).json(job);
     })
     .catch((error) => {
+      console.log('Job created failed', job)
+      console.log('error', error)
+
       res.json(error);
     });
 });
