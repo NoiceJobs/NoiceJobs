@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { login } from '../../services/auth';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { GoMarkGithub } from "react-icons/go";
+
+
 
 export default class Login extends Component {
 
@@ -42,6 +45,7 @@ export default class Login extends Component {
   render() {
     return (
       <>
+      
         <h2>Login</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
@@ -72,6 +76,20 @@ export default class Login extends Component {
           <Button type='submit'>Login</Button>
         </Form>
 
+        {!this.props.user && (
+          
+        
+          <p> You want to apply for a job? Log in with Github
+          <a href="http://localhost:5555/api/auth/github" >
+          <GoMarkGithub></GoMarkGithub>
+          </a>
+          </p>
+          
+        
+          
+        )}
+
+       
 
       </>
     )

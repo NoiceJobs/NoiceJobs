@@ -7,22 +7,22 @@ import axios from "axios";
 import CompanyAppliedApplicant from "../companyAppliedApplicant/CompanyAppliedApplicant";
 
 export default class JobsOverview extends Component {
-	state = {
-		jobsList: [],
-	};
+  state = {
+    jobsList: [],
+  };
 
-	componentDidMount() {
-		this.getData();
-	}
+  componentDidMount() {
+    this.getData();
+  }
 
-	getData() {
-		// TODO nur vom Unternehmer anzeigen
-		axios.get("/api/jobs/created/:id").then((response) => {
-			this.setState({
-				jobsList: response.data,
-			});
-		});
-	}
+  getData() {
+    // TODO nur vom Unternehmer anzeigen
+    axios.get("/api/jobs/created/:id").then((response) => {
+      this.setState({
+        jobsList: response.data,
+      });
+    });
+  }
 
 	jobsOverviewRow = () => {
 		return this.state.jobsList.map((job, index) => {
@@ -47,32 +47,38 @@ export default class JobsOverview extends Component {
 		});
 	};
 
-	render() {
-		return (
-			<Tabs id='controlled-tab-example'>
-				<Tab eventKey='home' title='Overview' tabClassName='font-weight-bold text-success active'>
-					<div>
-						<Table>
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Job Position</th>
-									<th>Location</th>
-									<th>Challenge</th>
-								</tr>
-							</thead>
-							<tbody className='bg-white shadow-sm'>{this.jobsOverviewRow()}</tbody>
-						</Table>
-					</div>
-				</Tab>
-				<Tab
-					eventKey='profile'
-					title='Applied Applicant'
-					tabClassName='font-weight-bold text-success text-white'
-				>
-					<CompanyAppliedApplicant />
-				</Tab>
-			</Tabs>
-		);
-	}
+  render() {
+    return (
+      <Tabs id="controlled-tab-example">
+        <Tab
+          eventKey="home"
+          title="Overview"
+          tabClassName="font-weight-bold text-info active"
+        >
+          <div>
+            <Table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Job Position</th>
+                  <th>Location</th>
+                  <th>Challenge</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white shadow-sm">
+                {this.jobsOverviewRow()}
+              </tbody>
+            </Table>
+          </div>
+        </Tab>
+        <Tab
+          eventKey="profile"
+          title="Applied Applicant"
+          tabClassName="font-weight-bold text-info text-white"
+        >
+          <CompanyAppliedApplicant />
+        </Tab>
+      </Tabs>
+    );
+  }
 }

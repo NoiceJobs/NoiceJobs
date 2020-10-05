@@ -191,13 +191,13 @@ export default class Settings extends Component {
 								/>
 							</Form.Group>
 
-							<Button className='btn btn-block bg-success' type='submit'>
-								Update Applicant Profile
-							</Button>
-						</Form>
-					)}
-				</Container>
-			</div>
-		);
-	}
+              <Button className="btn btn-block bg-info" type="submit">
+                Update Applicant Profile
+              </Button>
+            </Form>
+          )}
+        </Container>
+      </div>
+    );
+  }
 }
