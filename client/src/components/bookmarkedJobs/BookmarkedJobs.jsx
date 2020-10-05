@@ -3,6 +3,9 @@ import { Table } from "react-bootstrap";
 import { SiJavascript } from "react-icons/si";
 
 export default class BookmarkedJobs extends Component {
+	state = {
+		bookmarkedJobs: [],
+	};
 	render() {
 		return (
 			<div>
@@ -14,7 +17,7 @@ export default class BookmarkedJobs extends Component {
 							<th>Location</th>
 							<th>Challenge</th>
 
-							<th>Applied Applicant</th>
+							<th>Bookmarked Jobs</th>
 						</tr>
 					</thead>
 					<tbody className='bg-white shadow-sm'>

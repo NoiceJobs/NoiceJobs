@@ -5,6 +5,7 @@ import { BiCog } from "react-icons/bi";
 import { BsBriefcaseFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
+import OurNavbar from "../../components/ourNavbar/OurNavbar";
 
 export default class Settings extends Component {
 	state = {
@@ -26,13 +27,13 @@ export default class Settings extends Component {
 		const id = this.props.user._id;
 		console.log("id", id);
 		axios
-			.put(`/api/user/${id}`, {
+			.put(`/api/user/company/${id}`, {
 				id: this.props.user.id,
-				name: this.state.name,
-				description: this.state.description,
-				email: this.state.email,
-				location: this.state.location,
-				size: this.state.size,
+				name: this.state.name || this.props.name,
+				description: this.state.description || this.props.description,
+				email: this.state.email || this.props.email,
+				location: this.state.location || this.props.location,
+				size: this.state.size || this.props.size,
 			})
 			.then((response) => {
 				this.setState({
@@ -42,6 +43,7 @@ export default class Settings extends Component {
 					location: response.location,
 					size: response.size,
 				});
+				this.props.history.push('/profile');
 			})
 			.catch((error) => {
 				console.log(error);
@@ -67,6 +69,7 @@ export default class Settings extends Component {
 					email: response.email,
 					location: response.location,
 				});
+				this.props.history.push('/profile');
 			})
 			.catch((error) => {
 				console.log(error);
@@ -75,30 +78,7 @@ export default class Settings extends Component {
 	render() {
 		return (
 			<div>
-				<Navbar bg='success' variant='dark'>
-					<Navbar.Brand href='/profile/' className='border p-2'>
-						NoiceJobs
-					</Navbar.Brand>
-					<Nav className='ml-auto'>
-						<Nav.Link href='/profile' className='font-weight-bold h5'>
-							<CgProfile className='mr-1' />
-							Profile
-						</Nav.Link>
-						<Nav.Link href='/settings' className='active font-weight-bold h5'>
-							<BiCog className='mr-1' />
-							Settings
-						</Nav.Link>
-						<Nav.Link href='/jobs' className='font-weight-bold ml-4 h5'>
-							<BsBriefcaseFill className='mr-1' /> Jobs{" "}
-						</Nav.Link>
-						<Nav.Link
-							href='/logout'
-							className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'
-						>
-							<FiLogOut /> Logout
-						</Nav.Link>
-					</Nav>
-				</Navbar>
+				<OurNavbar isNavAuths={true} profile={false} setting={true} challenge={false} job={false}/>
 
 				<Container className='mt-5'>
 					<h1 className='text-center text-success font-weight-bold'>
@@ -106,54 +86,6 @@ export default class Settings extends Component {
 					</h1>
 					{this.props.user.isCompany ? (
 						<Form onSubmit={this.handleSubmitCompany}>
-							<Form.Group>
-								<Form.Label htmlFor='name'>Name: </Form.Label>
-								<Form.Control
-									type='text'
-									id='name '
-									name='name '
-									value={this.props.user.name}
-									onChange={this.handleChange}
-								/>
-							</Form.Group>
-							<Form.Group>
-								<Form.Label htmlFor='email'>E-Mail: </Form.Label>
-								<Form.Control
-									type='text'
-									id='email'
-									name='email'
-									value={this.props.user.email}
-									onChange={this.handleChange}
-								/>
-							</Form.Group>
-							<Form.Group>
-								<Form.Label htmlFor='description'>Description: </Form.Label>
-								<Form.Control
-									id='description'
-									name='description'
-									value={this.props.user.description}
-									onChange={this.handleChange}
-									as='select'
-								>
-									<option>Junior</option>
-									<option>Senior</option>
-								</Form.Control>
-							</Form.Group>
-							<Form.Group>
-								<Form.Label htmlFor='location'>Location: </Form.Label>
-								<Form.Control
-									type='text'
-									id='location'
-									name='location'
-									value={this.props.user.location}
-									onChange={this.handleChange}
-								/>
-							</Form.Group>
-
-							<Button type='submit'>Update Company Profile</Button>
-						</Form>
-					) : (
-						<Form onSubmit={this.handleSubmitApplicant}>
 							<Form.Group>
 								<Form.Label htmlFor='name'>Name: </Form.Label>
 								<Form.Control
@@ -182,7 +114,64 @@ export default class Settings extends Component {
 									value={this.props.user.description}
 									onChange={this.handleChange}
 									type='text'
-								></Form.Control>
+								>
+								</Form.Control>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='location'>Location: </Form.Label>
+								<Form.Control
+									type='text'
+									id='location'
+									name='location'
+									value={this.props.user.location}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
+							<Form.Group>
+								<Form.Label htmlFor='size'>Size: </Form.Label>
+								<Form.Control
+									type='number'
+									id='size'
+									name='size'
+									value={this.props.user.size}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
+							<Button className='btn btn-success' type='submit'>Update Company Profile</Button>
+						</Form>
+					) : (
+						<Form onSubmit={this.handleSubmitApplicant}>
+							<Form.Group>
+								<Form.Label htmlFor='name'>Name: </Form.Label>
+								<Form.Control
+									type='text'
+									id='name'
+									name='name'
+									value={this.props.user.name}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='email'>E-Mail: </Form.Label>
+								<Form.Control
+									type='text'
+									id='email'
+									name='email'
+									value={this.props.user.email}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='description'>Description: </Form.Label>
+								<Form.Control
+	id='description'
+	name='description'
+	value={this.props.user.description}
+	onChange={this.handleChange}
+	type='text'
+	/>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label htmlFor='location'>Location: </Form.Label>

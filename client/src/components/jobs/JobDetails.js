@@ -11,7 +11,6 @@ export default class JobDetails extends Component {
     description: "",
     owner: "",
     role: "",
-    position: "",
     location: "",
     editForm: false,
     username: "",

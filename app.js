@@ -79,6 +79,9 @@ app.use("/", index);
 const jobs = require('./routes/jobs');
 app.use('/api/jobs', jobs);
 
+const challenges = require('./routes/challenges');
+app.use('/api/challenges', challenges);
+
 const user = require("./routes/user");
 app.use("/api/user", user);
 

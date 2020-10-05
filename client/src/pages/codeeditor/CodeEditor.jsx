@@ -5,6 +5,8 @@ import TaskBar from "../../components/taskBar/TaskBar";
 import TaskDescription from "../../components/taskDescription/TaskDescription";
 import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import {logout} from '../../services/auth.js';
+import OurNavbar from "../../components/ourNavbar/OurNavbar";
+import axios from "axios";
 require("codemirror/mode/javascript/javascript");
 
 
@@ -22,14 +24,42 @@ class CodeEditor extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.state = {
 			code: 'const name = "Example" ',
+			challenge: {}
 		};
+	}
+	componentDidMount() {
+		this.getData()
+	}
+	getData(){
+		const challengeId = window.location.href.split('/').slice(-1)[0]
+		axios.get(`/api/challenges/${challengeId}`)
+			.then((response) => {
+				this.setState({
+					challenge: response.data
+				});
+
+			});
+
 	}
 
 	handleChange(newCode) {
 		this.setState({ code: newCode });
 	}
+	getInput() {
+		let parameterName = ''
+		switch (typeof this.state.challenge.input) {
+			case 'string': parameterName = "exampleString"
+				break
+			case 'number': parameterName = "exampleNum"
+				break
+			default:
+				parameterName = "exampleObj"
+		}
+		return `function solveChallenge(${parameterName}) {\n\treturn ${parameterName} \n}\nsolveChallenge(${parameterName === 'exampleString' ?  `"${this.state.challenge.input}"` : `"${this.state.challenge.input}"`})`
+	}
 
 	render() {
+		console.log(this.state.challenge)
 		const options = {
 			lineNumbers: true,
 			mode: "javascript",
@@ -41,29 +71,11 @@ class CodeEditor extends Component {
 		};
 		return (
 			<div>
-				<Navbar bg='dark' variant='dark'>
-					<Navbar.Brand href='/'>NoiceJobs</Navbar.Brand>
-					<Nav className='ml-auto'>
-						<Nav.Link href='#vision' className='font-weight-bold'>
-							Profile
-						</Nav.Link>
-						<Nav.Link href='/jobs' className='font-weight-bold'>
-							Jobs
-						</Nav.Link>
 
-						<Nav.Link
-							href='/'
-							onClick={() => handleLogout(this.props)}
-							className='font-weight-bold'> Logout</Nav.Link>
-					
-					
-
-
-					</Nav>
-				</Navbar>
+				<OurNavbar isNavAuths={true}/>
 
 				<Container fluid className='mt-5'>
-					<Row>
+					<Row className={'mb-5'}>
 						<Col xs={4}></Col>
 						<Col xs={4} className='text-center'>
 							<TaskBar />
@@ -76,11 +88,11 @@ class CodeEditor extends Component {
 
 					<Row>
 						<Col xs={5}>
-							<TaskDescription />
+							<TaskDescription challenge={this.state.challenge}/>
 						</Col>
 						<Col xs={7}>
 							<CodeMirror
-								value='const hobby = "I ♥ react-codemirror2</h1>"'
+								value={this.getInput()}
 								options={{
 									mode: "javascript",
 									theme: "material",

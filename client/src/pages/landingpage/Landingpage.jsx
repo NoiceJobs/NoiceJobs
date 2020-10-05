@@ -16,6 +16,7 @@ import {
 import { FaLinkedin } from "react-icons/fa";
 import { BsFillPeopleFill, BsChatDotsFill } from "react-icons/bs";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import OurNavbar from "../../components/ourNavbar/OurNavbar";
 // import Login from "../../components/login/Login.js";
 // import Signup from "../../components/signup/Signup.js";
 //import Setting from "../settings/Setting.jsx";
@@ -27,29 +28,7 @@ export default class Landingpage extends Component {
   render() {
     return (
       <div>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">NoiceJobs</Navbar.Brand>
-          <Nav className="ml-auto">
-            <Nav.Link href="#vision" className="font-weight-bold">
-              Vision
-            </Nav.Link>
-            <Nav.Link href="#features" className="font-weight-bold">
-              Features
-            </Nav.Link>
-            <Nav.Link href="#team" className="font-weight-bold">
-              Team
-            </Nav.Link>
-            <Nav.Link href="#faq" className="font-weight-bold">
-              FAQ
-            </Nav.Link>
-            <Nav.Link href="#contactus" className="font-weight-bold">
-              Contact Us
-            </Nav.Link>
-            <Nav.Link href="/login" className="font-weight-bold">
-              Login
-            </Nav.Link>
-          </Nav>
-        </Navbar>
+        <OurNavbar isNavAuths={false}/>
         <div>
           <h1 id="vision">Vision</h1>
         </div>
