@@ -110,4 +110,20 @@ router.put("/apply/:id", (req, res) => {
 		});
 });
 
+// get a specific project with all the applied applicant
+router.get("/applied/applicant", (req, res) => {
+	Job.find({ owner: req.user._id })
+		.populate("appliedUsers")
+		.then((job) => {
+			if (!job) {
+				res.status(404).json(job);
+			} else {
+				res.status(200).json(job);
+			}
+		})
+		.catch((error) => {
+			res.json(error);
+		});
+});
+
 module.exports = router;

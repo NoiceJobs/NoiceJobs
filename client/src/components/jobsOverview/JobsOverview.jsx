@@ -24,29 +24,28 @@ export default class JobsOverview extends Component {
     });
   }
 
-  jobsOverviewRow = () => {
-    return this.state.jobsList.map((job, index) => {
-      return (
-        <tr key={job._id}>
-          {" "}
-          <td>{index + 1}</td>{" "}
-          <td>
-            {job.role} - {job.position}
-          </td>{" "}
-          <td>{job.location}</td>{" "}
-          <td>
-            <Link
-              className={"text-warning"}
-              to={`/challenge/${job.challengeId}`}
-            >
-              {" "}
-              <SiJavascript />
-            </Link>
-          </td>{" "}
-        </tr>
-      );
-    });
-  };
+	jobsOverviewRow = () => {
+		return this.state.jobsList.map((job, index) => {
+			return (
+				<tr key={job._id}>
+					{" "}
+					<td>{index + 1}</td>{" "}
+					<td>
+						<Link className={"text-info"} to={`/jobs/${job._id}`}>
+							{job.role} - {job.position}
+						</Link>
+					</td>{" "}
+					<td>{job.location}</td>{" "}
+					<td>
+						<Link className={"text-warning"} to={`/challenge/${job.challengeId}`}>
+							{" "}
+							<SiJavascript />
+						</Link>
+					</td>{" "}
+				</tr>
+			);
+		});
+	};
 
   render() {
     return (
