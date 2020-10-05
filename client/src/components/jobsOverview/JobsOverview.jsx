@@ -2,36 +2,48 @@ import React, { Component } from "react";
 import { Tab, Table, Tabs } from "react-bootstrap";
 import { SiJavascript } from "react-icons/si";
 import JobsAppliedUser from "../jobsAppliedUser/JobsAppliedUser";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import CompanyAppliedApplicant from "../companyAppliedApplicant/CompanyAppliedApplicant";
 
 export default class JobsOverview extends Component {
 	state = {
-		jobsList:[]
-	}
+		jobsList: [],
+	};
 
 	componentDidMount() {
-		this.getData()
+		this.getData();
 	}
 
-	getData(){
+	getData() {
 		// TODO nur vom Unternehmer anzeigen
-		axios.get('/api/jobs/created/:id')
-			.then((response) => {
-				this.setState({
-					jobsList: response.data
-				});
-
+		axios.get("/api/jobs/created/:id").then((response) => {
+			this.setState({
+				jobsList: response.data,
 			});
-
+		});
 	}
 
 	jobsOverviewRow = () => {
 		return this.state.jobsList.map((job, index) => {
-			return <tr key={job._id}> <td>{index + 1}</td> <td>{job.role} - {job.position}</td> <td>{job.location}</td> <td><Link className={'text-warning'} to={`/challenge/${job.challengeId}`}> <SiJavascript /></Link></td> </tr>
-
-		})
-	}
+			return (
+				<tr key={job._id}>
+					{" "}
+					<td>{index + 1}</td>{" "}
+					<td>
+						{job.role} - {job.position}
+					</td>{" "}
+					<td>{job.location}</td>{" "}
+					<td>
+						<Link className={"text-warning"} to={`/challenge/${job.challengeId}`}>
+							{" "}
+							<SiJavascript />
+						</Link>
+					</td>{" "}
+				</tr>
+			);
+		});
+	};
 
 	render() {
 		return (
@@ -47,9 +59,7 @@ export default class JobsOverview extends Component {
 									<th>Challenge</th>
 								</tr>
 							</thead>
-							<tbody className='bg-white shadow-sm'>
-							{this.jobsOverviewRow()}
-							</tbody>
+							<tbody className='bg-white shadow-sm'>{this.jobsOverviewRow()}</tbody>
 						</Table>
 					</div>
 				</Tab>
@@ -58,7 +68,7 @@ export default class JobsOverview extends Component {
 					title='Applied Applicant'
 					tabClassName='font-weight-bold text-success text-white'
 				>
-					<JobsAppliedUser />
+					<CompanyAppliedApplicant />
 				</Tab>
 			</Tabs>
 		);
