@@ -2,8 +2,6 @@ const express = require("express");
 const router = express();
 const User = require("../models/User");
 
-
-
 router.get("/", (req, res) => {
 	User.find()
 		.then((users) => {
@@ -14,53 +12,39 @@ router.get("/", (req, res) => {
 		});
 });
 
-
 // update a company
 router.put("/company/:id", (req, res) => {
-
+	console.log(req.body, req.params.id);
 	const { name, email, description, location, size } = req.body;
 
-	User.findByIdAndUpdate(
-		req.params.id,
-		{ name, email, description, location, size },
-		{ new: true }
-	)
+	User.findByIdAndUpdate(req.params.id, { name, email, description, location, size }, { new: true })
+		.then((user) => {
+			console.log(user, "user");
+			res.status(200).json(user);
+		})
+		.catch((error) => {
+			console.log(error, "error");
+			res.json(error);
+		});
+});
+
+// update a user
+router.put("/:id", (req, res) => {
+	const { name, email, description, location, size } = req.body;
+	User.findByIdAndUpdate(req.params.id, { name, email, description, location, size }, { new: true })
 		.then((user) => {
 			res.status(200).json(user);
 		})
 		.catch((error) => {
 			res.json(error);
 		});
-
-});
-
-// update a user
-router.put("/:id", (req, res) => {
-
-  const { name, email, description, location, size } = req.body;
-  User.findByIdAndUpdate(
-    req.params.id,
-    { name, email, description, location, size },
-    { new: true }
-  )
-    .then((user) => {
-      res.status(200).json(user);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-
 });
 // Bookmark Jobs
 router.put("/bookmark/:id", (req, res) => {
-	const userId = req.user._id
-	const jobId = req.body.jobId
+	const userId = req.user._id;
+	const jobId = req.body.jobId;
 
-	User.findByIdAndUpdate(
-		userId,
-		{ bookmarkedJobs: jobId},
-		{ new: true }
-	)
+	User.findByIdAndUpdate(userId, { bookmarkedJobs: jobId }, { new: true })
 		.then((bookmarkedJob) => {
 			res.status(200).json(job);
 		})
