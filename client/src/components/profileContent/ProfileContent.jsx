@@ -17,12 +17,18 @@ export default class ProfileContent extends Component {
 							<CgProfile className='mr-2' />
 							Profile
 						</h1>
-						<Link to='/jobs/add/' className='btn btn-outline-success m-3'>
-							+ Add Job{" "}
-						</Link>
-						<Link to='/challenges/add' className='btn btn-outline-success m-3'>
-							+ Add Challenge
-						</Link>{" "}
+						{this.props.user.isCompany ? (
+							<>
+								<Link to='/jobs/add/' className='btn btn-outline-success m-3'>
+									+ Add Job{" "}
+								</Link>
+								<Link to='/challenges/add' className='btn btn-outline-success m-3'>
+									+ Add Challenge
+								</Link>
+							</>
+						) : (
+							""
+						)}
 						<Row>
 							<Col xs={3}>
 								<UserDetails user={this.props.user} />
