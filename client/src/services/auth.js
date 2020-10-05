@@ -35,4 +35,11 @@ const logout = (username, password) => {
     });
 }
 
-export { signup, login, logout };
+// const loginGitHub = () => {
+//   console.log('client auth.js');
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.open("GET", "/api/auth/github", true);
+//   xhttp.send();
+// };
+
+export { signup, login, logout};
