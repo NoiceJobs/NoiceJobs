@@ -9,11 +9,11 @@ import OurNavbar from "../../components/ourNavbar/OurNavbar";
 
 export default class Settings extends Component {
 	state = {
-		name: "",
-		email: "",
-		description: "",
-		location: "",
-		size: 0,
+		name: this.props.user.name,
+		email: this.props.user.email,
+		description: this.props.user.description,
+		location: this.props.user.location,
+		size: this.props.user.size,
 	};
 
 	handleChange = (event) => {
@@ -29,11 +29,11 @@ export default class Settings extends Component {
 		axios
 			.put(`/api/user/company/${id}`, {
 				id: this.props.user.id,
-				name: this.state.name || this.props.name,
-				description: this.state.description || this.props.description,
-				email: this.state.email || this.props.email,
-				location: this.state.location || this.props.location,
-				size: this.state.size || this.props.size,
+				name: this.state.name || this.props.user.name,
+				description: this.state.description || this.props.user.description,
+				email: this.state.email || this.props.user.email,
+				location: this.state.location || this.props.user.location,
+				size: this.state.size || this.props.user.size,
 			})
 			.then((response) => {
 				this.setState({
@@ -43,12 +43,18 @@ export default class Settings extends Component {
 					location: response.location,
 					size: response.size,
 				});
-				this.props.history.push('/profile');
+				this.props.history.push("/profile");
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	};
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.name !== this.state.name) {
+			console.log("pokemons state has changed.");
+		}
+	}
 
 	handleSubmitApplicant = (event) => {
 		event.preventDefault();
@@ -69,7 +75,7 @@ export default class Settings extends Component {
 					email: response.email,
 					location: response.location,
 				});
-				this.props.history.push('/profile');
+				this.props.history.push("/profile");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -78,7 +84,7 @@ export default class Settings extends Component {
 	render() {
 		return (
 			<div>
-				<OurNavbar isNavAuths={true} profile={false} setting={true} challenge={false} job={false}/>
+				<OurNavbar isNavAuths={true} profile={false} setting={true} challenge={false} job={false} />
 
 				<Container className='mt-5'>
 					<h1 className='text-center text-success font-weight-bold'>
@@ -92,7 +98,7 @@ export default class Settings extends Component {
 									type='text'
 									id='name'
 									name='name'
-									value={this.props.user.name}
+									value={this.state.name}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
@@ -102,7 +108,7 @@ export default class Settings extends Component {
 									type='text'
 									id='email'
 									name='email'
-									value={this.props.user.email}
+									value={this.state.email}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
@@ -111,11 +117,10 @@ export default class Settings extends Component {
 								<Form.Control
 									id='description'
 									name='description'
-									value={this.props.user.description}
+									value={this.state.description}
 									onChange={this.handleChange}
 									type='text'
-								>
-								</Form.Control>
+								></Form.Control>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label htmlFor='location'>Location: </Form.Label>
@@ -123,7 +128,7 @@ export default class Settings extends Component {
 									type='text'
 									id='location'
 									name='location'
-									value={this.props.user.location}
+									value={this.state.location}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
@@ -134,12 +139,14 @@ export default class Settings extends Component {
 									type='number'
 									id='size'
 									name='size'
-									value={this.props.user.size}
+									value={this.state.size}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
 
-							<Button className='btn btn-success' type='submit'>Update Company Profile</Button>
+							<Button className='btn btn-success' type='submit'>
+								Update Company Profile
+							</Button>
 						</Form>
 					) : (
 						<Form onSubmit={this.handleSubmitApplicant}>
@@ -149,7 +156,7 @@ export default class Settings extends Component {
 									type='text'
 									id='name'
 									name='name'
-									value={this.props.user.name}
+									value={this.state.name}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
@@ -159,19 +166,19 @@ export default class Settings extends Component {
 									type='text'
 									id='email'
 									name='email'
-									value={this.props.user.email}
+									value={this.state.email}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label htmlFor='description'>Description: </Form.Label>
 								<Form.Control
-	id='description'
-	name='description'
-	value={this.props.user.description}
-	onChange={this.handleChange}
-	type='text'
-	/>
+									id='description'
+									name='description'
+									value={this.state.description}
+									onChange={this.handleChange}
+									type='text'
+								/>
 							</Form.Group>
 							<Form.Group>
 								<Form.Label htmlFor='location'>Location: </Form.Label>
@@ -179,7 +186,7 @@ export default class Settings extends Component {
 									type='text'
 									id='location'
 									name='location'
-									value={this.props.user.location}
+									value={this.state.location}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>

@@ -31,7 +31,9 @@ export default class JobsOverview extends Component {
 					{" "}
 					<td>{index + 1}</td>{" "}
 					<td>
-						{job.role} - {job.position}
+						<Link className={"text-info"} to={`/jobs/${job._id}`}>
+							{job.role} - {job.position}
+						</Link>
 					</td>{" "}
 					<td>{job.location}</td>{" "}
 					<td>
