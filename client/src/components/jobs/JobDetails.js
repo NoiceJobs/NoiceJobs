@@ -20,9 +20,11 @@ export default class JobDetails extends Component {
 
 	getJobData = () => {
 		const id = this.props.match.params.id;
+		console.log('',id)
 		axios
 			.get(`/api/jobs/${id}`)
 			.then((response) => {
+				console.log(response)
 				this.setState({
 					job: response.data,
 					description: response.data.description,
@@ -96,6 +98,7 @@ export default class JobDetails extends Component {
 	};
 
 	componentDidMount() {
+		console.log('hello')
 		this.getJobData();
 	}
 

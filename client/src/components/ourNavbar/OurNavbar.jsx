@@ -97,9 +97,6 @@ class OurNavbar extends Component {
               <Nav.Link href="#team" className="font-weight-bold">
                 Team
               </Nav.Link>
-              <Nav.Link href="#faq" className="font-weight-bold">
-                FAQ
-              </Nav.Link>
               <Nav.Link href="#contactus" className="font-weight-bold">
                 Contact Us
               </Nav.Link>
