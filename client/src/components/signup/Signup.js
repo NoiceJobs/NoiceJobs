@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap';
 import { signup } from '../../services/auth';
+import { GoMarkGithub } from "react-icons/go";
+
 
 export default class Signup extends Component {
 
@@ -89,6 +91,13 @@ export default class Signup extends Component {
           )}
           <Button type='submit'>Signup</Button>
         </Form>
+
+        <p> You want to apply for a job? Sign in with Github
+          <a href="http://localhost:5555/api/auth/github" >
+          <GoMarkGithub></GoMarkGithub>
+          </a>
+          </p>
+       
       </>
     )
   }
