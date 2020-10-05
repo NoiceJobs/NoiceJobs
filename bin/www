@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+const socketio = require('socket.io')
 const http = require('http');
 
 let app = require('../app');
@@ -22,6 +22,16 @@ app.use((err, req, res, next) => {
 });
 
 let server = http.createServer(app);
+const io = socketio(server)
+
+io.on('connection ', (socket) =>{
+  console.log('We have a new Connection')
+
+  socket.on('disconnect', () => {
+    console.log('User had left!!!')
+  })
+});
+
 
 server.on('error', error => {
   if (error.syscall !== 'listen') { throw error }
