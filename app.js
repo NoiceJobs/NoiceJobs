@@ -8,11 +8,14 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const LocalStrategy = require('passport-local').Strategy;
 
 const session = require("express-session");
 const passport = require("passport");
 
-require("./configs/passport.js");
+
+
+require("./configs/passport");
 
 mongoose
 	.connect("mongodb://localhost/noicejobs", { useNewUrlParser: true })
@@ -64,6 +67,7 @@ app.use(
 		sourceMap: true,
 	})
 );
+
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");

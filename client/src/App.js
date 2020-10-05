@@ -151,13 +151,13 @@ class App extends Component {
                     <Route
                         exact
                         path="/signup"
-                        render={props => <Signup setUser={this.setUser} {...props}/>}
+                        render={props => <Signup user={this.state.user} setUser={this.setUser} {...props}/>}
                     />
 
                     <Route
                         exact
                         path="/login"
-                        render={props => <Login setUser={this.setUser} {...props}/>}
+                        render={props => <Login user={this.state.user} setUser={this.setUser} {...props}/>}
                     />
 
                 </Switch>

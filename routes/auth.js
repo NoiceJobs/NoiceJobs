@@ -4,6 +4,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 
+
 router.post("/signup", (req, res, next) => {
   const { username, password, isCompany} = req.body;
 
@@ -79,9 +80,34 @@ router.get("/loggedin", (req, res) => {
   res.json(req.user);
 });
 
+
+router.get('/github', passport.authenticate('github'));
+
+router.get('/github/callback', (req,res) => {
+  passport.authenticate('github', (err, user) => {
+    if (err) return res.status(500).json({ message: 'Error while authenticating' });
+    if (!user) return res.status(400).json({ message: 'Wrong credentials' });
+
+    req.login(user, err => {
+      if (err) return res.status(500).json({ message: 'Error while attempting to login' });
+      return res.redirect('http://localhost:3000/profile');
+    });
+  })(req, res);
+});
+
+router.get('/github/failed', (req, res) => {
+  console.log('failed');
+  res.status(401).json({ message: 'github failed'})
+})
+
+router.get('/github/success', (req, res) => {
+  console.log('success');
+  res.status(200).json({ message: 'github success'})
+})
+
 module.exports = router;
 
 
-//ckeckup for email? 
+
 
 
