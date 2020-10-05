@@ -1,0 +1,20 @@
+.jumbotron {
+  margin-bottom: 0px;
+  background-image: url("/images/boat.jpg");
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+/* .d-block w-100 {
+  width: 50%;
+  height: 75%;
+} */
+.tasks {
+}
+/* .carousel .carousel-inner img {
+  display:block;
+  object-fit: cover;
+} */
