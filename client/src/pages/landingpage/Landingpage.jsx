@@ -49,7 +49,7 @@ export default class Landingpage extends Component {
           </div> */}
           <div>
             <Carousel className="carouselDiv">
-              <Carousel.Item style={{ height: "500px" }}>
+              <Carousel.Item className="min-vh-100">
                 <img
                   className="d-block w-100"
                   src={"/images/jeremy-bishop-dvACrXUExLs-unsplash.jpg"}
@@ -64,7 +64,7 @@ export default class Landingpage extends Component {
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
-              <Carousel.Item style={{ height: "500px" }}>
+              <Carousel.Item>
                 <img
                   className="d-block w-100"
                   src="/images/boat.jpg"
@@ -79,7 +79,7 @@ export default class Landingpage extends Component {
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
-              <Carousel.Item style={{ height: "500px" }}>
+              <Carousel.Item>
                 <img
                   className="d-block w-100"
                   src="/images/daniel-born-IrF6_J-2098-unsplash.jpg"
@@ -89,7 +89,7 @@ export default class Landingpage extends Component {
                   // height={120}
                 />
 
-                <Carousel.Caption>
+                <Carousel.Caption className="mb-5 pb-10">
                   <h3>Third slide label</h3>
                   <p>
                     Praesent commodo cursus magna, vel scelerisque nisl
@@ -203,16 +203,12 @@ export default class Landingpage extends Component {
           </Card>
         </div> */}
         <div>
-          <h1 id="team">
+          <h1 className="text-center mt-5 mb-3" id="team">
             Meet Our Team <BsFillPeopleFill />
           </h1>
           <CardDeck>
             <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="/images/elephant.jpeg"
-                roundedCircle
-              />
+              <Card.Img variant="top" src="/images/tolga.jpeg" />
               <Card.Body>
                 <Card.Title>Tolga</Card.Title>
                 <Card.Text>
@@ -229,7 +225,7 @@ export default class Landingpage extends Component {
             <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
-                src="/images/elephant.jpeg"
+                src="/images/IH-AUG2020_Sophia.jpg"
                 roundedCircle
               />
               <Card.Body>
@@ -244,11 +240,7 @@ export default class Landingpage extends Component {
               </Card.Footer>
             </Card>
             <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="/images/elephant.jpeg"
-                roundedCircle
-              />
+              <Card.Img variant="top" src="/images/unnamed.jpg" roundedCircle />
               <Card.Body>
                 <Card.Title>Esther</Card.Title>
                 <Card.Text>
@@ -266,7 +258,9 @@ export default class Landingpage extends Component {
         </div>
 
         <div>
-          <h1 id="faq">FAQ</h1>
+          <h1 className="text-center mt-5 mb-3" id="faq">
+            FAQ
+          </h1>
           <Card>
             <Card.Header as="h5">Any Questions?</Card.Header>
             <Card.Body>
@@ -281,7 +275,9 @@ export default class Landingpage extends Component {
         </div>
 
         <div>
-          <h1 id="contactus">Contact Us</h1>
+          <h1 className="text-center mt-5 mb-3" id="contactus">
+            Contact Us
+          </h1>
           <Card style={{ width: "18rem" }}>
             <Card.Header>Contact Us</Card.Header>
             <ListGroup variant="flush">
