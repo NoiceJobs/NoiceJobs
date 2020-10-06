@@ -210,6 +210,20 @@ export default class Landingpage extends Component {
           </h1>
           <CardDeck>
             <Card style={{ width: "18rem" }}>
+              <Card.Img variant="top" src="/images/tolga.jpg" />
+              <Card.Body>
+                <Card.Title>Tolga</Card.Title>
+                <Card.Text>
+                  Developer This is a wider card with supporting text below as a
+                  natural lead-in to additional content. This content is a
+                  little bit longer.
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </Card.Footer>
+            </Card>
+            <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
                 src="/images/IH-AUG2020_Sophia.jpg"
@@ -220,20 +234,6 @@ export default class Landingpage extends Component {
                 <Card.Text>
                   Developer This card has supporting text below as a natural
                   lead-in to additional content.{" "}
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-              </Card.Footer>
-            </Card>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="/images/tolga.jpg" />
-              <Card.Body>
-                <Card.Title>Tolga</Card.Title>
-                <Card.Text>
-                  Developer This is a wider card with supporting text below as a
-                  natural lead-in to additional content. This content is a
-                  little bit longer.
                 </Card.Text>
               </Card.Body>
               <Card.Footer>

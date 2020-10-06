@@ -14,7 +14,7 @@ const handleLogout = (props) => {
 
 class JobsList extends Component {
   state = {
-    jobs: [],
+    // jobs: [],
     users: [],
   };
   componentDidMount() {
@@ -60,6 +60,7 @@ class JobsList extends Component {
   }
 
   render() {
+    if (this.props.jobs.length === 0) return <></>;
     return (
       <>
         <OurNavbar
@@ -94,10 +95,17 @@ class JobsList extends Component {
           <Row>
             <Col xs={6}>
               {this.props.jobs.map((job, index) => {
+                {
+                  /* {
+                  console.log("this is the job", job.owner.name || "Mamamia");
+                } */
+                }
                 return (
                   <div key={job._id}>
                     <Card className="text-center">
-                      <Card.Header>Company Name</Card.Header>
+                      <Card.Header>
+                        {job.owner ? job.owner.name : "Mamamia"}
+                      </Card.Header>
                       <Card.Body>
                         {this.props.user.isCompany ? (
                           ""
