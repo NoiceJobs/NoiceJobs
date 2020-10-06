@@ -22,22 +22,45 @@ export default class JobsAppliedUser extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
+		}
 
-		axios
-			.get("/api/jobs")
-			.then((response) => {
-				console.log(response);
-				this.setState({
-					jobs: response.data,
-				});
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
 	componentDidMount() {
 		this.getData();
 	}
+
+	appliedJobsElement() {
+		let jobsApplied = [];
+		console.log("drinne");
+		this.state.jobs.forEach((job, index) => {
+			if (job.appliedUsers.length === 0) {
+				return "";
+			}
+			if (job.appliedUsers.includes(this.props.user._id)) {
+				console.log("Ich bin in der methode drinne");
+				jobsApplied.push(
+					<tr>
+						{" "}
+						<td>{index}</td>{" "}
+						<td>
+						<Link className={"text-info"} to={`/jobs/applicant/${job._id}`}> 
+							{job.role} - {job.position}
+							</Link>
+						</td>{" "}
+						<td>{job.location}</td>{" "}
+						<td>
+							{" "}
+							<Link to={`/solve/challenge/${job.challengeId}`}>
+								<SiJavascript className='text-warning' />
+							</Link>{" "}
+						</td>
+					</tr>
+				);
+			}
+		});
+		/*console.log(JSON.stringify(tableRowString))*/
+		return jobsApplied;
+	}
+
 	render() {
 		return (
 			<div>
@@ -56,34 +79,6 @@ export default class JobsAppliedUser extends Component {
 		);
 	}
 
-	appliedJobsElement() {
-		let jobsApplied = [];
-		console.log("drinne");
-		this.state.jobs.forEach((job, index) => {
-			if (job.appliedUsers.length === 0) {
-				return "";
-			}
-			if (job.appliedUsers.includes(this.props.user._id)) {
-				console.log("Ich bin in der methode drinne");
-				jobsApplied.push(
-					<tr>
-						{" "}
-						<td>{index}</td>{" "}
-						<td>
-							{job.role} - {job.position}
-						</td>{" "}
-						<td>{job.location}</td>{" "}
-						<td>
-							{" "}
-							<Link to={`/solve/challenge/${job.challengeId}`}>
-								<SiJavascript className='text-warning' />
-							</Link>{" "}
-						</td>
-					</tr>
-				);
-			}
-		});
-		/*console.log(JSON.stringify(tableRowString))*/
-		return jobsApplied;
-	}
+	
 }
+

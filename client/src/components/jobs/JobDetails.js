@@ -10,7 +10,7 @@ export default class JobDetails extends Component {
 		error: null,
 		position: "",
 		description: "",
-		owner: "",
+		owner: {_id: "0"},
 		role: "",
 		location: "",
 		editForm: false,
@@ -35,11 +35,7 @@ export default class JobDetails extends Component {
 				});
 			})
 			.catch((error) => {
-				if (error.response.status === 404) {
-					this.setState({
-						error: "Not found",
-					});
-				}
+				console.log("hdhiusfihufsdhiudfhiu", error)
 			});
 	};
 
@@ -103,16 +99,18 @@ export default class JobDetails extends Component {
 	}
 
 	render() {
-		// {
-		//   console.log("state in Jobdetails", this.state);
-		// }
+		{
+			console.log("state in Jobdetails", this.state);
+			console.log("props in Jobdetails", this.props);
+		}
 
 		if (this.state.error) return <div>{this.state.error}</div>;
 		if (!this.state.job) return <p>Loading ...</p>;
 
 		let allowedToDelete = false;
+		
 		const user = this.props.user._id;
-		const owner = this.state.owner._id;
+		const owner = this.state.owner._id 
 		if (user === owner) {
 			console.log("The User is the OWWWNER HE CAN DELLETE");
 
