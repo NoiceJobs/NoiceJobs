@@ -13,7 +13,8 @@ const userSchema = new Schema(
 		location: String,
 		size: Number,
 		foundedAt: String,
-		socialLink: [String],
+		linkedInURL: String,
+		GithubURL: String,
 		appliedJobs: {
 			/* This belongs to the applicant */
 			type: Schema.Types.ObjectId,
