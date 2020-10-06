@@ -105,17 +105,19 @@ router.put("/:id", (req, res) => {
 });
 
 router.put("/apply/:id", (req, res) => {
-  const userId = req.user._id;
-  const jobId = req.body.jobId;
-  console.log({ userId });
-  console.log(jobId);
-  Job.findByIdAndUpdate(jobId, { appliedUsers: userId }, { new: true })
-    .then((job) => {
-      res.status(200).json(job);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
+	console.log("Bin drinne");
+	const userId = req.user._id;
+	const jobId = req.body.jobId;
+	console.log("userId", userId);
+	console.log("jobId", jobId);
+	Job.findByIdAndUpdate(jobId, { $push: { appliedUsers: userId } }, { new: true })
+		.then((job) => {
+			res.status(200).json(job);
+		})
+		.catch((error) => {
+			console.log(error);
+			res.json(error);
+		});
 });
 
 // get a specific project with all the applied applicant

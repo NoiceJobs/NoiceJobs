@@ -15,11 +15,13 @@ const userSchema = new Schema(
 		foundedAt: String,
 		linkedInURL: String,
 		GithubURL: String,
-		appliedJobs: {
-			/* This belongs to the applicant */
-			type: Schema.Types.ObjectId,
-			ref: "Job",
-		},
+		appliedJobs: [
+			{
+				/* This belongs to the applicant */
+				type: Schema.Types.ObjectId,
+				ref: "Job",
+			},
+		],
 		bookmarkedJobs: {
 			/* This belongs to the applicant */
 			type: Schema.Types.ObjectId,
