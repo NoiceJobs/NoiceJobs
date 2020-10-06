@@ -1,19 +1,19 @@
 const express = require("express");
 const router = express();
-const Challenge = require("../models/Challenge");
+const SolvedChallenge = require("../models/SolvedChallenge");
 
-// get all the challenges
+// get all the SolvedChallenges
 router.get("/", (req, res) => {
-	Challenge.find()
-		.then((challenges) => {
-			res.status(200).json(challenges);
+	SolvedChallenge.find()
+		.then((solvedChallenge) => {
+			res.status(200).json(solvedChallenge);
 		})
 		.catch((error) => {
 			res.json(error);
 		});
 });
 
-// get a specific challenge
+// get a specific SolvedChallenge
 router.get("/:id", (req, res) => {
 	console.log(req.params.id);
 	Challenge.findById(req.params.id)
@@ -23,17 +23,6 @@ router.get("/:id", (req, res) => {
 			} else {
 				res.status(200).json(challenge);
 			}
-		})
-		.catch((error) => {
-			res.json(error);
-		});
-});
-
-// delete a challenge
-router.delete("/:id", (req, res) => {
-	Challenge.findByIdAndDelete(req.params.id)
-		.then((challenge) => {
-			res.status(200).json({ message: "ok" });
 		})
 		.catch((error) => {
 			res.json(error);
