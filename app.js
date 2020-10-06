@@ -8,12 +8,10 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require("passport-local").Strategy;
 
 const session = require("express-session");
 const passport = require("passport");
-
-
 
 require("./configs/passport");
 
@@ -68,7 +66,6 @@ app.use(
 	})
 );
 
-
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -80,11 +77,14 @@ app.locals.title = "Express - Generated with IronGenerator";
 const index = require("./routes/index");
 app.use("/", index);
 
-const jobs = require('./routes/jobs');
-app.use('/api/jobs', jobs);
+const jobs = require("./routes/jobs");
+app.use("/api/jobs", jobs);
 
-const challenges = require('./routes/challenges');
-app.use('/api/challenges', challenges);
+const challenges = require("./routes/challenges");
+app.use("/api/challenges", challenges);
+
+const solvedChallenge = require("./routes/solvedChallenge");
+app.use("/api/solvedChallenge", solvedChallenge);
 
 const user = require("./routes/user");
 app.use("/api/user", user);

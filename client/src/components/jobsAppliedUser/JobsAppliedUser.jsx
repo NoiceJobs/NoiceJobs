@@ -76,7 +76,7 @@ export default class JobsAppliedUser extends Component {
 						<td>
 							{" "}
 							<Link to={`/solve/challenge/${job.challengeId}`}>
-								<SiJavascript className='text-warning' />
+								<SiJavascript className='text-secondary' />
 							</Link>{" "}
 						</td>
 					</tr>

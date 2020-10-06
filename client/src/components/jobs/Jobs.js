@@ -5,40 +5,40 @@ import axios from "axios";
 import JobsList from "../jobsList/JobsList";
 import AddJob from "./AddJob";
 import EditJob from "./EditJob";
-import {Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export default class Jobs extends Component {
-  state = {
-    jobs: [],
-  };
+	state = {
+		jobs: [],
+	};
 
-  componentDidMount() {
-    this.getData();
-  }
+	componentDidMount() {
+		this.getData();
+	}
 
-  getData = () => {
-    axios
-      .get("/api/jobs")
-      .then((response) => {
-        console.log(response);
-        this.setState({
-          jobs: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+	getData = () => {
+		axios
+			.get("/api/jobs")
+			.then((response) => {
+				console.log(response);
+				this.setState({
+					jobs: response.data,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
-  render() {
-    return (
-      <div className="jobs-container">
-        {/* <AddJob getData={this.getData} /> */}
+	render() {
+		return (
+			<div className='jobs-container'>
+				{/* <AddJob getData={this.getData} /> */}
 
-        <JobsList user={this.props.user} jobs={this.state.jobs} />
+				<JobsList user={this.props.user} jobs={this.state.jobs} history={this.props.history} />
 
-        {/* <EditJob getData={this.getData} /> */}
-      </div>
-    );
-  }
+				{/* <EditJob getData={this.getData} /> */}
+			</div>
+		);
+	}
 }
