@@ -155,8 +155,7 @@ export default class Settings extends Component {
 									value={this.state.size}
 									onChange={this.handleChange}
 								/>
-							</Form.Group>
-
+							</Form.Group>s
 							<Form.Group>
 								<Form.Label htmlFor='linkedInURL'>Your LinkedIn Link: </Form.Label>
 								<Form.Control
