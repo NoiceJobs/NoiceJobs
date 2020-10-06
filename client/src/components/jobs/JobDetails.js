@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import EditJob from "./EditJob";
 import OurNavbar from "../ourNavbar/OurNavbar";
 
@@ -20,9 +20,11 @@ export default class JobDetails extends Component {
 
 	getJobData = () => {
 		const id = this.props.match.params.id;
+		/* console.log("IDDDDDD", id); */
 		axios
 			.get(`/api/jobs/${id}`)
 			.then((response) => {
+				console.log("RESPOONSE", response);
 				this.setState({
 					job: response.data,
 					description: response.data.description,
@@ -96,6 +98,7 @@ export default class JobDetails extends Component {
 	};
 
 	componentDidMount() {
+		console.log("hello");
 		this.getJobData();
 	}
 
@@ -108,34 +111,52 @@ export default class JobDetails extends Component {
 		if (!this.state.job) return <p>Loading ...</p>;
 
 		let allowedToDelete = false;
-		const user = this.props.user;
-		const owner = this.state.job.owner;
-		if (user && user._id === owner) allowedToDelete = true;
+		const user = this.props.user._id;
+		const owner = this.state.owner._id;
+		if (user === owner) {
+			console.log("The User is the OWWWNER HE CAN DELLETE");
+
+			allowedToDelete = true;
+		}
 
 		// just let owner edit job:
 		let allowedToEdit = false;
-		if (user && user._id === owner) allowedToEdit = true;
+		if (user === owner) {
+			console.log("The User is the OWWWNER HE CAN EDDIT");
+			allowedToEdit = true;
+		}
 
 		return (
 			<div>
-				{console.log("owner", this.state)}
 				<OurNavbar isNavAuths={true} />
-				<h1>{this.state.job.owner.username}</h1>
-				<h1>{this.state.job.position}</h1>
-				asdasd
-				{allowedToDelete && (
-					<Button variant='danger' onClick={this.deleteJob}>
-						Delete Job
-					</Button>
-				)}
-				{allowedToEdit && <Button onClick={this.toggleEditForm}>Edit Form</Button>}
-				{allowedToEdit && this.state.editForm && (
-					<EditJob
-						{...this.state}
-						handleChange={this.handleChange}
-						handleSubmit={this.handleSubmit}
-					/>
-				)}
+				<Card className='text-center'>
+					<Card.Header className='bg-info text-white font-weight-bold'>
+						{this.state.job.owner.username || this.state.job.owner.username}
+					</Card.Header>
+					<Card.Body>
+						<Card.Title>
+							{this.state.job.role || ""} - {this.state.job.position}
+						</Card.Title>
+						<Card.Text>{this.state.job.description || ""}</Card.Text>
+						{allowedToDelete && (
+							<Button variant='danger' onClick={this.deleteJob}>
+								Delete Job
+							</Button>
+						)}
+						{allowedToEdit && <Button onClick={this.toggleEditForm}>Edit Form</Button>}
+						{allowedToEdit && this.state.editForm && (
+							<EditJob
+								{...this.state}
+								handleChange={this.handleChange}
+								handleSubmit={this.handleSubmit}
+							/>
+						)}
+					</Card.Body>
+					<Card.Footer className='text-muted'>2 days ago</Card.Footer>
+				</Card>
+
+				{/* <h1>{this.state.job.owner.username || this.state.job.owner.username}</h1> */}
+				{/* <h1>{this.state.job.position}</h1> */}
 			</div>
 		);
 	}

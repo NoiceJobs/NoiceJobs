@@ -20,6 +20,7 @@ import { BsFillPeopleFill, BsChatDotsFill } from "react-icons/bs";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import OurNavbar from "../../components/ourNavbar/OurNavbar";
 import LandingPageCss from "./Landingpage.css";
+import {BiMailSend} from "react-icons/all";
 
 // import Login from "../../components/login/Login.js";
 // import Signup from "../../components/signup/Signup.js";
@@ -252,6 +253,54 @@ export default class Landingpage extends Component {
             </Card>
           </CardDeck>
         </div>
+
+				<Container className={'mt-5 mb-5'}>
+				<form action="" method="POST" onSubmit="return false;">
+					<div className="row">
+						<div className="col-md-6">
+							<div className="form-group">
+								<label htmlFor="frontend-contact-firstname">Firstname</label>
+								<input type="text" className="form-control" id="frontend-contact-firstname"
+									   name="frontend-contact-firstname" placeholder="Enter your firstname.." />
+							</div>
+						</div>
+						<div className="col-md-6">
+							<div className="form-group">
+								<label htmlFor="frontend-contact-lastname">Lastname</label>
+								<input type="text" className="form-control" id="frontend-contact-lastname"
+									   name="frontend-contact-lastname" placeholder="Enter your lastname.." />
+							</div>
+						</div>
+					</div>
+					<div className="form-group" id={'contactus'}>
+						<label htmlFor="frontend-contact-email">Email</label>
+						<input type="email" className="form-control" id="frontend-contact-email"
+							   name="frontend-contact-email" placeholder="Enter your email.." />
+					</div>
+					<div className="form-group">
+						<label htmlFor="frontend-contact-subject">Problem Type</label>
+						<select className="custom-select" id="frontend-contact-subject" name="frontend-contact-subject"
+								size="1">
+							<option value="1">Support</option>
+							<option value="2">Billing</option>
+							<option value="3">Management</option>
+							<option value="4">Feature Request</option>
+						</select>
+					</div>
+					<div className="form-group">
+						<label htmlFor="frontend-contact-msg">Message</label>
+						<textarea className="form-control" id="frontend-contact-msg" name="frontend-contact-msg"
+								  rows="7" placeholder="Enter your message.."></textarea>
+					</div>
+					<div className="form-group">
+						<button type="submit" className="btn btn-info">
+							<BiMailSend /> Send Message
+						</button>
+					</div>
+				</form>
+				</Container>
+
+
 
 				<div className={"bg-info text-white w-100 mt-5 pt-5 pb-5"}>
 					<Row>

@@ -18,6 +18,7 @@ import AddChallenges from "./components/challenges/AddChallenges";
 import Challenges from "./components/challenges/Challenges";
 import ChallengesDetails from "./components/challenges/ChallengesDetails";
 import UserView from "./components/userView/UserView";
+import CodeInterview from "./pages/codeinterview/CodeInterview";
 
 class App extends Component {
 	state = {
@@ -148,6 +149,18 @@ class App extends Component {
                             else return <Redirect to="/profile"/>;
                         }}
                     />
+
+                    <Route
+                        exact
+                        path="/codeinterview"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <CodeInterview user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
+
+
 
                     <Route
                         exact
