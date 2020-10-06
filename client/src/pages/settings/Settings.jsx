@@ -8,6 +8,7 @@ import { FiLogOut } from "react-icons/fi";
 import OurNavbar from "../../components/ourNavbar/OurNavbar";
 
 export default class Settings extends Component {
+
 	state = {
 		name: this.props.user.name,
 		email: this.props.user.email,
@@ -56,11 +57,13 @@ export default class Settings extends Component {
 			});
 	};
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevState.name !== this.state.name) {
-			console.log("pokemons state has changed.");
-		}
-	}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.name !== this.state.name) {
+      console.log("pokemons state has changed.");
+    }
+  }
+
 
 	handleSubmitApplicant = (event) => {
 		event.preventDefault();
@@ -146,16 +149,18 @@ export default class Settings extends Component {
 								/>
 							</Form.Group>
 
-							<Form.Group>
-								<Form.Label htmlFor='size'>Size: </Form.Label>
-								<Form.Control
-									type='number'
-									id='size'
-									name='size'
-									value={this.state.size}
-									onChange={this.handleChange}
-								/>
-							</Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor="size">Size: </Form.Label>
+                <Form.Control
+                  type="number"
+                  id="size"
+                  name="size"
+                  value={this.state.size}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
 
 							<Form.Group>
 								<Form.Label htmlFor='linkedInURL'>Your LinkedIn Link: </Form.Label>
@@ -247,6 +252,7 @@ export default class Settings extends Component {
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
+
 
               <Button className="btn btn-block bg-info" type="submit">
                 Update Applicant Profile
