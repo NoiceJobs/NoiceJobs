@@ -48,52 +48,60 @@ export default class Landingpage extends Component {
               </p>
             </Jumbotron>
           </div> */}
-					<div>
-						<Carousel className='carouselDiv'>
-							<Carousel.Item className='min-vh-100'>
-								<img
-									className='d-block w-100'
-									src={"/images/jeremy-bishop-dvACrXUExLs-unsplash.jpg"}
-									alt='First slide'
-									// width={500}
-									// height={500}
-								/>
-								<Carousel.Caption>
-									<h1>First slide label</h1>
-									<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-								</Carousel.Caption>
-							</Carousel.Item>
-							<Carousel.Item>
-								<img
-									className='d-block w-100'
-									src='/images/boat.jpg'
-									alt='Second slide'
-									// width={120}
-									// height={120}
-								/>
-								<Carousel.Caption>
-									<h3>Second slide label</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-								</Carousel.Caption>
-							</Carousel.Item>
-							<Carousel.Item>
-								<img
-									className='d-block w-100'
-									src='/images/daniel-born-IrF6_J-2098-unsplash.jpg'
-									alt='Third slide'
+          <div>
+            <Carousel className="carouselDiv">
+              <Carousel.Item className="max-vh-70">
+                <img
+                  className="d-block w-100"
+                  src={"/images/jeremy-bishop-dvACrXUExLs-unsplash.jpg"}
+                  alt="First slide"
+                  // width={500}
+                  // height={500}
+                />
+                <Carousel.Caption>
+                  <h1>First slide label</h1>
+                  <p>
+                    Nulla vitae elit libero, a pharetra augue mollis interdum.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item className="max-vh-70">
+                <img
+                  className="d-block w-100"
+                  src="/images/boat.jpg"
+                  alt="Second slide"
+                  // width={120}
+                  // height={120}
+                />
+                <Carousel.Caption>
+                  <h2>Second slide label</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item className="max-vh-70">
+                <img
+                  className="d-block w-100"
+                  src="/images/daniel-born-IrF6_J-2098-unsplash.jpg"
+                  alt="Third slide"
 
 									// width={120}
 									// height={120}
 								/>
 
-								<Carousel.Caption className='mb-5 pb-10'>
-									<h3>Third slide label</h3>
-									<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-								</Carousel.Caption>
-							</Carousel.Item>
-						</Carousel>
-					</div>
-				</div>
+                <Carousel.Caption>
+                  {/* <Carousel.Caption className="mb-5 pb-10"> */}
+                  <h2>Third slide label</h2>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl
+                    consectetur.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </div>
 
 				<div>
 					<h1 className='text-center mt-5 mb-3' id='features'>
@@ -192,45 +200,59 @@ export default class Landingpage extends Component {
             </Card.Body>
           </Card>
         </div> */}
-				<div>
-					<h1 className='text-center mt-5 mb-3' id='team'>
-						Meet Our Team <BsFillPeopleFill />
-					</h1>
-					<CardDeck>
-						<Card style={{ width: "18rem" }}>
-							<Card.Img variant='top' src='/images/tolga.jpg' />
-							<Card.Body>
-								<Card.Title>Tolga</Card.Title>
-								<Card.Text>
-									Developer This is a wider card with supporting text below as a natural lead-in to
-									additional content. This content is a little bit longer.
-								</Card.Text>
-							</Card.Body>
-						</Card>
-
-						<Card style={{ width: "18rem" }}>
-							<Card.Img variant='top' src='/images/IH-AUG2020_Sophia.jpg' roundedCircle />
-							<Card.Body>
-								<Card.Title>Sophia</Card.Title>
-								<Card.Text>
-									Developer This card has supporting text below as a natural lead-in to additional
-									content.{" "}
-								</Card.Text>
-							</Card.Body>
-						</Card>
-						<Card style={{ width: "18rem" }}>
-							<Card.Img variant='top' src='/images/unnamed.jpg' roundedCircle />
-							<Card.Body>
-								<Card.Title>Esther</Card.Title>
-								<Card.Text>
-									Developer This is a wider card with supporting text below as a natural lead-in to
-									additional content. This card has even longer content than the first to show that
-									equal height action.
-								</Card.Text>
-							</Card.Body>
-						</Card>
-					</CardDeck>
-				</div>
+        <div>
+          <h1 className="text-center mt-5 mb-3" id="team">
+            Meet Our Team <BsFillPeopleFill />
+          </h1>
+          <CardDeck>
+            <Card style={{ width: "18rem" }}>
+              <Card.Img
+                variant="top"
+                src="/images/IH-AUG2020_Sophia.jpg"
+                roundedCircle
+              />
+              <Card.Body>
+                <Card.Title>Sophia</Card.Title>
+                <Card.Text>
+                  Developer This card has supporting text below as a natural
+                  lead-in to additional content.{" "}
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </Card.Footer>
+            </Card>
+            <Card style={{ width: "18rem" }}>
+              <Card.Img variant="top" src="/images/tolga.jpeg" />
+              <Card.Body>
+                <Card.Title>Tolga</Card.Title>
+                <Card.Text>
+                  Developer This is a wider card with supporting text below as a
+                  natural lead-in to additional content. This content is a
+                  little bit longer.
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </Card.Footer>
+            </Card>
+            <Card style={{ width: "18rem" }}>
+              <Card.Img variant="top" src="/images/unnamed.jpg" roundedCircle />
+              <Card.Body>
+                <Card.Title>Esther</Card.Title>
+                <Card.Text>
+                  Developer This is a wider card with supporting text below as a
+                  natural lead-in to additional content. This card has even
+                  longer content than the first to show that equal height
+                  action.
+                </Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <small className="text-muted">Last updated 3 mins ago</small>
+              </Card.Footer>
+            </Card>
+          </CardDeck>
+        </div>
 
 				<Container className={'mt-5 mb-5'}>
 				<form action="" method="POST" onSubmit="return false;">
