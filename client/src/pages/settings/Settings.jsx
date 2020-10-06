@@ -8,12 +8,15 @@ import { FiLogOut } from "react-icons/fi";
 import OurNavbar from "../../components/ourNavbar/OurNavbar";
 
 export default class Settings extends Component {
+
 	state = {
 		name: this.props.user.name,
 		email: this.props.user.email,
 		description: this.props.user.description,
 		location: this.props.user.location,
 		size: this.props.user.size,
+		linkedInURL: this.props.user.linkedInURL,
+		GithubURL: this.props.user.GithubURL,
 	};
 
 	handleChange = (event) => {
@@ -34,6 +37,8 @@ export default class Settings extends Component {
 				email: this.state.email || this.props.user.email,
 				location: this.state.location || this.props.user.location,
 				size: this.state.size || this.props.user.size,
+				linkedInURL: this.state.linkedInURL || this.props.user.linkedInURL,
+				GithubURL: this.state.GithubURL || this.props.user.GithubURL,
 			})
 			.then((response) => {
 				this.setState({
@@ -42,6 +47,8 @@ export default class Settings extends Component {
 					email: response.email,
 					location: response.location,
 					size: response.size,
+					linkedInURL: response.linkedInURL,
+					GithubURL: response.GithubURL,
 				});
 				this.props.history.push("/profile");
 			})
@@ -50,11 +57,13 @@ export default class Settings extends Component {
 			});
 	};
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevState.name !== this.state.name) {
-			console.log("pokemons state has changed.");
-		}
-	}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.name !== this.state.name) {
+      console.log("pokemons state has changed.");
+    }
+  }
+
 
 	handleSubmitApplicant = (event) => {
 		event.preventDefault();
@@ -63,10 +72,13 @@ export default class Settings extends Component {
 		axios
 			.put(`/api/user/${id}`, {
 				id: this.props.user.id,
-				name: this.state.name,
-				description: this.state.description,
-				email: this.state.email,
-				location: this.state.location,
+				name: this.state.name || this.props.user.name,
+				description: this.state.description || this.props.user.description,
+				email: this.state.email || this.props.user.email,
+				location: this.state.location || this.props.user.location,
+				size: this.state.size || this.props.user.size,
+				linkedInURL: this.state.linkedInURL || this.props.user.linkedInURL,
+				GithubURL: this.state.GithubURL || this.props.user.GithubURL,
 			})
 			.then((response) => {
 				this.setState({
@@ -74,6 +86,9 @@ export default class Settings extends Component {
 					description: response.description,
 					email: response.email,
 					location: response.location,
+					linkedInURL: response.linkedInURL,
+					GithubURL: response.GithubURL,
+
 				});
 				this.props.history.push("/profile");
 			})
@@ -87,9 +102,10 @@ export default class Settings extends Component {
 				<OurNavbar isNavAuths={true} profile={false} setting={true} challenge={false} job={false} />
 
 				<Container className='mt-5'>
-					<h1 className='text-center text-success font-weight-bold'>
+					<h1 className='text-center text-info font-weight-bold'>
 						{this.props.user.isCompany ? "Company Profile" : "Applicant Profile"}
 					</h1>
+					<h3 className='text-center text-info font-weight-bold'> Edit your Details: </h3>
 					{this.props.user.isCompany ? (
 						<Form onSubmit={this.handleSubmitCompany}>
 							<Form.Group>
@@ -133,13 +149,35 @@ export default class Settings extends Component {
 								/>
 							</Form.Group>
 
+              <Form.Group>
+                <Form.Label htmlFor="size">Size: </Form.Label>
+                <Form.Control
+                  type="number"
+                  id="size"
+                  name="size"
+                  value={this.state.size}
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+
 							<Form.Group>
-								<Form.Label htmlFor='size'>Size: </Form.Label>
+								<Form.Label htmlFor='linkedInURL'>Your LinkedIn Link: </Form.Label>
 								<Form.Control
-									type='number'
-									id='size'
-									name='size'
-									value={this.state.size}
+									type='text'
+									id='linkedInURL'
+									name='linkedInURL'
+									value={this.state.linkedInURL}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
+							<Form.Group>
+								<Form.Label htmlFor='GithubURL'>Your Github Link: </Form.Label>
+								<Form.Control
+									type='text'
+									id='GithubURL'
+									name='GithubURL'
+									value={this.state.GithubURL}
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
@@ -190,6 +228,29 @@ export default class Settings extends Component {
 									onChange={this.handleChange}
 								/>
 							</Form.Group>
+							{/* LinkedInLURL: */}
+							<Form.Group>
+								<Form.Label htmlFor='linkedInURL'>Your LinkedIn Link: </Form.Label>
+								<Form.Control
+									type='text'
+									id='linkedInURL'
+									name='linkedInURL'
+									value={this.state.linkedInURL}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							{/* GithubURL: */}
+							<Form.Group>
+								<Form.Label htmlFor='GithubURL'>Your Github Link: </Form.Label>
+								<Form.Control
+									type='text'
+									id='GithubURL'
+									name='GithubURL'
+									value={this.state.GithubURL}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
 
               <Button className="btn btn-block bg-info" type="submit">
                 Update Applicant Profile

@@ -3,6 +3,9 @@ import { Col, Modal, Row } from "react-bootstrap";
 import axios from "axios";
 import { BiCog } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { GoMarkGithub } from "react-icons/go";
+import { SiLinkedin } from "react-icons/si";
+import '../userDetails/UserDetails.css';
 
 export default class UserDetails extends Component {
   state = {
@@ -17,7 +20,7 @@ export default class UserDetails extends Component {
     axios
       .get(`/api/user/${this.props.user._id}`)
       .then((response) => {
-        console.log(response);
+        console.log('this is the respone', response);
         this.setState({
           userDetails: response.data,
         });
@@ -29,8 +32,8 @@ export default class UserDetails extends Component {
 
   render() {
     return (
-      <div class="card shadow-sm border-0">
-        <h5 class="card-header bg-info text-white font-weight-bolder">
+      <div className="card shadow-sm border-0">
+        <h5 className="card-header bg-info text-white font-weight-bolder">
           {this.props.user.isCompany ? "Company Details" : "Applicant Details"}
           <span className="float-right">
             <Link
@@ -41,7 +44,7 @@ export default class UserDetails extends Component {
             </Link>
           </span>
         </h5>
-        <div class="card-body">
+        <div className="card-body">
           <p className="text-left">
             {this.props.user.name ? (
               <Row>
@@ -122,6 +125,50 @@ export default class UserDetails extends Component {
               </Row>
             )}
           </p>
+
+          <p className="text-left">
+            {this.props.user.linkedInURL ? (
+              <Row>
+                <Col xs={4}>
+                  <span className="text-info font-weight-bold border-bottom-0">
+                    <a href=""></a> LinkedIn:{" "}
+                  </span>
+                </Col>
+                <Col xs={6}><a className="Social-Link" href={this.state.userDetails.linkedInURL} target="_blank"> {this.props.user.name}'s <SiLinkedin></SiLinkedin>
+                </a></Col>
+              </Row>
+            ) : (
+              <Row>
+                <Col xs={4}>
+                  <span className="text-info font-weight-bold border-bottom-0">
+                    LinkedIn:{" "}
+                  </span>
+                </Col>
+              </Row>
+            )}
+          </p>
+
+          <p className="text-left">
+            {this.props.user.GithubURL ? (
+              <Row>
+                <Col xs={4}>
+                  <span className="text-info font-weight-bold border-bottom-0">
+                    GitHub:{" "}
+                  </span>
+                </Col>
+                <Col xs={6}><a className="Social-Link" href={this.state.userDetails.GithubURL} target="_blank">{this.props.user.name}'s <GoMarkGithub></GoMarkGithub></a></Col>
+              </Row>
+            ) : (
+              <Row>
+                <Col xs={4}>
+                  <span className="text-info font-weight-bold border-bottom-0">
+                    GitHub:{" "}
+                  </span>
+                </Col>
+              </Row>
+            )}
+          </p>
+
           <p className="text-left">
             {this.props.user.size && this.props.user.isCompany ? (
               <Row>
