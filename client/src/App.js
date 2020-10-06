@@ -24,183 +24,180 @@ import Challenges from "./components/challenges/Challenges";
 import ChallengesDetails from "./components/challenges/ChallengesDetails";
 import UserView from "./components/userView/UserView";
 import CodeInterview from "./pages/codeinterview/CodeInterview";
+import JobDetailsApplicant from "./components/jobs/JobDetailsApplicant";
 
 class App extends Component {
-  state = {
-    user: this.props.user,
-  };
 
-  setUser = (user) => {
-    this.setState({
-      user: user,
-    });
-  };
+	state = {
+		user: this.props.user,
+	};
 
-  render() {
-    return (
-      <div className="App">
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <Landingpage user={this.state.user} {...props} />
-            )}
-          />
-          <Route
-            exact
-            path="/profile"
-            render={(props) => {
-              if (this.state.user)
-                return <Profile user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+	setUser = (user) => {
+		this.setState({
+			user: user,
+		});
+	};
 
-          <Route
-            exact
-            path="/user/details/:id/view"
-            render={(props) => {
-              if (this.state.user)
-                return <UserView user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+	render() {
+		return (
+			<div className='App'>
+				<Switch>
+					<Route
+						exact
+						path='/'
+						render={(props) => {
+                        if (!this.state.user) return <Landingpage user={this.state.user} {...props} />;
+                        else return <Redirect to='/profile'/>
+                        }}
+					/>
+					<Route
+						exact
+						path='/profile'
+						render={(props) => {
+							if (this.state.user) return <Profile user={this.state.user} {...props} />;
+							else return <Redirect to='/' />;
+						}}
+					/>
 
-          <Route
-            exact
-            path="/settings"
-            render={(props) => (
-              <Settings
-                user={this.state.user}
-                setUser={this.setUser}
-                type="default"
-                {...props}
-              />
-            )}
-          />
+					<Route
+						exact
+						path='/user/details/:id/view'
+						render={(props) => {
+							if (this.state.user) return <UserView user={this.state.user} {...props} />;
+							else return <Redirect to='/' />;
+						}}
+					/>
 
-          <Route
-            exact
-            path="/profile/settings/:id"
-            render={(props) => (
-              <Settings user={this.state.user} type="profile" {...props} />
-            )}
-          />
+                    <Route
+                        exact
+                        path='/settings'
+                        render={(props) => <Settings user={this.state.user} type='default' {...props} />}
+                    />
 
-          <Route
-            exact
-            path="/jobs"
-            render={(props) => {
-              if (this.state.user)
-                return <Jobs user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path='/profile/settings/:id'
+                        render={(props) => <Settings user={this.state.user} type='profile' {...props} />}
+                    />
 
-          <Route
-            exact
-            path="/jobs/add"
-            render={(props) => {
-              if (this.state.user.isCompany === true)
-                return <AddJob user={this.state.user} {...props} />;
-              else return <Redirect to="/jobs" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/jobs"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <Jobs user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/challenges"
-            render={(props) => {
-              if (this.state.user)
-                return <Challenges user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/jobs/add"
+                        render={(props) => {
+                            if (this.state.user.isCompany === true)
+                                return <AddJob user={this.state.user} {...props} />;
+                            else return <Redirect to="/jobs"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/challenges/add"
-            render={(props) => {
-              if (this.state.user.isCompany === true)
-                return <AddChallenges user={this.state.user} {...props} />;
-              else return <Redirect to="/jobs" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/challenges"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <Challenges user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/solve/challenge/:id"
-            render={(props) => {
-              if (this.state.user.isCompany === false)
-                return <CodeEditor user={this.state.user} {...props} />;
-              else return <Redirect to="/jobs" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/challenges/add"
+                        render={(props) => {
+                            if (this.state.user.isCompany === true)
+                                return <AddChallenges user={this.state.user} {...props} />;
+                            else return <Redirect to="/jobs"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/challenge/:id"
-            render={(props) => {
-              if (this.state.user.isCompany === true)
-                return <ChallengesDetails user={this.state.user} {...props} />;
-              else return <Redirect to="/jobs" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/solve/challenge/:id"
+                        render={(props) => {
+                            if (this.state.user.isCompany === false)
+                                return <CodeEditor user={this.state.user} {...props} />;
+                            else return <Redirect to="/jobs"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/jobs/:id"
-            render={(props) => {
-              if (this.state.user)
-                return <JobDetails user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/challenge/:id"
+                        render={(props) => {
+                            if (this.state.user.isCompany === true)
+                                return <ChallengesDetails user={this.state.user} {...props} />;
+                            else return <Redirect to="/jobs"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/codeeditor"
-            render={(props) => {
-              if (this.state.user.isCompany === false)
-                return <CodeEditor user={this.state.user} {...props} />;
-              else return <Redirect to="/profile" />;
-            }}
-          />
+                    <Route
+                        exact
+                        path="/jobs/:id"
+                        render={(props) => {
+                            if (this.state.user.isCompany)
+                                return <JobDetails user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/codeinterview"
-            render={(props) => {
-              if (this.state.user)
-                return <CodeInterview user={this.state.user} {...props} />;
-              else return <Redirect to="/" />;
-            }}
-          />
 
-          <Route
-            exact
-            path="/signup"
-            render={(props) => (
-              <Signup
-                user={this.state.user}
-                setUser={this.setUser}
-                {...props}
-              />
-            )}
-          />
+                    <Route
+                        exact
+                        path="/jobs/applicant/:id"
+                        render={(props) => {
+                            if (!this.state.user.isCompany)
+                                return <JobDetailsApplicant user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
 
-          <Route
-            exact
-            path="/login"
-            render={(props) => (
-              <Login user={this.state.user} setUser={this.setUser} {...props} />
-            )}
-          />
-        </Switch>
-      </div>
-    );
-  }
+                    <Route
+                        exact
+                        path="/codeeditor"
+                        render={(props) => {
+                            if (this.state.user.isCompany === false)
+                                return <CodeEditor user={this.state.user} {...props} />;
+                            else return <Redirect to="/profile"/>;
+                        }}
+                    />
+
+                    <Route
+                        exact
+                        path="/codeinterview"
+                        render={(props) => {
+                            if (this.state.user)
+                                return <CodeInterview user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
+
+                    <Route
+                        exact
+                        path="/signup"
+                        render={props => <Signup user={this.state.user} setUser={this.setUser} {...props}/>}
+                    />
+
+                    <Route
+                        exact
+                        path="/login"
+                        render={props => <Login user={this.state.user} setUser={this.setUser} {...props}/>}
+                    />
+
+                </Switch>
+            </div>
+        );
+    }
+
 }
 
 export default App;

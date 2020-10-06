@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express();
 const Job = require("../models/Job");
+const User = require("../models/User");
 
 // get all the projects
 router.get("/", (req, res) => {
@@ -133,5 +134,24 @@ router.get("/applied/applicant", (req, res) => {
       res.json(error);
     });
 });
+
+//get the jobs an applicant applied to
+// router.get("/applied/jobs", (req, res) => {
+//   console.log('This uhfauhfuahgfuahfuarhgiuarehiuaerhg', req)
+//   Job.find({ appliedJobs: req. })
+//     .populate("appliedJobs")
+//     .then((job) => {
+//       if (!job) {
+//         res.status(404).json(user);
+//       } else {
+//         res.status(200).json(user);
+//       }
+//     })
+//     .catch((error) => {
+//       res.json(error);
+//     });
+// });
+
+
 
 module.exports = router;

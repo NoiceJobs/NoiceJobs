@@ -103,69 +103,62 @@ export default class Settings extends Component {
         console.log(error);
       });
   };
-  render() {
-    return (
-      <div>
-        <OurNavbar
-          isNavAuths={true}
-          profile={false}
-          setting={true}
-          challenge={false}
-          job={false}
-        />
+  
+	render() {
+		return (
+			<div>
+				<OurNavbar isNavAuths={true} profile={false} setting={true} challenge={false} job={false} />
 
-        <Container className="mt-5">
-          <h1 className="text-center text-info font-weight-bold">
-            {this.props.user.isCompany
-              ? "Company Profile"
-              : "Applicant Profile"}
-          </h1>
-          <h3 className="text-center text-info font-weight-bold">
-            {" "}
-            Edit your Details:{" "}
-          </h3>
-          {this.props.user.isCompany ? (
-            <Form onSubmit={this.handleSubmitCompany}>
-              <Form.Group>
-                <Form.Label htmlFor="name">Name: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="email">E-Mail: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="description">Description: </Form.Label>
-                <Form.Control
-                  id="description"
-                  name="description"
-                  value={this.state.description}
-                  onChange={this.handleChange}
-                  type="text"
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="location">Location: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="location"
-                  name="location"
-                  value={this.state.location}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
+				<Container className='mt-5'>
+					<h1 className='text-center text-info font-weight-bold'>
+						{this.props.user.isCompany ? "Company Profile" : "Applicant Profile"}
+					</h1>
+					<h2 className="h4 text-light font-w400 text-muted mb-0 text-center">
+                  Edit your Profile: 
+                </h2>
+					{this.props.user.isCompany ? (
+						<Form onSubmit={this.handleSubmitCompany}>
+							<Form.Group>
+								<Form.Label htmlFor='name'>Name: </Form.Label>
+								<Form.Control
+									type='text'
+									id='name'
+									name='name'
+									value={this.state.name}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='email'>E-Mail: </Form.Label>
+								<Form.Control
+									type='text'
+									id='email'
+									name='email'
+									value={this.state.email}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='description'>Description: </Form.Label>
+								<Form.Control
+									id='description'
+									name='description'
+									value={this.state.description}
+									onChange={this.handleChange}
+									type='text'
+								></Form.Control>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='location'>Location: </Form.Label>
+								<Form.Control
+									type='text'
+									id='location'
+									name='location'
+									value={this.state.location}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
 
               <Form.Group>
                 <Form.Label htmlFor="size">Size: </Form.Label>
@@ -178,105 +171,104 @@ export default class Settings extends Component {
                 />
               </Form.Group>
 
-              <Form.Group>
-                <Form.Label htmlFor="linkedInURL">
-                  Your LinkedIn Link:{" "}
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="linkedInURL"
-                  name="linkedInURL"
-                  value={this.state.linkedInURL}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
 
-              <Form.Group>
-                <Form.Label htmlFor="GithubURL">Your Github Link: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="GithubURL"
-                  name="GithubURL"
-                  value={this.state.GithubURL}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='linkedInURL'>Your LinkedIn Link: </Form.Label>
+								<Form.Control
+									type='text'
+									id='linkedInURL'
+									name='linkedInURL'
+									value={this.state.linkedInURL}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
+							<Form.Group>
+								<Form.Label htmlFor='GithubURL'>Your Github Link: </Form.Label>
+								<Form.Control
+									type='text'
+									id='GithubURL'
+									name='GithubURL'
+									value={this.state.GithubURL}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
+							<Button className='btn btn-info' type='submit'>
+								Update Company Profile
+							</Button>
+						</Form>
+					) : (
+						<Form onSubmit={this.handleSubmitApplicant}>
+							<Form.Group>
+								<Form.Label htmlFor='name'>Name: </Form.Label>
+								<Form.Control
+									type='text'
+									id='name'
+									name='name'
+									value={this.state.name}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='email'>E-Mail: </Form.Label>
+								<Form.Control
+									type='text'
+									id='email'
+									name='email'
+									value={this.state.email}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='description'>Description: </Form.Label>
+								<Form.Control
+									id='description'
+									name='description'
+									value={this.state.description}
+									onChange={this.handleChange}
+									type='text'
+								/>
+							</Form.Group>
+							<Form.Group>
+								<Form.Label htmlFor='location'>Location: </Form.Label>
+								<Form.Control
+									type='text'
+									id='location'
+									name='location'
+									value={this.state.location}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							{/* LinkedInLURL: */}
+							<Form.Group>
+								<Form.Label htmlFor='linkedInURL'>Your LinkedIn Link: </Form.Label>
+								<Form.Control
+									type='text'
+									id='linkedInURL'
+									name='linkedInURL'
+									value={this.state.linkedInURL}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+							{/* GithubURL: */}
+							<Form.Group>
+								<Form.Label htmlFor='GithubURL'>Your Github Link: </Form.Label>
+								<Form.Control
+									type='text'
+									id='GithubURL'
+									name='GithubURL'
+									value={this.state.GithubURL}
+									onChange={this.handleChange}
+								/>
+							</Form.Group>
+
 
               <Button className="btn btn-info" type="submit">
                 Update Company Profile
               </Button>
             </Form>
-          ) : (
-            <Form onSubmit={this.handleSubmitApplicant}>
-              <Form.Group>
-                <Form.Label htmlFor="name">Name: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="email">E-Mail: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="description">Description: </Form.Label>
-                <Form.Control
-                  id="description"
-                  name="description"
-                  value={this.state.description}
-                  onChange={this.handleChange}
-                  type="text"
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="location">Location: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="location"
-                  name="location"
-                  value={this.state.location}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              {/* LinkedInLURL: */}
-              <Form.Group>
-                <Form.Label htmlFor="linkedInURL">
-                  Your LinkedIn Link:{" "}
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="linkedInURL"
-                  name="linkedInURL"
-                  value={this.state.linkedInURL}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              {/* GithubURL: */}
-              <Form.Group>
-                <Form.Label htmlFor="GithubURL">Your Github Link: </Form.Label>
-                <Form.Control
-                  type="text"
-                  id="GithubURL"
-                  name="GithubURL"
-                  value={this.state.GithubURL}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-
-              <Button className="btn btn-block bg-info" type="submit">
-                Update Applicant Profile
-              </Button>
-            </Form>
+          
           )}
         </Container>
       </div>

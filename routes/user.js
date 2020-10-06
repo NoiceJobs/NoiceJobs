@@ -15,9 +15,9 @@ router.get("/", (req, res) => {
 // update a company
 router.put("/company/:id", (req, res) => {
 	// console.log(req.body, req.params.id);
-	const { name, email, description, location, size } = req.body;
+	const { name, email, description, location, size, linkedInURL, GithubURL } = req.body;
 
-	User.findByIdAndUpdate(req.params.id, { name, email, description, location, size }, { new: true })
+	User.findByIdAndUpdate(req.params.id, { name, email, description, location, size, linkedInURL, GithubURL }, { new: true })
 		.then((user) => {
 			// console.log(user, "user");
 			res.status(200).json(user);
