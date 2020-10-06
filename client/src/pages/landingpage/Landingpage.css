@@ -18,3 +18,11 @@
   display:block;
   object-fit: cover;
 } */
+
+.max-vh-70 {
+  max-height: 70vh !important;
+}
+
+.max-vh-70 img {
+  transform: translateY(-200px);
+}
