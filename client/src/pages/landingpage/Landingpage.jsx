@@ -59,7 +59,7 @@ export default class Landingpage extends Component {
                   // height={500}
                 />
                 <Carousel.Caption>
-                  <h1>First slide label</h1>
+                  <h1>Our Vision</h1>
                   <p>
                     Nulla vitae elit libero, a pharetra augue mollis interdum.
                   </p>
@@ -74,7 +74,7 @@ export default class Landingpage extends Component {
                   // height={120}
                 />
                 <Carousel.Caption>
-                  <h2>Second slide label</h2>
+                  <h2>Steer you in the right direction</h2>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   </p>
@@ -92,7 +92,7 @@ export default class Landingpage extends Component {
 
                 <Carousel.Caption>
                   {/* <Carousel.Caption className="mb-5 pb-10"> */}
-                  <h2>Third slide label</h2>
+                  <h2>Join us on a journey</h2>
                   <p>
                     Praesent commodo cursus magna, vel scelerisque nisl
                     consectetur.
