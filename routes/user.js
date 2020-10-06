@@ -14,24 +14,26 @@ router.get("/", (req, res) => {
 
 // update a company
 router.put("/company/:id", (req, res) => {
-	console.log(req.body, req.params.id);
+	// console.log(req.body, req.params.id);
 	const { name, email, description, location, size } = req.body;
 
 	User.findByIdAndUpdate(req.params.id, { name, email, description, location, size }, { new: true })
 		.then((user) => {
-			console.log(user, "user");
+			// console.log(user, "user");
 			res.status(200).json(user);
 		})
 		.catch((error) => {
-			console.log(error, "error");
+			// console.log(error, "error");
 			res.json(error);
 		});
 });
 
 // update a user
 router.put("/:id", (req, res) => {
-	const { name, email, description, location, size } = req.body;
-	User.findByIdAndUpdate(req.params.id, { name, email, description, location, size }, { new: true })
+	const { name, email, description, location, size , linkedInURL, GithubURL} = req.body;
+	// console.log('this is req.body von router.put', req.body)
+	// console.log('this is LinkedIn', linkedInURL)
+	User.findByIdAndUpdate(req.params.id, { name, email, description, location, size , linkedInURL, GithubURL }, { new: true })
 		.then((user) => {
 			res.status(200).json(user);
 		})
