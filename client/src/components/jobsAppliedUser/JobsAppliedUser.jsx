@@ -22,6 +22,18 @@ export default class JobsAppliedUser extends Component {
 			.catch((error) => {
 				console.log(error);
 			});
+
+		axios
+			.get("/api/jobs")
+			.then((response) => {
+				console.log(response);
+				this.setState({
+					jobs: response.data,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 	componentDidMount() {
 		this.getData();

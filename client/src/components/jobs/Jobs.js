@@ -5,7 +5,7 @@ import axios from "axios";
 import JobsList from "../jobsList/JobsList";
 import AddJob from "./AddJob";
 import EditJob from "./EditJob";
-import {Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export default class Jobs extends Component {
   state = {
