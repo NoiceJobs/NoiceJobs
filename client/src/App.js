@@ -19,6 +19,7 @@ import Challenges from "./components/challenges/Challenges";
 import ChallengesDetails from "./components/challenges/ChallengesDetails";
 import UserView from "./components/userView/UserView";
 import CodeInterview from "./pages/codeinterview/CodeInterview";
+import JobDetailsApplicant from "./components/jobs/JobDetailsApplicant";
 
 class App extends Component {
 	state = {
@@ -38,7 +39,10 @@ class App extends Component {
 					<Route
 						exact
 						path='/'
-						render={(props) => <Landingpage user={this.state.user} {...props} />}
+						render={(props) => {
+                        if (!this.state.user) return <Landingpage user={this.state.user} {...props} />;
+                        else return <Redirect to='/profile'/>
+                        }}
 					/>
 					<Route
 						exact
@@ -134,8 +138,19 @@ class App extends Component {
                         exact
                         path="/jobs/:id"
                         render={(props) => {
-                            if (this.state.user)
+                            if (this.state.user.isCompany)
                                 return <JobDetails user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
+
+
+                    <Route
+                        exact
+                        path="/jobs/applicant/:id"
+                        render={(props) => {
+                            if (!this.state.user.isCompany)
+                                return <JobDetailsApplicant user={this.state.user} {...props} />;
                             else return <Redirect to="/"/>;
                         }}
                     />
@@ -159,8 +174,6 @@ class App extends Component {
                             else return <Redirect to="/"/>;
                         }}
                     />
-
-
 
                     <Route
                         exact

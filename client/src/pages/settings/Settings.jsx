@@ -105,7 +105,9 @@ export default class Settings extends Component {
 					<h1 className='text-center text-info font-weight-bold'>
 						{this.props.user.isCompany ? "Company Profile" : "Applicant Profile"}
 					</h1>
-					<h3 className='text-center text-info font-weight-bold'> Edit your Details: </h3>
+					<h2 className="h4 text-light font-w400 text-muted mb-0 text-center">
+                  Edit your Profile: 
+                </h2>
 					{this.props.user.isCompany ? (
 						<Form onSubmit={this.handleSubmitCompany}>
 							<Form.Group>
@@ -182,7 +184,7 @@ export default class Settings extends Component {
 								/>
 							</Form.Group>
 
-							<Button className='btn btn-success' type='submit'>
+							<Button className='btn btn-info' type='submit'>
 								Update Company Profile
 							</Button>
 						</Form>
