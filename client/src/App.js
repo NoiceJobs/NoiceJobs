@@ -9,7 +9,12 @@ import JobDetails from "./components/jobs/JobDetails";
 
 // import {} from "react-bootstrap";
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
 import AddJob from "./components/jobs/AddJob";
 import CodeEditor from "./pages/codeeditor/CodeEditor";
@@ -22,6 +27,7 @@ import CodeInterview from "./pages/codeinterview/CodeInterview";
 import JobDetailsApplicant from "./components/jobs/JobDetailsApplicant";
 
 class App extends Component {
+
 	state = {
 		user: this.props.user,
 	};
@@ -191,6 +197,7 @@ class App extends Component {
             </div>
         );
     }
+
 }
 
 export default App;
