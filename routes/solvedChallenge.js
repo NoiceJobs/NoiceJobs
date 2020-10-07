@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
     console.log(req.params.id);
     Challenge.findById(req.params.id)
+        .populate('challengeId')
         .then((challenge) => {
             if (!challenge) {
                 res.status(404).json(challenge);
@@ -28,6 +29,25 @@ router.get("/:id", (req, res) => {
             res.json(error);
         });
 });
+
+// get a specific SolvedChallenge filtered by jobid challengeid
+router.get("/:jobId/:challengeId", (req, res) => {
+    console.log();
+    SolvedChallenge.find({jobId: req.params.jobId, challengeId:req.params.challengeId, userId: req.user._id})
+        .populate('challengeId')
+        .then((challenge) => {
+            if (!challenge) {
+                res.status(404).json(challenge);
+            } else {
+                res.status(200).json(challenge);
+            }
+        })
+        .catch((error) => {
+            res.json(error);
+        });
+});
+
+
 // create a new solveChallenge
 router.post("/add", (req, res) => {
     const {

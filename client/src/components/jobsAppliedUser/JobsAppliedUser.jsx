@@ -60,16 +60,16 @@ export default class JobsAppliedUser extends Component {
 				console.log(job)
 
 				let solvedChallenges = this.state.solvedChallenge.map((solveChallenge) => {
-					console.log(solveChallenge.jobId)
+
 					if (solveChallenge.jobId === job._id){
-						return solveChallenge
+						return solveChallenge.isSolved
 					}
 				})[0]
 
 				console.log('FILTER SolvedCHALLENGE ::',solvedChallenges)
 
 				jobsApplied.push(
-					<tr>
+					<tr key={job._id}>
 						{" "}
 						<td>{index}</td>{" "}
 						<td>
@@ -80,10 +80,22 @@ export default class JobsAppliedUser extends Component {
 						<td>{job.location}</td>{" "}
 						<td>
 							{" "}
+							{
+								solvedChallenges === true ? (<Link  to={`/view/solved/challenge/${job._id}/${job.challengeId}`}>
+									<SiJavascript className='text-success' />
+								</Link>) : ''
+							}
+							{
+								solvedChallenges === false ? (<Link  to={`/view/solved/challenge/${job._id}/${job.challengeId}`}>
+									<SiJavascript className='text-danger' />
+								</Link>) : ''
+							}
+							{
+								solvedChallenges === undefined ? (<Link  to={`/solve/challenge/${job._id}/${job.challengeId}`}>
+									<SiJavascript className='text-secondary' />
+								</Link>) : ''
+							}
 
-							<Link to={`/solve/challenge/${job._id}/${job.challengeId}`}>
-								<SiJavascript className='text-secondary' />
-							</Link>{" "}
 						</td>
 					</tr>
 				);

@@ -25,6 +25,7 @@ import ChallengesDetails from "./components/challenges/ChallengesDetails";
 import UserView from "./components/userView/UserView";
 import CodeInterview from "./pages/codeinterview/CodeInterview";
 import JobDetailsApplicant from "./components/jobs/JobDetailsApplicant";
+import CodeView from "./components/codeView/CodeView";
 
 class App extends Component {
 
@@ -126,7 +127,17 @@ class App extends Component {
                         render={(props) => {
                             if (this.state.user.isCompany === false)
                                 return <CodeEditor user={this.state.user} {...props} />;
-                            else return <Redirect to="/jobs"/>;
+                            else return <Redirect to="/profile"/>;
+                        }}
+                    />
+
+                    <Route
+                        exact
+                        path="/view/solved/challenge/:jobId/:challengeId"
+                        render={(props) => {
+                            if (this.state.user.isCompany === false)
+                                return <CodeView user={this.state.user} {...props} />;
+                            else return <Redirect to="/profile"/>;
                         }}
                     />
 
