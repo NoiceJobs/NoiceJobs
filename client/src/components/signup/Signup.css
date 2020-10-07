@@ -1,5 +1,5 @@
 .loginImage {
-  width: 55vw;
+  width: 40vw;
   height: 65vh;
 }
 .loginForm {
@@ -7,6 +7,9 @@
   color: white;
 }
 
-h2 {
+h1 {
   color: #17a2b8;
+}
+.GithubLogo{
+  fill: white;
 }
