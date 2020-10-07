@@ -125,6 +125,7 @@ router.put("/apply/:id", (req, res) => {
 router.get("/applied/applicant", (req, res) => {
     Job.find({ owner: req.user._id })
         .populate("appliedUsers")
+        .populate("owner")
         .then((job) => {
             if (!job) {
                 res.status(404).json(job);

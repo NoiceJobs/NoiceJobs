@@ -97,6 +97,15 @@ export default class JobsAppliedUser extends Component {
 							}
 
 						</td>
+						{job.owner ?
+						<td>
+							<Link className='text-info' to={`/user/details/${job.owner._id}/view`}>
+								{job.owner.name || job.owner.username}
+							</Link>
+						</td>
+						:
+						<td></td>
+					}
 					</tr>
 				);
 			}
@@ -115,6 +124,7 @@ export default class JobsAppliedUser extends Component {
 							<th>Job Position</th>
 							<th>Location</th>
 							<th>Challenge</th>
+							<th>Company</th>
 						</tr>
 					</thead>
 					<tbody className='bg-white shadow-sm'>{this.appliedJobsElement()}</tbody>

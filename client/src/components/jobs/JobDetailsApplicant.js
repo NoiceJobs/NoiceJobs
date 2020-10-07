@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Card } from "react-bootstrap";
+import { Card, Row  } from "react-bootstrap";
 
 import OurNavbar from "../ourNavbar/OurNavbar";
 
@@ -14,7 +14,8 @@ export default class JobDetailsApplicant extends Component {
 		role: "",
 		location: "",
 		username: "",
-		name: "",
+    name: "",
+    createdAt:"",
 	};
 
 	getJobData = () => {
@@ -29,7 +30,9 @@ export default class JobDetailsApplicant extends Component {
 					description: response.data.description,
 					position: response.data.position,
 					role: response.data.role,
-					location: response.data.location,
+          location: response.data.location,
+          createdAt: response.data.createdAt,
+          name: response.data.name,
 				});
 			})
 			.catch((error) => {
@@ -47,9 +50,11 @@ export default class JobDetailsApplicant extends Component {
       <div>
       <OurNavbar isNavAuths={true} />
       <Card className='text-center'>
+      <Row className='d-flex justify-content-center mt-4' xs={4}>
         <Card.Header className='bg-info text-white font-weight-bold'>
-        <h1>Applicant</h1>
+        <h2 className="text-light">Job details: </h2>
         </Card.Header>
+</Row>
         <Card.Body>
           
           {this.state.role &&
@@ -66,7 +71,7 @@ export default class JobDetailsApplicant extends Component {
 
           <Card.Text>{this.state.description || ''}</Card.Text> 
         </Card.Body>
-        <Card.Footer className='text-muted'>2 days ago</Card.Footer>
+        <Card.Footer className='text-muted'>{this.state.createdAt}</Card.Footer>
       </Card>
 
     </div>

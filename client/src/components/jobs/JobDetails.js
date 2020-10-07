@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Row } from "react-bootstrap";
 import EditJob from "./EditJob";
 import OurNavbar from "../ourNavbar/OurNavbar";
 
@@ -128,20 +128,22 @@ export default class JobDetails extends Component {
 			<div>
 				<OurNavbar isNavAuths={true} />
 				<Card className='text-center'>
+				<Row className='d-flex justify-content-center mt-4' xs={4}>
 					<Card.Header className='bg-info text-white font-weight-bold'>
 						{this.state.job.owner.username || this.state.job.owner.username}
 					</Card.Header>
+					</Row>
 					<Card.Body>
 						<Card.Title>
 							{this.state.job.role || ""} - {this.state.job.position}
 						</Card.Title>
 						<Card.Text>{this.state.job.description || ""}</Card.Text>
 						{allowedToDelete && (
-							<Button variant='danger' onClick={this.deleteJob}>
+							<Button variant='outline-danger' onClick={this.deleteJob}>
 								Delete Job
 							</Button>
 						)}
-						{allowedToEdit && <Button onClick={this.toggleEditForm}>Edit Form</Button>}
+						{allowedToEdit && <Button  className="ml-3" variant="outline-info" onClick={this.toggleEditForm}>Edit Form</Button>}
 						{allowedToEdit && this.state.editForm && (
 							<EditJob
 								{...this.state}
@@ -150,7 +152,7 @@ export default class JobDetails extends Component {
 							/>
 						)}
 					</Card.Body>
-					<Card.Footer className='text-muted'>2 days ago</Card.Footer>
+				
 				</Card>
 
 				{/* <h1>{this.state.job.owner.username || this.state.job.owner.username}</h1> */}

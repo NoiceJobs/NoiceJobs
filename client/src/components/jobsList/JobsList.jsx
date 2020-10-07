@@ -69,9 +69,9 @@ class JobsList extends Component {
 				<Container>
 					<div>
 						<Row>
-							<Col className={"text-right"}>
+							<Col className={"text-right mb-1"}>
 								{this.props.user.isCompany ? (
-									<Link className={"btn btn-outline-info btn-sx mt-5"} to='/jobs/add'>
+									<Link className={"btn btn-outline-info btn-sx mt-3"} to='/jobs/add'>
 										+ Add a Job{" "}
 									</Link>
 								) : (
@@ -80,15 +80,18 @@ class JobsList extends Component {
 							</Col>
 						</Row>
 					</div>
-					{this.props.jobs.length > 0 && <h2 className='text-info mb-3'>Jobs</h2>}
+					{this.props.jobs.length > 0 &&  <><h1 className="text-center">Jobs</h1>
+        <h2 className="h4 text-light font-w400 text-muted mb-5 text-center">
+          Explore the jobs of NoiceJobs!
+        </h2></>}
 
-					<Row>
+					<Row className="d-flex justify-content-center">
 						<Col xs={6}>
 							{this.props.jobs.map((job, index) => {
 								return (
 									<div key={job._id}>
-										<Card className='text-center'>
-											<Card.Header>{job.owner ? job.owner.name : job.owner.username}</Card.Header>
+										<Card className='text-center mb-4'>
+											<Card.Header>{job.owner ? job.owner.name : "Mamamia"}</Card.Header>
 											<Card.Body>
 												{this.props.user.isCompany ? (
 													""

@@ -59,18 +59,26 @@ export default class Settings extends Component {
       });
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(
-      prevProps.user.name !== this.props.user.name,
-      prevProps.user.name,
-      this.props.user.name
-    );
-    if (prevProps.user.name !== this.props.user.name) {
-      this.setState({
-        name: this.props.user.name,
-      });
+
+	componentDidUpdate(previousProps, previousState) {
+    if (previousProps.data !== this.props.data) {
+        this.setState({name: this.props.user.name})
     }
-  }
+}
+
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(
+  //     prevProps.user.name !== this.props.user.name,
+  //     prevProps.user.name,
+  //     this.props.user.name
+  //   );
+  //   if (prevProps.user.name !== this.props.user.name) {
+  //     this.setState({
+  //       name: this.props.user.name,
+  //     });
+  //   }
+  // }
 
   handleSubmitApplicant = (event) => {
     event.preventDefault();

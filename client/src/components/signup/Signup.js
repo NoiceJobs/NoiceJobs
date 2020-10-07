@@ -61,9 +61,14 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <>
-        <h2 className="text-center mt-5">Signup</h2>
-        <Container>
+    <>
+
+         <h1 className="text-center mt-5">Signup</h1>
+        <h2 className="h4 text-light font-w400 text-muted mb-0 text-center">
+          Welcome - signup to get a noice job!
+        </h2>
+
+        <Container className="d-flex justify-content-center">
           <Row md={4} className="mt-5 mb-5">
             <Col className="text-center loginForm ">
               <Form className="mt-5" onSubmit={this.handleSubmit}>
@@ -101,24 +106,24 @@ export default class Signup extends Component {
                 {this.state.message && (
                   <Alert variant="danger">{this.state.message}</Alert>
                 )}
-                <Button type="submit">Signup</Button>
+                <Button className="mb-2" variant="outline-light" type="submit">Signup</Button>
               </Form>
 
-              <p>
+              <p className="mt-5">
                 {" "}
-                You want to apply for a job? Sign in with Github
+                Applying for a job? <br/> Sign in with Github
                 <a href="http://localhost:5555/api/auth/github">
-                  <GoMarkGithub></GoMarkGithub>
+                  <GoMarkGithub className="GithubLogo ml-2"></GoMarkGithub>
                 </a>
               </p>
             </Col>
 
             <Col xs={3}>
-              <Image className="loginImage" src="/images/loginPic2.jpg" />
+              <Image className="loginImage" src="https://images.unsplash.com/photo-1495904786722-d2b5a19a8535?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
             </Col>
           </Row>
         </Container>
-      </>
+     </>
     );
   }
 }
