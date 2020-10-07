@@ -36,7 +36,7 @@ export default class JobsAppliedUser extends Component {
 				return "";
 			}
 			if (job.appliedUsers.includes(this.props.user._id)) {
-				console.log("Ich bin in der methode drinne");
+				console.log("Ich bin in der methode drinne", job);
 				jobsApplied.push(
 					<tr>
 						{" "}
@@ -53,6 +53,16 @@ export default class JobsAppliedUser extends Component {
 								<SiJavascript className='text-secondary' />
 							</Link>{" "}
 						</td>
+					
+					{job.owner ?
+						<td>
+							<Link className='text-info' to={`/user/details/${job.owner._id}/view`}>
+								{job.owner.name || job.owner.username}
+							</Link>
+						</td>
+						:
+						<td></td>
+					}
 					</tr>
 				);
 			}
