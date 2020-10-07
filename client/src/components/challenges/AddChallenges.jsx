@@ -53,10 +53,16 @@ export default class AddChallenges extends Component {
           challenge={true}
           job={false}
         />
-        <Container>
+        <Container className="mt-5 mb-5">
+
+        <h1 className="text-center mt-5 text-info">Add your challenge</h1>
+        <h2 className="h4 text-light font-w400 text-muted mb-0 text-center">
+          Make it challenging! 😏
+        </h2>
+
           <Form onSubmit={this.handleSubmit}>
             <Form.Group>
-              <Form.Label htmlFor="title">Title: </Form.Label>
+              <Form.Label htmlFor="title">Title: <span className="text-danger">*</span>{" "}</Form.Label>
               <Form.Control
                 type="text"
                 id="title"
@@ -67,7 +73,7 @@ export default class AddChallenges extends Component {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label htmlFor="description">Description: </Form.Label>
+              <Form.Label htmlFor="description">Description: <span className="text-danger">*</span>{" "}</Form.Label>
               <Form.Control
                 type="text"
                 id="description"
@@ -80,7 +86,7 @@ export default class AddChallenges extends Component {
             <Row>
               <Col xs={6}>
                 <Form.Group>
-                  <Form.Label htmlFor="input">Input: </Form.Label>
+                  <Form.Label htmlFor="input">Input: <span className="text-danger">*</span>{" "}</Form.Label>
                   <Form.Control
                     type="text"
                     id="input"
@@ -93,7 +99,7 @@ export default class AddChallenges extends Component {
               </Col>
               <Col xs={6}>
                 <Form.Group>
-                  <Form.Label htmlFor="output">Output: </Form.Label>
+                  <Form.Label htmlFor="output">Output: <span className="text-danger">*</span>{" "}</Form.Label>
                   <Form.Control
                     type="text"
                     id="output"

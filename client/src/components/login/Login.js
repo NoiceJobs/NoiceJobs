@@ -3,7 +3,8 @@ import { login } from "../../services/auth";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { GoMarkGithub } from "react-icons/go";
-import loginStyle from "./login.css";
+import  "../login/login.css";
+
 import {
   Navbar,
   Nav,
@@ -19,6 +20,7 @@ import {
   Image,
   Jumbotron,
 } from "react-bootstrap";
+
 
 export default class Login extends Component {
   state = {
@@ -56,8 +58,12 @@ export default class Login extends Component {
   render() {
     return (
       <>
-        <h2 className="text-center mt-5">Login</h2>
-        <Container>
+        <h1 className="text-center mt-5">Login</h1>
+        <h2 className="h4 text-light font-w400 text-muted mb-0 text-center">
+          Welcome back - login to get to your profile!
+        </h2>
+
+        <Container className="d-flex justify-content-center">
           <Row md={4} className="mt-5 mb-5">
             <Col className="text-center loginForm ">
               <Form className="mt-5" onSubmit={this.handleSubmit}>
@@ -84,22 +90,36 @@ export default class Login extends Component {
                 {this.state.message && (
                   <Alert variant="danger">{this.state.message}</Alert>
                 )}
-                <Link to="/signup">Need to signup?</Link> <br></br>
-                <Button type="submit">Login</Button>
-              </Form>
-              {!this.props.user && (
-                <p>
+
+                <br></br>
+                {!this.props.user && (
+                  <p>
+                    {" "}
+                    Applying for a job?<br></br> Log in with Github
+                    <a href="http://localhost:5555/api/auth/github">
+                      <GoMarkGithub className="GithubLogo ml-2"></GoMarkGithub>
+                    </a>
+                  </p>
+                )}
+                <Button className="mb-3" variant="outline-light" type="submit">
+                  Login
+                </Button>
+                <br />
+
+                <Link to="/signup">
                   {" "}
-                  You want to apply for a job? Log in with Github
-                  <a href="http://localhost:5555/api/auth/github">
-                    <GoMarkGithub></GoMarkGithub>
-                  </a>
-                </p>
-              )}
+                  <Button className="mt-3" variant="outline-light">
+                    Need to signup?
+                  </Button>
+                </Link>
+              </Form>
             </Col>
 
             <Col xs={3}>
-              <Image className="loginImage" src="/images/loginPic2.jpg" />
+              <Image
+                className="loginImage"
+                src="https://images.unsplash.com/photo-1484387436194-cf7cb70800ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+              />
             </Col>
           </Row>
         </Container>

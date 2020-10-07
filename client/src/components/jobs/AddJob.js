@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button,Container } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { SiJavascript } from "react-icons/all";
+import OurNavbar from "../ourNavbar/OurNavbar";
 
 export default class AddJob extends Component {
   state = {
@@ -66,9 +67,17 @@ export default class AddJob extends Component {
 
   render() {
     return (
+      <div>
+      <OurNavbar isNavAuths={true} profile={false} setting={false} challenge={false} job={true} />
+
+      <h1 className="text-center mt-5 text-info">Add your job opening</h1>
+        <h2 className="h4 text-light font-w400 text-muted mb-0 text-center">
+          Make sure the applicants know exactly what to expect! 🙂
+        </h2>
+      <Container className="mt-5 mb-5">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label htmlFor="position">Position: </Form.Label>
+            <Form.Label htmlFor="position">Position: <span className="text-danger">*</span>{" "}</Form.Label>
             <Form.Control
                 type="text"
                 id="position"
@@ -78,7 +87,7 @@ export default class AddJob extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="location">Location: </Form.Label>
+            <Form.Label htmlFor="location">Location: <span className="text-danger">*</span>{" "}</Form.Label>
             <Form.Control
                 type="text"
                 id="location"
@@ -105,7 +114,7 @@ export default class AddJob extends Component {
             </Form.Control>
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="description">Description: </Form.Label>
+            <Form.Label htmlFor="description">Description: <span className="text-danger">*</span>{" "}</Form.Label>
             <Form.Control
                 type="text"
                 id="description"
@@ -115,7 +124,7 @@ export default class AddJob extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="challenge">Challenge: </Form.Label>
+            <Form.Label htmlFor="challenge">Challenge: <span className="text-danger">*</span>{" "}</Form.Label>
             <Form.Control
                 id="challenge"
                 name="challengeId"
@@ -128,8 +137,10 @@ export default class AddJob extends Component {
               {this.challengeSelection()}
             </Form.Control>
           </Form.Group>
-          <Button type="submit">Add a job</Button>
+          <Button className="btn btn-info btn-block" type="submit">Add a job</Button>
         </Form>
+        </Container>
+        </div>
     );
   }
 

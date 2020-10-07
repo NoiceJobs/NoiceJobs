@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Row } from "react-bootstrap";
 
 export default class EditJob extends Component {
   render() {
     console.log("this.props in edit form", this.props);
     return (
       <div>
-        <h2>Edit the Job</h2>
+        <h3 className="text-center mt-5 text-info">Edit here:</h3>
+
+        <Row className="d-flex justify-content-center" xs={2}>
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group>
             <Form.Label htmlFor="position">Position: </Form.Label>
@@ -51,8 +53,12 @@ export default class EditJob extends Component {
               onChange={this.props.handleChange}
             />
           </Form.Group>
-          <Button type="submit">Save</Button>
+          
+          <Row className="d-flex justify-content-center" xs={4}>
+          <Button className="btn btn-info btn-block" type="submit">Save</Button>
+          </Row>
         </Form>
+        </Row>
       </div>
     );
   }
