@@ -7,6 +7,7 @@ import { Button, Col, Container, Nav, Navbar, Row, Spinner } from "react-bootstr
 import { logout } from "../../services/auth.js";
 import OurNavbar from "../../components/ourNavbar/OurNavbar";
 import axios from "axios";
+import {AiFillCheckCircle, AiFillCloseCircle, BiError, GiTick} from "react-icons/all";
 require("codemirror/mode/javascript/javascript");
 
 const handleLogout = (props) => {
@@ -24,9 +25,14 @@ class CodeEditor extends Component {
 			challenge: {},
 			loadingTxt: "",
 			value:'',
-			codeInitialVal:''
+			codeInitialVal:'',
+			isSolved: false,
+			solvedChallengeObj: {},
+			isCheckSolutionRunned:false,
+			jobId: ''
 		};
 		this.checkSolution = this.checkSolution.bind(this);
+		this.submitSolution = this.submitSolution.bind(this)
 	}
 	componentDidMount() {
 		this.getData();
@@ -34,11 +40,15 @@ class CodeEditor extends Component {
 	}
 	getData() {
 		const challengeId = window.location.href.split("/").slice(-1)[0];
+		const jobId = window.location.href.split("/").slice(-2)[0]
 		axios.get(`/api/challenges/${challengeId}`).then((response) => {
 			this.setState({
 				challenge: response.data,
+				jobId: jobId
 			});
 		});
+
+
 	}
 
 	handleChange(newCode) {
@@ -91,7 +101,7 @@ class CodeEditor extends Component {
 							<Button variant='outline-info' onClick={this.checkSolution}>
 								Test
 							</Button>
-							<Button variant='info ml-5'>Submit</Button>
+							<Button variant='info ml-5' onClick={this.submitSolution}>Submit</Button>
 						</Col>
 					</Row>
 
@@ -101,7 +111,7 @@ class CodeEditor extends Component {
 						</Col>
 						<Col xs={7}>
 							<CodeMirror
-								value={this.getInput()}
+								value={this.state.value}
 								options={{
 									mode: "javascript",
 									theme: "material",
@@ -114,15 +124,7 @@ class CodeEditor extends Component {
 									console.log('controlled', {value});
 								}}
 							/>
-							{/*<CodeMirror
-								className='codemirror'
-								value={this.getInput()}
-								options={{
-									mode: "javascript",
-									theme: "material",
-									lineNumbers: true,
-								}}
-							/>*/}
+
 						</Col>
 					</Row>
 					<Row>
@@ -141,8 +143,7 @@ class CodeEditor extends Component {
 		);
 	}
 	checkSolution() {
-		const spinner = "<Spinner animation='grow' variant='success' />";
-		const checkingCodeTxt = "<p className='text-success'>'Checking your code!!!'</p>";
+		let isSolved =  false
 		let codeMirror = document.querySelector(".codemirror");
 		/* let code = codeMirror.value(); */
 		console.log(codeMirror);
@@ -154,22 +155,72 @@ class CodeEditor extends Component {
 				</div>
 			),
 		});
+
 		setTimeout(() => {
 			let code = this.state.value
 			let F = new Function(code)
-			console.log(F());
+			try {
+				if (F() === this.state.challenge.output) {
+					isSolved =  true
+				}
+			} catch (err){
+				isSolved = false
+			}
 
-			this.setState({
-				loadingTxt: "",
+			if (isSolved) {
+				this.setState({
+					loadingTxt: (
+						<div className='btn-light w-25 rounded p-2'>
+							<AiFillCheckCircle className='text-success' />
+							<span className='text-success font-weight-bold'>Your code is correct!!!</span>
+						</div>
+					),
+					isSolved: true
+				});
+			} else {
+				this.setState({
+					loadingTxt: (
+						<div className='btn-light w-25 rounded p-2'>
+							<AiFillCloseCircle className='text-danger' />
+							<span className='text-danger font-weight-bold'>Your code is wrong!!!</span>
+						</div>
+					),
+					isSolved: false
+				});
+			}
 
-			});
-			return (F());
-			/* console.log("EVALUATE", eval(code)); */
-		}, 10000);
-		// execute the code which is written in the function
+
+		}, 5000);
+
 	}
 
-	submitSolution() {}
+	submitSolution() {
+		this.checkSolution()
+		setTimeout(() => {
+			axios
+				.post("/api/solvedChallenge/add", {
+					challengeId: this.state.challenge._id,
+					isSolved: this.state.isSolved,
+					userId: this.props.user._id,
+					solution: this.state.value,
+					jobId: this.state.jobId
+
+				})
+				.then((data) => {
+					this.setState({
+						solvedChallengeObj:data
+					});
+					console.log(data);
+					this.props.history.push("/profile");
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+
+		}, 6000)
+
+
+	}
 }
 
 export default CodeEditor;
