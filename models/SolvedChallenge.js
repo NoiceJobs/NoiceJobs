@@ -9,6 +9,10 @@ const solvedChallengeSchema = new Schema({
 		type: Boolean,
 		default: false,
 	},
+	jobId: {
+		type: Schema.Types.ObjectId,
+		ref: "Job",
+	},
 	userId: {
 		type: Schema.Types.ObjectId,
 		ref: "User",

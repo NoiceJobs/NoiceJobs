@@ -122,13 +122,15 @@ class App extends Component {
 
                     <Route
                         exact
-                        path="/solve/challenge/:id"
+                        path="/solve/challenge/:jobId/:challengeId"
                         render={(props) => {
                             if (this.state.user.isCompany === false)
                                 return <CodeEditor user={this.state.user} {...props} />;
                             else return <Redirect to="/jobs"/>;
                         }}
                     />
+
+
 
                     <Route
                         exact
