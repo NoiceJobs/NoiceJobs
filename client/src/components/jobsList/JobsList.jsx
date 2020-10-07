@@ -88,7 +88,7 @@ class JobsList extends Component {
 								return (
 									<div key={job._id}>
 										<Card className='text-center'>
-											<Card.Header>Company Name</Card.Header>
+											<Card.Header>{job.owner ? job.owner.name : job.owner.username}</Card.Header>
 											<Card.Body>
 												{this.props.user.isCompany ? (
 													""
