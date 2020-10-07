@@ -9,7 +9,12 @@ import JobDetails from "./components/jobs/JobDetails";
 
 // import {} from "react-bootstrap";
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
 import AddJob from "./components/jobs/AddJob";
 import CodeEditor from "./pages/codeeditor/CodeEditor";
@@ -19,8 +24,10 @@ import Challenges from "./components/challenges/Challenges";
 import ChallengesDetails from "./components/challenges/ChallengesDetails";
 import UserView from "./components/userView/UserView";
 import CodeInterview from "./pages/codeinterview/CodeInterview";
+import JobDetailsApplicant from "./components/jobs/JobDetailsApplicant";
 
 class App extends Component {
+
 	state = {
 		user: this.props.user,
 	};
@@ -38,7 +45,10 @@ class App extends Component {
 					<Route
 						exact
 						path='/'
-						render={(props) => <Landingpage user={this.state.user} {...props} />}
+						render={(props) => {
+                        if (!this.state.user) return <Landingpage user={this.state.user} {...props} />;
+                        else return <Redirect to='/profile'/>
+                        }}
 					/>
 					<Route
 						exact
@@ -134,8 +144,19 @@ class App extends Component {
                         exact
                         path="/jobs/:id"
                         render={(props) => {
-                            if (this.state.user)
+                            if (this.state.user.isCompany)
                                 return <JobDetails user={this.state.user} {...props} />;
+                            else return <Redirect to="/"/>;
+                        }}
+                    />
+
+
+                    <Route
+                        exact
+                        path="/jobs/applicant/:id"
+                        render={(props) => {
+                            if (!this.state.user.isCompany)
+                                return <JobDetailsApplicant user={this.state.user} {...props} />;
                             else return <Redirect to="/"/>;
                         }}
                     />
@@ -160,8 +181,6 @@ class App extends Component {
                         }}
                     />
 
-
-
                     <Route
                         exact
                         path="/signup"
@@ -178,6 +197,7 @@ class App extends Component {
             </div>
         );
     }
+
 }
 
 export default App;

@@ -1,98 +1,109 @@
-import React, { Component } from 'react';
-import { login } from '../../services/auth';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { login } from "../../services/auth";
+import { Form, Button, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { GoMarkGithub } from "react-icons/go";
-
-
+import loginStyle from "./login.css";
+import {
+  Navbar,
+  Nav,
+  Dropdown,
+  DropdownButton,
+  Container,
+  Col,
+  Row,
+  Card,
+  ListGroup,
+  Carousel,
+  CardDeck,
+  Image,
+  Jumbotron,
+} from "react-bootstrap";
 
 export default class Login extends Component {
-
   state = {
-    username: '',
-    password: '',
-    message: ''
-  }
+    username: "",
+    password: "",
+    message: "",
+  };
 
-  handleChange = event => {
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const { username, password } = this.state;
-    login(username, password)
-      .then(data => {
-        if (data.message) {
-          this.setState({
-            message: data.message,
-            username: '',
-            password: ''
-          })
-        } else {
-          // now we need to put the user in the user key of the state of App.js
-          this.props.setUser(data);
-          // redirect to /projects
-          this.props.history.push('/profile');
-        }
-
-      })
-  }
+    login(username, password).then((data) => {
+      if (data.message) {
+        this.setState({
+          message: data.message,
+          username: "",
+          password: "",
+        });
+      } else {
+        // now we need to put the user in the user key of the state of App.js
+        this.props.setUser(data);
+        // redirect to /projects
+        this.props.history.push("/profile");
+      }
+    });
+  };
 
   render() {
     return (
       <>
-      
-        <h2>Login</h2>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label htmlFor="username">Username: </Form.Label>
-            <Form.Control
-              type='text'
-              name='username'
-              value={this.state.username}
-              onChange={this.handleChange}
-              id='username'
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label htmlFor="password">Password: </Form.Label>
-            <Form.Control
-              type='password'
-              name='password'
-              value={this.state.password}
-              onChange={this.handleChange}
-              id='password'
-            />
-          </Form.Group>
-          {this.state.message && (
-            <Alert variant='danger'>{this.state.message}</Alert>
-          )}
+        <h2 className="text-center mt-5">Login</h2>
+        <Container>
+          <Row md={4} className="mt-5 mb-5">
+            <Col className="text-center loginForm ">
+              <Form className="mt-5" onSubmit={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Label htmlFor="username">Username: </Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    id="username"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label htmlFor="password">Password: </Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    id="password"
+                  />
+                </Form.Group>
+                {this.state.message && (
+                  <Alert variant="danger">{this.state.message}</Alert>
+                )}
+                <Link to="/signup">Need to signup?</Link> <br></br>
+                <Button type="submit">Login</Button>
+              </Form>
+              {!this.props.user && (
+                <p>
+                  {" "}
+                  You want to apply for a job? Log in with Github
+                  <a href="http://localhost:5555/api/auth/github">
+                    <GoMarkGithub></GoMarkGithub>
+                  </a>
+                </p>
+              )}
+            </Col>
 
-          <Link to="/signup">Need to signup?</Link> <br></br>
-          <Button type='submit'>Login</Button>
-        </Form>
-
-        {!this.props.user && (
-          
-        
-          <p> You want to apply for a job? Log in with Github
-          <a href="http://localhost:5555/api/auth/github" >
-          <GoMarkGithub></GoMarkGithub>
-          </a>
-          </p>
-          
-        
-          
-        )}
-
-       
-
+            <Col xs={3}>
+              <Image className="loginImage" src="/images/loginPic2.jpg" />
+            </Col>
+          </Row>
+        </Container>
       </>
-    )
+    );
   }
 }
-
