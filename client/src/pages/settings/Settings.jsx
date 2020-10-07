@@ -8,94 +8,102 @@ import { FiLogOut } from "react-icons/fi";
 import OurNavbar from "../../components/ourNavbar/OurNavbar";
 
 export default class Settings extends Component {
+  state = {
+    name: this.props.user.name,
+    email: this.props.user.email,
+    description: this.props.user.description,
+    location: this.props.user.location,
+    size: this.props.user.size,
+    linkedInURL: this.props.user.linkedInURL,
+    GithubURL: this.props.user.GithubURL,
+  };
 
-	state = {
-		name: this.props.user.name,
-		email: this.props.user.email,
-		description: this.props.user.description,
-		location: this.props.user.location,
-		size: this.props.user.size,
-		linkedInURL: this.props.user.linkedInURL,
-		GithubURL: this.props.user.GithubURL,
-	};
-
-	handleChange = (event) => {
-		const { name, value } = event.target;
-		this.setState({
-			[name]: value,
-		});
-	};
-	handleSubmitCompany = (event) => {
-		event.preventDefault();
-		const id = this.props.user._id;
-		console.log("id", id);
-		axios
-			.put(`/api/user/company/${id}`, {
-				id: this.props.user.id,
-				name: this.state.name || this.props.user.name,
-				description: this.state.description || this.props.user.description,
-				email: this.state.email || this.props.user.email,
-				location: this.state.location || this.props.user.location,
-				size: this.state.size || this.props.user.size,
-				linkedInURL: this.state.linkedInURL || this.props.user.linkedInURL,
-				GithubURL: this.state.GithubURL || this.props.user.GithubURL,
-			})
-			.then((response) => {
-				this.setState({
-					name: response.name,
-					description: response.description,
-					email: response.email,
-					location: response.location,
-					size: response.size,
-					linkedInURL: response.linkedInURL,
-					GithubURL: response.GithubURL,
-				});
-				this.props.history.push("/profile");
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
-
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+  handleSubmitCompany = (event) => {
+    event.preventDefault();
+    const id = this.props.user._id;
+    console.log("id", id);
+    axios
+      .put(`/api/user/company/${id}`, {
+        id: this.props.user.id,
+        name: this.state.name || this.props.user.name,
+        description: this.state.description || this.props.user.description,
+        email: this.state.email || this.props.user.email,
+        location: this.state.location || this.props.user.location,
+        size: this.state.size || this.props.user.size,
+        linkedInURL: this.state.linkedInURL || this.props.user.linkedInURL,
+        GithubURL: this.state.GithubURL || this.props.user.GithubURL,
+      })
+      .then((response) => {
+        console.log(response, "RESPONSE");
+        console.log(this.props, "PROPS");
+        // this.setState({
+        //   name: response.name,
+        //   description: response.description,
+        //   email: response.email,
+        //   location: response.location,
+        //   size: response.size,
+        //   linkedInURL: response.linkedInURL,
+        //   GithubURL: response.GithubURL,
+        // });
+        this.props.history.push("/profile");
+        this.props.setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.name !== this.state.name) {
-      console.log("pokemons state has changed.");
+    console.log(
+      prevProps.user.name !== this.props.user.name,
+      prevProps.user.name,
+      this.props.user.name
+    );
+    if (prevProps.user.name !== this.props.user.name) {
+      this.setState({
+        name: this.props.user.name,
+      });
     }
   }
 
-
-	handleSubmitApplicant = (event) => {
-		event.preventDefault();
-		const id = this.props.user._id;
-		console.log("id", id);
-		axios
-			.put(`/api/user/${id}`, {
-				id: this.props.user.id,
-				name: this.state.name || this.props.user.name,
-				description: this.state.description || this.props.user.description,
-				email: this.state.email || this.props.user.email,
-				location: this.state.location || this.props.user.location,
-				size: this.state.size || this.props.user.size,
-				linkedInURL: this.state.linkedInURL || this.props.user.linkedInURL,
-				GithubURL: this.state.GithubURL || this.props.user.GithubURL,
-			})
-			.then((response) => {
-				this.setState({
-					name: response.name,
-					description: response.description,
-					email: response.email,
-					location: response.location,
-					linkedInURL: response.linkedInURL,
-					GithubURL: response.GithubURL,
-
-				});
-				this.props.history.push("/profile");
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
+  handleSubmitApplicant = (event) => {
+    event.preventDefault();
+    const id = this.props.user._id;
+    console.log("id", id);
+    axios
+      .put(`/api/user/${id}`, {
+        id: this.props.user.id,
+        name: this.state.name || this.props.user.name,
+        description: this.state.description || this.props.user.description,
+        email: this.state.email || this.props.user.email,
+        location: this.state.location || this.props.user.location,
+        size: this.state.size || this.props.user.size,
+        linkedInURL: this.state.linkedInURL || this.props.user.linkedInURL,
+        GithubURL: this.state.GithubURL || this.props.user.GithubURL,
+      })
+      .then((response) => {
+        // this.setState({
+        //   name: response.name,
+        //   description: response.description,
+        //   email: response.email,
+        //   location: response.location,
+        //   linkedInURL: response.linkedInURL,
+        //   GithubURL: response.GithubURL,
+        // });
+        this.props.history.push("/profile");
+        this.props.setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
 	render() {
 		return (
 			<div>
@@ -105,7 +113,9 @@ export default class Settings extends Component {
 					<h1 className='text-center text-info font-weight-bold'>
 						{this.props.user.isCompany ? "Company Profile" : "Applicant Profile"}
 					</h1>
-					<h3 className='text-center text-info font-weight-bold'> Edit your Details: </h3>
+					<h2 className="h4 text-light font-w400 text-muted mb-0 text-center">
+                  Edit your Profile: 
+                </h2>
 					{this.props.user.isCompany ? (
 						<Form onSubmit={this.handleSubmitCompany}>
 							<Form.Group>
@@ -149,6 +159,7 @@ export default class Settings extends Component {
 								/>
 							</Form.Group>
 
+
               <Form.Group>
                 <Form.Label htmlFor="size">Size: </Form.Label>
                 <Form.Control
@@ -159,6 +170,7 @@ export default class Settings extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
+
 
 							<Form.Group>
 								<Form.Label htmlFor='linkedInURL'>Your LinkedIn Link: </Form.Label>
@@ -182,7 +194,7 @@ export default class Settings extends Component {
 								/>
 							</Form.Group>
 
-							<Button className='btn btn-success' type='submit'>
+							<Button className='btn btn-info' type='submit'>
 								Update Company Profile
 							</Button>
 						</Form>
@@ -252,10 +264,11 @@ export default class Settings extends Component {
 							</Form.Group>
 
 
-              <Button className="btn btn-block bg-info" type="submit">
-                Update Applicant Profile
+              <Button className="btn btn-info" type="submit">
+                Update Company Profile
               </Button>
             </Form>
+          
           )}
         </Container>
       </div>

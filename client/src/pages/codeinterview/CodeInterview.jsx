@@ -1,31 +1,49 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import OurNavbar from "../../components/ourNavbar/OurNavbar";
-import {Button, Card, Container, FormControl, InputGroup} from "react-bootstrap";
-import {RiMailSendFill} from "react-icons/all";
+import {
+  Button,
+  Card,
+  Container,
+  FormControl,
+  InputGroup,
+} from "react-bootstrap";
+import { RiMailSendFill } from "react-icons/all";
 
 const CodeInterview = () => {
-	const [name, setName] = useState('')
-	const [room, setRoom] = useState('')
+  const [name, setName] = useState("");
+  const [room, setRoom] = useState("");
 
-	return (
-		<div className={'join-outer-container'}>
-			<div className={'join-inner-container'}>
-				<h1 className="heading">Join</h1>
-				<div><input placeholder={'Name'} className={'join-input'} type={'text'} onChange={()=>''}/></div>
-				<div><input placeholder={'Room'} className={'join-input mt-20'} type={'text'} onChange={() => ''}/></div>
-				<Link >
-					<button className={'button mt-20'} type={'submit'}>Join Interview !!!</button>
-				</Link>
-			</div>
-		</div>
-	)
+  return (
+    <div className={"join-outer-container"}>
+      <div className={"join-inner-container"}>
+        <h1 className="heading">Join</h1>
+        <div>
+          <input
+            placeholder={"Name"}
+            className={"join-input"}
+            type={"text"}
+            onChange={() => ""}
+          />
+        </div>
+        <div>
+          <input
+            placeholder={"Room"}
+            className={"join-input mt-20"}
+            type={"text"}
+            onChange={() => ""}
+          />
+        </div>
+        <Link>
+          <button className={"button mt-20"} type={"submit"}>
+            Join Interview !!!
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
 
-
-
-
-
-	/*<div>
+  /*<div>
 		<OurNavbar isNavAuths={true} />
 		{/!*{this.state.isVerifiedRoom ? 'Hallo' : 'Du kannst hier net rein'}*!/}
 		<Container>
@@ -42,7 +60,7 @@ const CodeInterview = () => {
 							aria-describedby="basic-addon2"
 						/>
 						<InputGroup.Append>
-							<Button variant="success" onClick={this.sendmessage}><RiMailSendFill /> Send Message</Button>
+							<Button variant="info" onClick={this.sendmessage}><RiMailSendFill /> Send Message</Button>
 						</InputGroup.Append>
 					</InputGroup>
 				</Card.Footer>
