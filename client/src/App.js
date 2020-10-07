@@ -10,10 +10,10 @@ import JobDetails from "./components/jobs/JobDetails";
 // import {} from "react-bootstrap";
 
 import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
 } from "react-router-dom";
 import ProfileContent from "./components/profileContent/ProfileContent";
 import AddJob from "./components/jobs/AddJob";
@@ -28,45 +28,45 @@ import JobDetailsApplicant from "./components/jobs/JobDetailsApplicant";
 
 class App extends Component {
 
-	state = {
-		user: this.props.user,
-	};
+    state = {
+        user: this.props.user,
+    };
 
-	setUser = (user) => {
-		this.setState({
-			user: user,
-		});
-	};
+    setUser = (user) => {
+        this.setState({
+            user: user,
+        });
+    };
 
-	render() {
-		return (
-			<div className='App'>
-				<Switch>
-					<Route
-						exact
-						path='/'
-						render={(props) => {
-                        if (!this.state.user) return <Landingpage user={this.state.user} {...props} />;
-                        else return <Redirect to='/profile'/>
+    render() {
+        return (
+            <div className='App'>
+                <Switch>
+                    <Route
+                        exact
+                        path='/'
+                        render={(props) => {
+                            if (!this.state.user) return <Landingpage user={this.state.user} {...props} />;
+                            else return <Redirect to='/profile'/>
                         }}
-					/>
-					<Route
-						exact
-						path='/profile'
-						render={(props) => {
-							if (this.state.user) return <Profile user={this.state.user} {...props} />;
-							else return <Redirect to='/' />;
-						}}
-					/>
+                    />
+                    <Route
+                        exact
+                        path='/profile'
+                        render={(props) => {
+                            if (this.state.user) return <Profile user={this.state.user} {...props} />;
+                            else return <Redirect to='/' />;
+                        }}
+                    />
 
-					<Route
-						exact
-						path='/user/details/:id/view'
-						render={(props) => {
-							if (this.state.user) return <UserView user={this.state.user} {...props} />;
-							else return <Redirect to='/' />;
-						}}
-					/>
+                    <Route
+                        exact
+                        path='/user/details/:id/view'
+                        render={(props) => {
+                            if (this.state.user) return <UserView user={this.state.user} {...props} />;
+                            else return <Redirect to='/' />;
+                        }}
+                    />
 
                     <Route
                         exact
@@ -201,3 +201,6 @@ class App extends Component {
 }
 
 export default App;
+
+
+
