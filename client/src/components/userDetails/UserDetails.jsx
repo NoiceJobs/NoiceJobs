@@ -30,18 +30,24 @@ export default class UserDetails extends Component {
       });
   };
 
+
   render() {
     return (
       <div className="card shadow-sm border-0">
         <h5 className="card-header bg-info text-white font-weight-bolder">
           {this.props.user.isCompany ? "Company Details" : "Applicant Details"}
           <span className="float-right">
-            <Link
+
+          <a className="text-white" onClick={() => window.location.reload(false)} href={`/profile/settings/${this.props.user._id}`}><BiCog /></a>
+          
+
+
+            {/* <Link
               className="text-white"
               to={`/profile/settings/${this.props.user._id}`}
             >
               <BiCog />
-            </Link>
+            </Link> */}
           </span>
         </h5>
         <div className="card-body">
