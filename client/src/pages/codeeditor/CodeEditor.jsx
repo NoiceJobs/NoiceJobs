@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { UnControlled as CodeMirror } from "react-codemirror2";
+import { Controlled as CodeMirror } from "react-codemirror2";
 import TaskBar from "../../components/taskBar/TaskBar";
 import TaskDescription from "../../components/taskDescription/TaskDescription";
 import { Button, Col, Container, Nav, Navbar, Row, Spinner } from "react-bootstrap";
@@ -23,11 +23,14 @@ class CodeEditor extends Component {
 			code: 'const name = "Example" ',
 			challenge: {},
 			loadingTxt: "",
+			value:'',
+			codeInitialVal:''
 		};
 		this.checkSolution = this.checkSolution.bind(this);
 	}
 	componentDidMount() {
 		this.getData();
+		this.getInput()
 	}
 	getData() {
 		const challengeId = window.location.href.split("/").slice(-1)[0];
@@ -53,11 +56,14 @@ class CodeEditor extends Component {
 			default:
 				parameterName = "exampleObj";
 		}
-		return `function solveChallenge(${parameterName}) {\n\treturn ${parameterName} \n}\nsolveChallenge(${
+		let codeInitial = `function solveChallenge(${parameterName}) {\n\treturn ${parameterName} \n}\nsolveChallenge(${
 			parameterName === "exampleString"
 				? `"${this.state.challenge.input}"`
 				: `"${this.state.challenge.input}"`
-		})`;
+		})`
+		return codeInitial
+
+
 	}
 
 	render() {
@@ -95,6 +101,20 @@ class CodeEditor extends Component {
 						</Col>
 						<Col xs={7}>
 							<CodeMirror
+								value={this.getInput()}
+								options={{
+									mode: "javascript",
+									theme: "material",
+									lineNumbers: true,
+								}}
+								onBeforeChange={(editor, data, value) => {
+									this.setState({value});
+								}}
+								onChange={(editor, value) => {
+									console.log('controlled', {value});
+								}}
+							/>
+							{/*<CodeMirror
 								className='codemirror'
 								value={this.getInput()}
 								options={{
@@ -102,7 +122,7 @@ class CodeEditor extends Component {
 									theme: "material",
 									lineNumbers: true,
 								}}
-							/>
+							/>*/}
 						</Col>
 					</Row>
 					<Row>
@@ -135,9 +155,15 @@ class CodeEditor extends Component {
 			),
 		});
 		setTimeout(() => {
+			let code = this.state.value
+			let F = new Function(code)
+			console.log(F());
+
 			this.setState({
 				loadingTxt: "",
+
 			});
+			return (F());
 			/* console.log("EVALUATE", eval(code)); */
 		}, 10000);
 		// execute the code which is written in the function
