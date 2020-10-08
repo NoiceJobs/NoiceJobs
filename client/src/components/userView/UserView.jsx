@@ -164,7 +164,9 @@ export default class UserView extends Component {
 									) : (
 										<Row>
 											<Col xs={4}>
-												<span className='text-info font-weight-bold border-bottom-0'>Github: </span>
+												<span className='text-info font-weight-bold border-bottom-0'>
+													LinkedIn:{" "}
+												</span>
 											</Col>
 										</Row>
 									)}
