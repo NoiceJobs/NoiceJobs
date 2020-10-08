@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import { Col, Row } from "react-bootstrap";
 import OurNavbar from "../ourNavbar/OurNavbar";
 import UserDetails from "../userDetails/UserDetails";
+import { GoMarkGithub } from "react-icons/go";
+import { SiLinkedin } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 export default class UserView extends Component {
   state = {
@@ -122,6 +125,52 @@ export default class UserView extends Component {
                     </Row>
                   )}
                 </p>
+{/* Github */}
+<p className="text-left">
+                  {this.state.userDetails.GithubURL ? (
+                    <Row>
+                      <Col xs={4}>
+                        <span className="text-info font-weight-bold border-bottom-0">
+                          Github:{" "}
+                        </span>
+                      </Col>
+                      <Col xs={6}><a className="text-info" target="_blank" href={this.state.userDetails.GithubURL}>{this.state.userDetails.name}'s <GoMarkGithub></GoMarkGithub></a></Col>
+                    </Row>
+                  ) : (
+                    <Row>
+                      <Col xs={4}>
+                        <span className="text-info font-weight-bold border-bottom-0">
+                          Github:{" "}
+                        </span>
+                      </Col>
+                    </Row>
+                  )}
+                </p>
+
+                {/* LinkedIn */}
+
+                <p className="text-left">
+                  {this.state.userDetails.linkedInURL ? (
+                    <Row>
+                      <Col xs={4}>
+                        <span className="text-info font-weight-bold border-bottom-0">
+                          LinkedIn:{" "}
+                        </span>
+                      </Col>
+                      <Col xs={6}><a className="text-info" target="_blank" href={this.state.userDetails.linkedInURL}>{this.state.userDetails.name}'s <SiLinkedin></SiLinkedin></a></Col>
+                    </Row>
+                  ) : (
+                    <Row>
+                      <Col xs={4}>
+                        <span className="text-info font-weight-bold border-bottom-0">
+                          Github:{" "}
+                        </span>
+                      </Col>
+                    </Row>
+                  )}
+                </p>
+
+
                 <p className="text-left">
                   {this.state.userDetails.size &&
                   this.state.userDetails.isCompany ? (
