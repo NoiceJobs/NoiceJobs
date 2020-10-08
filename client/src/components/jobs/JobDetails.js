@@ -16,6 +16,7 @@ export default class JobDetails extends Component {
 		editForm: false,
 		username: "",
 		name: "",
+		createdAt: "",
 	};
 
 	getJobData = () => {
@@ -32,6 +33,7 @@ export default class JobDetails extends Component {
 					owner: response.data.owner,
 					role: response.data.role,
 					location: response.data.location,
+					createdAt: response.data.createdAt
 				});
 			})
 			.catch((error) => {
@@ -69,6 +71,7 @@ export default class JobDetails extends Component {
 				owner: this.state.owner,
 				role: this.state.role,
 				location: this.state.location,
+				createdAt:this.state.createdAt,
 			})
 			.then((response) => {
 				console.log(response.data);
@@ -80,6 +83,7 @@ export default class JobDetails extends Component {
 					role: response.data.role,
 					location: response.data.location,
 					editForm: false,
+					createdAt:response.data.createdAt,
 				});
 			})
 			.catch((error) => {
@@ -98,11 +102,22 @@ export default class JobDetails extends Component {
 		this.getJobData();
 	}
 
-	render() {
-		{
-			console.log("state in Jobdetails", this.state);
-			console.log("props in Jobdetails", this.props);
+	//dateFunction
+	compareDates(date) {
+		const exDate = "2020/09/20";
+		if (Math.round(Math.abs(new Date() - new Date(date)) / 86400000) === 0) {
+			return "Today";
+		} else {
+			return Math.round(Math.abs(new Date() - new Date(date)) / 86400000) + " Days ago";
 		}
+	}
+
+
+	render() {
+		// {
+		// 	console.log("state in Jobdetails", this.state);
+		// 	console.log("props in Jobdetails", this.props);
+		// }
 
 		if (this.state.error) return <div>{this.state.error}</div>;
 		if (!this.state.job) return <p>Loading ...</p>;
@@ -122,7 +137,10 @@ export default class JobDetails extends Component {
 		if (user === owner) {
 			console.log("The User is the OWWWNER HE CAN EDDIT");
 			allowedToEdit = true;
-		}
+
+		};
+
+		
 
 		return (
 			<div>
@@ -152,7 +170,9 @@ export default class JobDetails extends Component {
 							/>
 						)}
 					</Card.Body>
-				
+					<Card.Footer className='text-muted'>
+					{this.compareDates(this.state.createdAt)}
+					</Card.Footer>
 				</Card>
 
 				{/* <h1>{this.state.job.owner.username || this.state.job.owner.username}</h1> */}

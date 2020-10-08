@@ -44,6 +44,15 @@ export default class JobDetailsApplicant extends Component {
     this.getJobData()
   }
 
+	//dateFunction
+	compareDates(date) {
+		const exDate = "2020/09/20";
+		if (Math.round(Math.abs(new Date() - new Date(date)) / 86400000) === 0) {
+			return "Today";
+		} else {
+			return Math.round(Math.abs(new Date() - new Date(date)) / 86400000) + " Days ago";
+		}
+	}
 
   render() {
     return (
@@ -71,7 +80,7 @@ export default class JobDetailsApplicant extends Component {
 
           <Card.Text>{this.state.description || ''}</Card.Text> 
         </Card.Body>
-        <Card.Footer className='text-muted'>{this.state.createdAt}</Card.Footer>
+        <Card.Footer className='text-muted'>compareDates({this.state.createdAt})</Card.Footer>
       </Card>
 
     </div>

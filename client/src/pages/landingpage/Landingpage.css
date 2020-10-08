@@ -12,8 +12,7 @@
   width: 50%;
   height: 75%;
 } */
-.tasks {
-}
+
 /* .carousel .carousel-inner img {
   display:block;
   object-fit: cover;
@@ -24,5 +23,18 @@
 }
 
 .max-vh-70 img {
-  transform: translateY(-200px);
+  transform: translateY(-175px);
+}
+.challenges{
+  width: 50vw;
+  height:65vh,
+}
+.remote{
+  width: 50vw;
+  height:65vh,
+}
+
+.interviews{
+  width: 40vw;
+  height:45vh,
 }
