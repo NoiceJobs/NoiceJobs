@@ -10,7 +10,7 @@ export default class JobDetails extends Component {
 		error: null,
 		position: "",
 		description: "",
-		owner: {_id: "0"},
+		owner: { _id: "0" },
 		role: "",
 		location: "",
 		editForm: false,
@@ -35,7 +35,7 @@ export default class JobDetails extends Component {
 				});
 			})
 			.catch((error) => {
-				console.log("hdhiusfihufsdhiudfhiu", error)
+				console.log("hdhiusfihufsdhiudfhiu", error);
 			});
 	};
 
@@ -108,9 +108,9 @@ export default class JobDetails extends Component {
 		if (!this.state.job) return <p>Loading ...</p>;
 
 		let allowedToDelete = false;
-		
+
 		const user = this.props.user._id;
-		const owner = this.state.owner._id 
+		const owner = this.state.owner._id;
 		if (user === owner) {
 			console.log("The User is the OWWWNER HE CAN DELLETE");
 
@@ -126,12 +126,12 @@ export default class JobDetails extends Component {
 
 		return (
 			<div>
-				<OurNavbar isNavAuths={true} />
+				<OurNavbar setUser={this.props.setUser} history={this.props.history} isNavAuths={true} />
 				<Card className='text-center'>
-				<Row className='d-flex justify-content-center mt-4' xs={4}>
-					<Card.Header className='bg-info text-white font-weight-bold'>
-						{this.state.job.owner.username || this.state.job.owner.username}
-					</Card.Header>
+					<Row className='d-flex justify-content-center mt-4' xs={4}>
+						<Card.Header className='bg-info text-white font-weight-bold'>
+							{this.state.job.owner.username || this.state.job.owner.username}
+						</Card.Header>
 					</Row>
 					<Card.Body>
 						<Card.Title>
@@ -143,7 +143,11 @@ export default class JobDetails extends Component {
 								Delete Job
 							</Button>
 						)}
-						{allowedToEdit && <Button  className="ml-3" variant="outline-info" onClick={this.toggleEditForm}>Edit Form</Button>}
+						{allowedToEdit && (
+							<Button className='ml-3' variant='outline-info' onClick={this.toggleEditForm}>
+								Edit Form
+							</Button>
+						)}
 						{allowedToEdit && this.state.editForm && (
 							<EditJob
 								{...this.state}
@@ -152,7 +156,6 @@ export default class JobDetails extends Component {
 							/>
 						)}
 					</Card.Body>
-				
 				</Card>
 
 				{/* <h1>{this.state.job.owner.username || this.state.job.owner.username}</h1> */}

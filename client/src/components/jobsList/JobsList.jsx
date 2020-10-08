@@ -64,7 +64,15 @@ class JobsList extends Component {
 	render() {
 		return (
 			<>
-				<OurNavbar isNavAuths={true} profile={false} setting={false} challenge={false} job={true} />
+				<OurNavbar
+					setUser={this.props.setUser}
+					history={this.props.history}
+					isNavAuths={true}
+					profile={false}
+					setting={false}
+					challenge={false}
+					job={true}
+				/>
 				<Container>
 					<div>
 						<Row>
@@ -79,12 +87,16 @@ class JobsList extends Component {
 							</Col>
 						</Row>
 					</div>
-					{this.state.jobs.length > 0 &&  <><h1 className="text-center">Jobs</h1>
-        <h2 className="h4 text-light font-w400 text-muted mb-5 text-center">
-          Explore the jobs of NoiceJobs!
-        </h2></>}
+					{this.state.jobs.length > 0 && (
+						<>
+							<h1 className='text-center'>Jobs</h1>
+							<h2 className='h4 text-light font-w400 text-muted mb-5 text-center'>
+								Explore the jobs of NoiceJobs!
+							</h2>
+						</>
+					)}
 
-					<Row className="d-flex justify-content-center">
+					<Row className='d-flex justify-content-center'>
 						<Col xs={6}>
 							{this.state.jobs.map((job, index) => {
 								return (

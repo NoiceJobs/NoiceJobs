@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 export default class CompanyAppliedApplicant extends Component {
 	state = {
 		jobs: [],
+		solvedChallenge: [],
 	};
 
 	componentDidMount() {
 		this.getJobData();
+		this.getSolvedChallengeData();
 	}
 
 	getJobData() {
@@ -21,13 +23,33 @@ export default class CompanyAppliedApplicant extends Component {
 		});
 	}
 
+	getSolvedChallengeData = () => {
+		axios
+			.get("/api/solvedChallenge")
+			.then((response) => {
+				console.log("SOLVEDCHALLENGE GET: ", response);
+				this.setState({
+					solvedChallenge: response.data,
+				});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
 	appliedJobsElement() {
 		let jobsApplied = [];
 		console.log("jobs company", this.state.jobs);
 		this.state.jobs.map((job) => {
 			console.log("mapped Job", job);
+
 			job.appliedUsers.map((user) => {
 				console.log("applied User", user);
+				let solvedChallenges = this.state.solvedChallenge.map((solveChallenge) => {
+					if (solveChallenge.jobId === job._id) {
+						return solveChallenge.isSolved;
+					}
+				})[0];
 				jobsApplied.push(
 					<tr key={job._id}>
 						{" "}
@@ -39,9 +61,27 @@ export default class CompanyAppliedApplicant extends Component {
 						<td>{job.location}</td>{" "}
 						<td>
 							{" "}
-							<Link to={`/solve/challenge/${job.challengeId}`}>
-								<SiJavascript className='text-warning' />
-							</Link>{" "}
+							{solvedChallenges === true ? (
+								<Link to={`/view/solved/challenge/${job._id}/${job.challengeId}`}>
+									<SiJavascript className='text-success' />
+								</Link>
+							) : (
+								""
+							)}
+							{solvedChallenges === false ? (
+								<Link to={`/view/solved/challenge/${job._id}/${job.challengeId}`}>
+									<SiJavascript className='text-danger' />
+								</Link>
+							) : (
+								""
+							)}
+							{solvedChallenges === undefined ? (
+								<Link to={`/solve/challenge/${job._id}/${job.challengeId}`}>
+									<SiJavascript className='text-secondary' />
+								</Link>
+							) : (
+								""
+							)}
 						</td>
 						<td>
 							<Link className='text-info' to={`/user/details/${user._id}/view`}>

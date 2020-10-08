@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { BiCog, BsBriefcaseFill, CgProfile, FiLogOut, RiSwordLine } from "react-icons/all";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { logout } from "../../services/auth";
 import Branding from "../images/NJ_1.png";
+import "./OurNavbar";
 
 class OurNavbar extends Component {
 	render() {
@@ -17,43 +18,55 @@ class OurNavbar extends Component {
 			<div>
 				{this.props.isNavAuths ? (
 					<Navbar bg='info' variant='dark'>
-						<Navbar.Brand href='/profile/' className='border p-2'>
-							<img
-								alt=''
-								src={Branding}
-								width='20'
-								height='20'
-								className='d-inline-block align-center mb-1'
-							/>{" "}
-							NoiceJobs
-						</Navbar.Brand>
+						<Link to={"/profile"} id={"linkasd brand"}>
+							<Navbar.Brand className='border p-2'>
+								<img
+									alt=''
+									src={Branding}
+									width='20'
+									height='20'
+									className='d-inline-block align-center mb-1'
+								/>{" "}
+								NoiceJobs
+							</Navbar.Brand>
+						</Link>
+
 						<Nav className='ml-auto'>
-							<Nav.Link
-								href='/profile'
-								className={`${this.props.profile ? "active" : ""} font-weight-bold h5`}
+							<Link
+								to='/profile'
+								className={`${
+									this.props.profile ? "active font-weight-bold text-white" : ""
+								}  h5 text-light mt-2 mr-4`}
 							>
 								<CgProfile className='mr-1' />
 								Profile
-							</Nav.Link>
-							<Nav.Link
-								href='/settings'
-								className={`${this.props.setting ? "active" : ""} font-weight-bold h5`}
+							</Link>
+
+							<Link
+								to={"settings"}
+								className={`${
+									this.props.setting ? "active font-weight-bold text-white" : ""
+								}  h5 text-light mt-2 mr-4`}
 							>
 								<BiCog className='mr-1' />
 								Settings
-							</Nav.Link>
-							<Nav.Link
-								href='/jobs'
-								className={`${this.props.job ? "active" : ""} font-weight-bold h5`}
+							</Link>
+							<Link
+								className={`${
+									this.props.job ? "active font-weight-bold text-white" : ""
+								}  h5 text-light mt-2 mr-4`}
+								to={"/jobs"}
 							>
 								<BsBriefcaseFill className='mr-1' /> Jobs{" "}
-							</Nav.Link>
-							<Nav.Link
-								href='/challenges'
-								className={`${this.props.challenge ? "active" : ""} font-weight-bold h5`}
+							</Link>
+							<Link
+								className={`${
+									this.props.challenge ? "active font-weight-bold text-white" : ""
+								} h5 text-light mt-2 mr-4`}
+								to={"/challenges"}
 							>
 								<RiSwordLine className='mr-1' /> Challenges{" "}
-							</Nav.Link>
+							</Link>
 							<Nav.Link
 								onClick={(e) => {
 									e.preventDefault();

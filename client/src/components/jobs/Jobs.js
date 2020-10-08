@@ -6,6 +6,13 @@ import JobsList from "../jobsList/JobsList";
 import AddJob from "./AddJob";
 import EditJob from "./EditJob";
 import { Container } from "react-bootstrap";
+import { logout } from "../../services/auth";
+
+const handleLogout = (props) => {
+	logout().then(() => {
+		props.setUser(null);
+	});
+};
 
 export default class Jobs extends Component {
 	state = {

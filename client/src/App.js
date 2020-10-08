@@ -59,7 +59,8 @@ class App extends Component {
 						exact
 						path='/user/details/:id/view'
 						render={(props) => {
-							if (this.state.user) return <UserView user={this.state.user} {...props} />;
+							if (this.state.user)
+								return <UserView user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/' />;
 						}}
 					/>
@@ -67,20 +68,43 @@ class App extends Component {
 					<Route
 						exact
 						path='/settings'
-						render={(props) => <Settings user={this.state.user} type='default' {...props} />}
+						render={(props) => {
+							if (this.state.user)
+								return (
+									<Settings
+										user={this.state.user}
+										setUser={this.setUser}
+										type='default'
+										{...props}
+									/>
+								);
+							else return <Redirect to='/' />;
+						}}
 					/>
 
 					<Route
 						exact
 						path='/profile/settings/:id'
-						render={(props) => <Settings user={this.state.user} type='profile' {...props} />}
+						render={(props) => {
+							if (this.state.user)
+								return (
+									<Settings
+										user={this.state.user}
+										setUser={this.setUser}
+										type='profile'
+										{...props}
+									/>
+								);
+							else return <Redirect to='/' />;
+						}}
 					/>
 
 					<Route
 						exact
 						path='/jobs'
 						render={(props) => {
-							if (this.state.user) return <Jobs user={this.state.user} {...props} />;
+							if (this.state.user)
+								return <Jobs user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/' />;
 						}}
 					/>
@@ -90,7 +114,7 @@ class App extends Component {
 						path='/jobs/add'
 						render={(props) => {
 							if (this.state.user.isCompany === true)
-								return <AddJob user={this.state.user} {...props} />;
+								return <AddJob user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/jobs' />;
 						}}
 					/>
@@ -99,7 +123,8 @@ class App extends Component {
 						exact
 						path='/challenges'
 						render={(props) => {
-							if (this.state.user) return <Challenges user={this.state.user} {...props} />;
+							if (this.state.user)
+								return <Challenges user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/' />;
 						}}
 					/>
@@ -109,7 +134,7 @@ class App extends Component {
 						path='/challenges/add'
 						render={(props) => {
 							if (this.state.user.isCompany === true)
-								return <AddChallenges user={this.state.user} {...props} />;
+								return <AddChallenges user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/jobs' />;
 						}}
 					/>
@@ -119,7 +144,7 @@ class App extends Component {
 						path='/solve/challenge/:jobId/:challengeId'
 						render={(props) => {
 							if (this.state.user.isCompany === false)
-								return <CodeEditor user={this.state.user} {...props} />;
+								return <CodeEditor user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/profile' />;
 						}}
 					/>
@@ -128,8 +153,8 @@ class App extends Component {
 						exact
 						path='/view/solved/challenge/:jobId/:challengeId'
 						render={(props) => {
-							if (this.state.user.isCompany === false)
-								return <CodeView user={this.state.user} {...props} />;
+							if (this.state.user)
+								return <CodeView user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/profile' />;
 						}}
 					/>
@@ -139,7 +164,9 @@ class App extends Component {
 						path='/challenge/:id'
 						render={(props) => {
 							if (this.state.user.isCompany === true)
-								return <ChallengesDetails user={this.state.user} {...props} />;
+								return (
+									<ChallengesDetails user={this.state.user} setUser={this.setUser} {...props} />
+								);
 							else return <Redirect to='/jobs' />;
 						}}
 					/>
@@ -149,7 +176,7 @@ class App extends Component {
 						path='/jobs/:id'
 						render={(props) => {
 							if (this.state.user.isCompany)
-								return <JobDetails user={this.state.user} {...props} />;
+								return <JobDetails user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/' />;
 						}}
 					/>
@@ -159,7 +186,9 @@ class App extends Component {
 						path='/jobs/applicant/:id'
 						render={(props) => {
 							if (!this.state.user.isCompany)
-								return <JobDetailsApplicant user={this.state.user} {...props} />;
+								return (
+									<JobDetailsApplicant user={this.state.user} setUser={this.setUser} {...props} />
+								);
 							else return <Redirect to='/' />;
 						}}
 					/>
@@ -169,7 +198,7 @@ class App extends Component {
 						path='/codeeditor'
 						render={(props) => {
 							if (this.state.user.isCompany === false)
-								return <CodeEditor user={this.state.user} {...props} />;
+								return <CodeEditor user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/profile' />;
 						}}
 					/>
@@ -178,7 +207,8 @@ class App extends Component {
 						exact
 						path='/codeinterview'
 						render={(props) => {
-							if (this.state.user) return <CodeInterview user={this.state.user} {...props} />;
+							if (this.state.user)
+								return <CodeInterview user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/' />;
 						}}
 					/>
