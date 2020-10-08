@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { BiCog, BsBriefcaseFill, CgProfile, FiLogOut, RiSwordLine } from "react-icons/all";
+import { Redirect } from "react-router-dom";
 import { logout } from "../../services/auth";
 import Branding from "../images/NJ_1.png";
 
 class OurNavbar extends Component {
 	render() {
-		const handleLogout = (props) => {
+		const handleLogout = () => {
 			logout().then(() => {
-				props.setUser(null);
+				this.props.setUser(null);
+				this.props.history.push("/");
 			});
 		};
 		return (
@@ -53,9 +55,9 @@ class OurNavbar extends Component {
 								<RiSwordLine className='mr-1' /> Challenges{" "}
 							</Nav.Link>
 							<Nav.Link
-								href='/'
 								onClick={() => handleLogout(this.props)}
 								className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'
+								href='/'
 							>
 								<FiLogOut /> Logout
 							</Nav.Link>

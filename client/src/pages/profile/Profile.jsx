@@ -16,12 +16,10 @@ import Blog from "../blog/Blog.jsx";
 import JobsList from "../../components/jobsList/JobsList.jsx";
 import UserDetails from "../../components/userDetails/UserDetails.jsx";
 import CodeEditor from "../codeeditor/CodeEditor.jsx";
-import {logout} from '../../services/auth.js'
+import { logout } from "../../services/auth.js";
 import OurNavbar from "../../components/ourNavbar/OurNavbar";
 
-
-
-const handleLogout = props => {
+const handleLogout = (props) => {
 	logout().then(() => {
 		props.setUser(null);
 	});
@@ -32,12 +30,10 @@ export default class Profile extends Component {
 		fullUserName: "" || "Profile",
 	};
 
-
-
 	render() {
 		return (
 			<div>
-				<OurNavbar isNavAuths={true} profile={true} setting={false} challenge={false} job={false}/>
+				<OurNavbar isNavAuths={true} profile={true} setting={false} challenge={false} job={false} />
 				<ProfileContent user={this.props.user} />
 				{/* <Switch>
 					<Route

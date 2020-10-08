@@ -1,39 +1,40 @@
 // src/services/auth.js
 
-import axios from 'axios';
+import axios from "axios";
 
-const signup = ( username, password, isCompany) => {
-  return axios
-    .post('/api/auth/signup', { username, password, isCompany })
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      return error.response.data
-    });
-}
+const signup = (username, password, isCompany) => {
+	return axios
+		.post("/api/auth/signup", { username, password, isCompany })
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data;
+		});
+};
 
 const login = (username, password) => {
-  return axios
-    .post('/api/auth/login', { username, password})
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      return error.response.data
-    });
-}
+	return axios
+		.post("/api/auth/login", { username, password })
+		.then((response) => {
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data;
+		});
+};
 
 const logout = (username, password) => {
-  return axios
-    .delete('/api/auth/logout')
-    .then(response => {
-      return response.data;
-    })
-    .catch(error => {
-      return error.response.data
-    });
-}
+	return axios
+		.delete("/api/auth/logout")
+		.then((response) => {
+			console.log(response);
+			return response.data;
+		})
+		.catch((error) => {
+			return error.response.data;
+		});
+};
 
 // const loginGitHub = () => {
 //   console.log('client auth.js');
@@ -42,4 +43,4 @@ const logout = (username, password) => {
 //   xhttp.send();
 // };
 
-export { signup, login, logout};
+export { signup, login, logout };
