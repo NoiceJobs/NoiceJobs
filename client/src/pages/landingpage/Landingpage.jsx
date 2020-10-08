@@ -59,7 +59,7 @@ export default class Landingpage extends Component {
                   // height={500}
                 />
                 <Carousel.Caption>
-                  <h1>Our Vision</h1>
+                  <h2>Our Vision</h2>
                   <p>
                     Nulla vitae elit libero, a pharetra augue mollis interdum.
                   </p>
@@ -120,7 +120,7 @@ export default class Landingpage extends Component {
                 </Col>
 
                 <Col xs={3}>
-                  <Image src="/images/imagesSVG/undraw_To_do_list_re_9nt7.svg" />
+                  <Image className="challenges ml-3 mb-5 "src="/images/imagesSVG/undraw_To_do_list_re_9nt7.svg" />
                 </Col>
               </Row>
               <Row md={4}>
@@ -133,7 +133,7 @@ export default class Landingpage extends Component {
                 </Col>
 
                 <Col xs={3}>
-                  <Image src="/images/imagesSVG/undraw_Freelancer_re_irh4.svg" />
+                  <Image className="remote ml-3 mb-5" src="/images/imagesSVG/undraw_Freelancer_re_irh4.svg" />
                 </Col>
               </Row>
               <Row md={4}>
@@ -146,7 +146,7 @@ export default class Landingpage extends Component {
                 </Col>
 
                 <Col xs={3}>
-                  <Image src="/images/imagesSVG/undraw_group_video_el8e.svg" />
+                  <Image className="interviews ml-5 mb-5" src="/images/imagesSVG/undraw_group_video_el8e.svg" />
                 </Col>
               </Row>
               <Row md={4}>
@@ -159,7 +159,7 @@ export default class Landingpage extends Component {
                 </Col>
 
                 <Col xs={3}>
-                  <Image src="/images/imagesSVG/undraw_Done_checking_re_6vyx.svg" />
+                  <Image className="remote ml-3 mb-5" src="/images/imagesSVG/undraw_Done_checking_re_6vyx.svg" />
                 </Col>
               </Row>
             </Container>
@@ -205,12 +205,12 @@ export default class Landingpage extends Component {
           </Card>
         </div> */}
         <div>
-          <h1 className="text-center mt-5 mb-3" id="team">
+          <h1 className="text-center mt-5 mb-5" id="team">
             Meet Our Team <BsFillPeopleFill />
           </h1>
           <CardDeck>
             <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="/images/tolga.jpg" />
+              <Card.Img  variant="top" src="/images/tolga.jpg" />
               <Card.Body>
                 <Card.Title>Tolga</Card.Title>
                 <Card.Text>
@@ -241,7 +241,7 @@ export default class Landingpage extends Component {
               </Card.Footer>
             </Card>
             <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="/images/unnamed.jpg" roundedCircle />
+              <Card.Img variant="top" src="/images/unnamed.jpg" />
               <Card.Body>
                 <Card.Title>Esther</Card.Title>
                 <Card.Text>

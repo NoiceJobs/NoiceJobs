@@ -100,62 +100,78 @@ class JobsList extends Component {
 						<Col xs={6}>
 							{this.state.jobs.map((job, index) => {
 								return (
-									<div key={job._id}>
-										<Card className='text-center mb-4'>
-											<Card.Header>{job.owner ? job.owner.name : "Mamamia"}</Card.Header>
-											<Card.Body>
-												{this.props.user.isCompany ? (
-													""
-												) : (
-													<Link
-														to='/bookmark'
-														onClick={this.bookmarkJob}
-														name={"bookmarkJob"}
-														className={
-															this.checkIfUserAlreadyBookmarked()[index]
-																? "text-secondary"
-																: "text-primary"
-														}
-														target={job._id}
-													>
-														<BiBookmark />
-													</Link>
-												)}
+                  <div key={job._id}>
+                    <Card className="text-center mb-4">
+                      <Card.Header>
+                        {job.owner ? job.owner.name : "Mamamia"}
+                      </Card.Header>
+                      <Card.Body>
+                        {this.props.user.isCompany ? (
+                          ""
+                        ) : (
+                          <Link
+                            to="/bookmark"
+                            onClick={this.bookmarkJob}
+                            name={"bookmarkJob"}
+                            className={
+                              this.checkIfUserAlreadyBookmarked()[index]
+                                ? "text-secondary"
+                                : "text-primary"
+                            }
+                            target={job._id}
+                          >
+                            <BiBookmark />
+                          </Link>
+                        )}
 
-												<Card.Title>
-													{job.position} ({job.role})
-												</Card.Title>
-												<Card.Text>{job.description}</Card.Text>
-												{this.props.user.isCompany ? (
-													""
-												) : (
-													<Button
-														onClick={this.applyToCompany}
-														name={"jobApplied"}
-														className={
-															// this.checkIfUserAlreadyApplied()[index]
-															job.appliedUsers.includes(this.props.user._id)
-																? "btn btn-secondary disabled"
-																: "btn btn-info"
-														}
-														disabled={job.appliedUsers.includes(this.props.user._id)}
-														value={job._id}
-													>
-														{job.appliedUsers.includes(this.props.user._id)
-															? "Already Applied"
-															: "Apply Now"}
-													</Button>
-												)}
-											</Card.Body>
-											<Card.Footer className='text-muted'>
-												{this.compareDates(job.createdAt)}
-											</Card.Footer>
-										</Card>
-										{/*<h3>
+                        {this.props.user.isCompany ? (
+                          <Card.Title>{job.position}</Card.Title>
+                        ) : (
+                          <Card.Title>
+                            <Link
+                              className={"text-info"}
+                              to={`/jobs/applicant/${job._id}`}
+                            >
+                              {job.position}
+                            </Link>
+                          </Card.Title>
+                        )}
+
+                        <Card.Text>({job.role})</Card.Text>
+                        <Card.Text>{job.description}</Card.Text>
+
+                        {this.props.user.isCompany ? (
+                          ""
+                        ) : (
+                          <Button
+                            onClick={this.applyToCompany}
+                            name={"jobApplied"}
+                            className={
+                              // this.checkIfUserAlreadyApplied()[index]
+                              job.appliedUsers.includes(this.props.user._id)
+                                ? "btn btn-secondary disabled"
+                                : "btn btn-info"
+                            }
+                            disabled={job.appliedUsers.includes(
+                              this.props.user._id
+                            )}
+                            value={job._id}
+                          >
+                            {job.appliedUsers.includes(this.props.user._id)
+                              ? "Already Applied"
+                              : "Apply Now"}
+                          </Button>
+                        )}
+                      </Card.Body>
+                      <Card.Footer className="text-muted">
+                        {this.compareDates(job.createdAt)}
+                      </Card.Footer>
+                    </Card>
+                    {/*<h3>
                   <Link to={`/jobs/${job._id}`}>{job.position}</Link>
                 </h3>*/}
-									</div>
-								);
+                  </div>
+                );
 							})}
 						</Col>
 					</Row>

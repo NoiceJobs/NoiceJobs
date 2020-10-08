@@ -41,6 +41,7 @@ export default class Profile extends Component {
 					job={false}
 					setUser={this.props.setUser}
 					history={this.props.history}
+					
 				/>
 				<ProfileContent user={this.props.user} />
 				{/* <Switch>
