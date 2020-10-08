@@ -8,15 +8,15 @@ import EditJob from "./EditJob";
 import { Container } from "react-bootstrap";
 import { logout } from "../../services/auth";
 
-const handleLogout = (props) => {
-	logout().then(() => {
-		props.setUser(null);
-	});
-};
-
 export default class Jobs extends Component {
 	state = {
 		jobs: [],
+	};
+
+	handleLogout = (props) => {
+		logout().then(() => {
+			props.setUser(null);
+		});
 	};
 
 	componentDidMount() {
@@ -42,7 +42,12 @@ export default class Jobs extends Component {
 			<div className='jobs-container'>
 				{/* <AddJob getData={this.getData} /> */}
 
-				<JobsList user={this.props.user} jobs={this.state.jobs} history={this.props.history} />
+				<JobsList
+					user={this.props.user}
+					setUser={this.setUser}
+					jobs={this.state.jobs}
+					history={this.props.history}
+				/>
 
 				{/* <EditJob getData={this.getData} /> */}
 			</div>

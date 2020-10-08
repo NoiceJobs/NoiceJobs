@@ -7,13 +7,20 @@ import Branding from "../images/NJ_1.png";
 import "./OurNavbar";
 
 class OurNavbar extends Component {
+	handleLogout = () => {
+		logout().then(() => {
+			this.props.setUser(null);
+			this.props.history.push("/");
+		});
+	};
 	render() {
-		const handleLogout = () => {
+		/* 		const handleLogout = () => {
 			logout().then(() => {
 				this.props.setUser(null);
 				this.props.history.push("/");
 			});
-		};
+    }; */
+		console.log("OURNAVBAR", this.props);
 		return (
 			<div>
 				{this.props.isNavAuths ? (
@@ -70,7 +77,7 @@ class OurNavbar extends Component {
 							<Nav.Link
 								onClick={(e) => {
 									e.preventDefault();
-									handleLogout(this.props);
+									this.handleLogout(this.props);
 								}}
 								className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'
 							>

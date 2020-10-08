@@ -118,6 +118,7 @@ export default class Settings extends Component {
 	};
 
 	render() {
+		console.log("SETTINGS", this.props);
 		return (
 			<div>
 				<OurNavbar
