@@ -16,7 +16,7 @@ const passport = require("passport");
 require("./configs/passport");
 
 mongoose
-	.connect("mongodb://localhost/noicejobs", { useNewUrlParser: true })
+	.connect(process.env.MONGODB_URI || "mongodb://localhost/noicejobs", { useNewUrlParser: true })
 	.then((x) => {
 		console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
 	})
@@ -68,7 +68,8 @@ app.use(
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
-app.use(express.static(path.join(__dirname, "public")));
+//app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
@@ -91,5 +92,10 @@ app.use("/api/user", user);
 
 const auth = require("./routes/auth");
 app.use("/api/auth", auth);
+
+app.use((req, res) => {
+	// If no routes match, send them the React HTML.
+	res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;
