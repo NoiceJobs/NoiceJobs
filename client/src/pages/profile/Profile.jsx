@@ -33,7 +33,15 @@ export default class Profile extends Component {
 	render() {
 		return (
 			<div>
-				<OurNavbar isNavAuths={true} profile={true} setting={false} challenge={false} job={false} />
+				<OurNavbar
+					isNavAuths={true}
+					profile={true}
+					setting={false}
+					challenge={false}
+					job={false}
+					setUser={this.props.setUser}
+					history={this.props.history}
+				/>
 				<ProfileContent user={this.props.user} />
 				{/* <Switch>
 					<Route

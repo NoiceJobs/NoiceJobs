@@ -55,9 +55,11 @@ class OurNavbar extends Component {
 								<RiSwordLine className='mr-1' /> Challenges{" "}
 							</Nav.Link>
 							<Nav.Link
-								onClick={() => handleLogout(this.props)}
+								onClick={(e) => {
+									e.preventDefault();
+									handleLogout(this.props);
+								}}
 								className='font-weight-bold btn btn-light text-danger shadow-sm ml-4 h5'
-								href='/'
 							>
 								<FiLogOut /> Logout
 							</Nav.Link>

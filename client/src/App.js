@@ -49,7 +49,8 @@ class App extends Component {
 						exact
 						path='/profile'
 						render={(props) => {
-							if (this.state.user) return <Profile user={this.state.user} {...props} />;
+							if (this.state.user)
+								return <Profile user={this.state.user} setUser={this.setUser} {...props} />;
 							else return <Redirect to='/' />;
 						}}
 					/>
