@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { logout } from "../../services/auth.js";
 import OurNavbar from "../ourNavbar/OurNavbar";
 import axios from "axios";
@@ -65,7 +65,6 @@ class JobsList extends Component {
 		return (
 			<>
 				<OurNavbar isNavAuths={true} profile={false} setting={false} challenge={false} job={true} />
-
 				<Container>
 					<div>
 						<Row>
@@ -80,14 +79,14 @@ class JobsList extends Component {
 							</Col>
 						</Row>
 					</div>
-					{this.props.jobs.length > 0 &&  <><h1 className="text-center">Jobs</h1>
+					{this.state.jobs.length > 0 &&  <><h1 className="text-center">Jobs</h1>
         <h2 className="h4 text-light font-w400 text-muted mb-5 text-center">
           Explore the jobs of NoiceJobs!
         </h2></>}
 
 					<Row className="d-flex justify-content-center">
 						<Col xs={6}>
-							{this.props.jobs.map((job, index) => {
+							{this.state.jobs.map((job, index) => {
 								return (
 									<div key={job._id}>
 										<Card className='text-center mb-4'>
@@ -122,14 +121,15 @@ class JobsList extends Component {
 														onClick={this.applyToCompany}
 														name={"jobApplied"}
 														className={
-															this.checkIfUserAlreadyApplied()[index]
+															// this.checkIfUserAlreadyApplied()[index]
+															job.appliedUsers.includes(this.props.user._id)
 																? "btn btn-secondary disabled"
 																: "btn btn-info"
 														}
-														disabled={this.checkIfUserAlreadyApplied()[index]}
+														disabled={job.appliedUsers.includes(this.props.user._id)}
 														value={job._id}
 													>
-														{this.checkIfUserAlreadyApplied()[index]
+														{job.appliedUsers.includes(this.props.user._id)
 															? "Already Applied"
 															: "Apply Now"}
 													</Button>
@@ -189,7 +189,9 @@ class JobsList extends Component {
 				this.setState({
 					appliedCompany: data,
 				});
-				this.props.history.push("/jobs");
+				this.getData();
+				// return <Redirect to="/jobs"/>
+				// this.props.history.push("/jobs");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -220,6 +222,7 @@ class JobsList extends Component {
 				this.setState({
 					users: data,
 				});
+				this.checkIfUserAlreadyApplied();
 				this.props.history.push("/jobs");
 			})
 			.catch((error) => {
