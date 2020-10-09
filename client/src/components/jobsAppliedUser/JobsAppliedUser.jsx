@@ -63,7 +63,7 @@ export default class JobsAppliedUser extends Component {
 					console.log("job._id:::", job._id);
 					console.log("solveChallenge.isSolved:::", solveChallenge.isSolved);
 
-					if (solveChallenge.jobId === job._id) {
+					if (solveChallenge.jobId === job._id && solveChallenge.userId === this.props.user._id) {
 						return solveChallenge.isSolved;
 					}
 				});

@@ -45,11 +45,22 @@ export default class CompanyAppliedApplicant extends Component {
 
 			job.appliedUsers.map((user) => {
 				console.log("applied User", user);
+
 				let solvedChallenges = this.state.solvedChallenge.map((solveChallenge) => {
-					if (solveChallenge.jobId === job._id) {
+					console.log("solveChallenge.jobId:::", solveChallenge.jobId);
+					console.log("job._id:::", job._id);
+					console.log("solveChallenge.isSolved:::", solveChallenge.isSolved);
+
+					if (solveChallenge.jobId === job._id && solveChallenge.userId === user._id) {
 						return solveChallenge.isSolved;
 					}
-				})[0];
+				});
+
+				let isSolved = solvedChallenges.filter((value) => {
+					return value !== undefined;
+				});
+				isSolved = isSolved[0];
+
 				jobsApplied.push(
 					<tr key={job._id}>
 						{" "}
@@ -61,21 +72,21 @@ export default class CompanyAppliedApplicant extends Component {
 						<td>{job.location}</td>{" "}
 						<td>
 							{" "}
-							{solvedChallenges === true ? (
+							{isSolved === true ? (
 								<Link to={`/view/solved/challenge/${job._id}/${job.challengeId}`}>
 									<SiJavascript className='text-success' />
 								</Link>
 							) : (
 								""
 							)}
-							{solvedChallenges === false ? (
+							{isSolved === false ? (
 								<Link to={`/view/solved/challenge/${job._id}/${job.challengeId}`}>
 									<SiJavascript className='text-danger' />
 								</Link>
 							) : (
 								""
 							)}
-							{solvedChallenges === undefined ? (
+							{isSolved === undefined ? (
 								<Link to={`/solve/challenge/${job._id}/${job.challengeId}`}>
 									<SiJavascript className='text-secondary' />
 								</Link>
